@@ -21,6 +21,7 @@
 		8339149618D23D3D0043FD66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8339147818D23D3D0043FD66 /* UIKit.framework */; };
 		8339149E18D23D3D0043FD66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8339149C18D23D3D0043FD66 /* InfoPlist.strings */; };
 		833914A018D23D3D0043FD66 /* Time_CardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339149F18D23D3D0043FD66 /* Time_CardTests.m */; };
+		83B489B318D243A700C39FB4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B489B218D243A700C39FB4 /* Employee.m */; };
 		B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E42F18D2424E005497DC /* LoginViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		8339149B18D23D3D0043FD66 /* Time CardTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Time CardTests-Info.plist"; sourceTree = "<group>"; };
 		8339149D18D23D3D0043FD66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8339149F18D23D3D0043FD66 /* Time_CardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Time_CardTests.m; sourceTree = "<group>"; };
+		83B489B118D243A700C39FB4 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
+		83B489B218D243A700C39FB4 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		B5E0E42E18D2424E005497DC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5E0E42F18D2424E005497DC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +125,8 @@
 				8339148A18D23D3D0043FD66 /* ViewController.m */,
 				B5E0E42E18D2424E005497DC /* LoginViewController.h */,
 				B5E0E42F18D2424E005497DC /* LoginViewController.m */,
+				83B489B118D243A700C39FB4 /* Employee.h */,
+				83B489B218D243A700C39FB4 /* Employee.m */,
 				8339148C18D23D3D0043FD66 /* Images.xcassets */,
 				8339147B18D23D3D0043FD66 /* Supporting Files */,
 			);
@@ -254,9 +259,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B489B318D243A700C39FB4 /* Employee.m in Sources */,
 				B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */,
 				8339148B18D23D3D0043FD66 /* ViewController.m in Sources */,
-				833914AB18D241900043FD66 /* Employee.m in Sources */,
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
 			);
