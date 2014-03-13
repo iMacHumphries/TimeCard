@@ -36,7 +36,7 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)addPinToArray:(int)pinNumber{
-    [pin addObject:pinNumber];
+    [pin addObject:[NSNumber numberWithInt:pinNumber]];
 
 }
 
