@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Employee : NSObject {
-        NSString *employeeName;
+        NSString *name;
         NSString *pin;
 }
 

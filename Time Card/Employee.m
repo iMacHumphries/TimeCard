@@ -10,4 +10,11 @@
 
 @implementation Employee
 
+-(id)initWithName:(NSString *)_name withPin:(NSString *)_pin{
+    self=[super init];
+    name=_name;
+    pin=_pin;
+    return self;
+}
+
 @end
