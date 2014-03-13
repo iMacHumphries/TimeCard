@@ -13,6 +13,7 @@
 @end
 
 @implementation LoginViewController
+@synthesize pin;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,6 +34,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+-(void)addPinToArray:(int)pinNumber{
+    [pin addObject:pinNumber];
+
 }
 
 @end
