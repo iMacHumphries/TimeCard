@@ -37,7 +37,9 @@
 }
 -(void)addPinToArray:(int)pinNumber{
     [pin addObject:[NSNumber numberWithInt:pinNumber]];
-
+}
+-(void)removeLastPinFromArray{
+    [pin removeLastObject];
 }
 
 @end
