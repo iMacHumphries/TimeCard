@@ -14,7 +14,6 @@
 		8339148118D23D3D0043FD66 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339148018D23D3D0043FD66 /* main.m */; };
 		8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339148418D23D3D0043FD66 /* AppDelegate.m */; };
 		8339148818D23D3D0043FD66 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8339148618D23D3D0043FD66 /* Main.storyboard */; };
-		8339148B18D23D3D0043FD66 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339148A18D23D3D0043FD66 /* ViewController.m */; };
 		8339148D18D23D3D0043FD66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8339148C18D23D3D0043FD66 /* Images.xcassets */; };
 		8339149418D23D3D0043FD66 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8339149318D23D3D0043FD66 /* XCTest.framework */; };
 		8339149518D23D3D0043FD66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8339147418D23D3D0043FD66 /* Foundation.framework */; };
@@ -47,8 +46,6 @@
 		8339148318D23D3D0043FD66 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8339148418D23D3D0043FD66 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		8339148718D23D3D0043FD66 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8339148918D23D3D0043FD66 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8339148A18D23D3D0043FD66 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8339148C18D23D3D0043FD66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8339149218D23D3D0043FD66 /* Time CardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Time CardTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8339149318D23D3D0043FD66 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -121,8 +118,6 @@
 				8339148318D23D3D0043FD66 /* AppDelegate.h */,
 				8339148418D23D3D0043FD66 /* AppDelegate.m */,
 				8339148618D23D3D0043FD66 /* Main.storyboard */,
-				8339148918D23D3D0043FD66 /* ViewController.h */,
-				8339148A18D23D3D0043FD66 /* ViewController.m */,
 				B5E0E42E18D2424E005497DC /* LoginViewController.h */,
 				B5E0E42F18D2424E005497DC /* LoginViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
