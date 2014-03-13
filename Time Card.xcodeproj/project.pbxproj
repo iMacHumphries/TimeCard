@@ -256,6 +256,7 @@
 			files = (
 				B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */,
 				8339148B18D23D3D0043FD66 /* ViewController.m in Sources */,
+				833914AB18D241900043FD66 /* Employee.m in Sources */,
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
 			);
