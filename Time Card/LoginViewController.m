@@ -14,7 +14,7 @@
 
 @implementation LoginViewController
 @synthesize pinArray;
-
+@synthesize indicator1,indicator2,indicator3,indicator4;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -51,12 +51,54 @@
 
 - (IBAction)pinButton:(UIButton *)sender {
     [self addPinToArray:sender.tag];
+    [self changeIndicators];
 }
 - (IBAction)deleteButton:(UIButton *)sender {
     [self removeLastPinFromArray];
+    [self changeIndicators];
 }
 -(void)checkEmployeePin{
     
 }
+-(void)changeIndicators{
+    
+    if ([pinArray count]== 0) {
+        [indicator1 setImage:[UIImage imageNamed:@"blankIndicator"]];
+        [indicator2 setImage:[UIImage imageNamed:@"blankIndicator"]];
+        [indicator3 setImage:[UIImage imageNamed:@"blankIndicator"]];
+        [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+    }
+   else if ([pinArray count]== 1) {
+        [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
+        [indicator2 setImage:[UIImage imageNamed:@"blankIndicator"]];
+        [indicator3 setImage:[UIImage imageNamed:@"blankIndicator"]];
+        [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+    }
+   else if ([pinArray count]== 2) {
+       [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator2 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator3 setImage:[UIImage imageNamed:@"blankIndicator"]];
+       [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+       
+   }
+   else if ([pinArray count]== 3) {
+       [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator2 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator3 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+       
+   }
 
+   else if ([pinArray count]== 4) {
+       [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator2 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator3 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator4 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       
+   }
+
+    
+
+    
+}
 @end
