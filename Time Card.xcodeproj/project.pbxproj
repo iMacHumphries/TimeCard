@@ -23,6 +23,9 @@
 		83B489B318D243A700C39FB4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B489B218D243A700C39FB4 /* Employee.m */; };
 		83B489F618D3A9E400C39FB4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B489F518D3A9E400C39FB4 /* CoreData.framework */; };
 		83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */; };
+		83B489FB18D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */; };
+		83B48A0418D3AFF900C39FB4 /* EmployeeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B48A0318D3AFF900C39FB4 /* EmployeeAction.m */; };
+		83B48A0718D3AFF900C39FB4 /* Employees.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B48A0618D3AFF900C39FB4 /* Employees.m */; };
 		B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E42F18D2424E005497DC /* LoginViewController.m */; };
 		B5E0E45718D38BBF005497DC /* b0.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E44C18D38BBF005497DC /* b0.png */; };
 		B5E0E45818D38BBF005497DC /* b1.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E44D18D38BBF005497DC /* b1.png */; };
@@ -72,6 +75,11 @@
 		83B489B218D243A700C39FB4 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		83B489F518D3A9E400C39FB4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
+		83B489FA18D3AE6900C39FB4 /* EmployeeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeModel.xcdatamodel; sourceTree = "<group>"; };
+		83B48A0218D3AFF900C39FB4 /* EmployeeAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeAction.h; sourceTree = "<group>"; };
+		83B48A0318D3AFF900C39FB4 /* EmployeeAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeAction.m; sourceTree = "<group>"; };
+		83B48A0518D3AFF900C39FB4 /* Employees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employees.h; sourceTree = "<group>"; };
+		83B48A0618D3AFF900C39FB4 /* Employees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employees.m; sourceTree = "<group>"; };
 		B5E0E42E18D2424E005497DC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5E0E42F18D2424E005497DC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B5E0E44C18D38BBF005497DC /* b0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b0.png; sourceTree = "<group>"; };
@@ -156,6 +164,11 @@
 				B5E0E42F18D2424E005497DC /* LoginViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
 				83B489B218D243A700C39FB4 /* Employee.m */,
+				83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */,
+				83B48A0518D3AFF900C39FB4 /* Employees.h */,
+				83B48A0618D3AFF900C39FB4 /* Employees.m */,
+				83B48A0218D3AFF900C39FB4 /* EmployeeAction.h */,
+				83B48A0318D3AFF900C39FB4 /* EmployeeAction.m */,
 				83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */,
 				8339148C18D23D3D0043FD66 /* Images.xcassets */,
 				8339147B18D23D3D0043FD66 /* Supporting Files */,
@@ -326,10 +339,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				83B489B318D243A700C39FB4 /* Employee.m in Sources */,
+				83B48A0718D3AFF900C39FB4 /* Employees.m in Sources */,
+				83B48A0418D3AFF900C39FB4 /* EmployeeAction.m in Sources */,
 				B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */,
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
 				83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */,
+				83B489FB18D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +568,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				83B489FA18D3AE6900C39FB4 /* EmployeeModel.xcdatamodel */,
+			);
+			currentVersion = 83B489FA18D3AE6900C39FB4 /* EmployeeModel.xcdatamodel */;
+			name = EmployeeModel.xcdatamodeld;
+			path = ../EmployeeModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8339146918D23D3D0043FD66 /* Project object */;
 }

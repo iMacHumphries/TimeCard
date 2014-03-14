@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-
+#import "AppDelegate.h"
 @interface LoginViewController ()
 
 @end
@@ -27,6 +27,31 @@
 {
     pinArray = [[NSMutableArray alloc]init];
 
+   NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+  /* NSManagedObject *failedBankInfo = [NSEntityDescription
+                                       insertNewObjectForEntityForName:@"Employees"
+                                       inManagedObjectContext:context];
+    [failedBankInfo setValue:@"Pam Mays" forKey:@"name"];
+    [failedBankInfo setValue:@"1234" forKey:@"pin"];
+   */ NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Employees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSPredicate *pred=[NSPredicate predicateWithFormat:@"pin like '1234'"];
+    [fetchRequest setPredicate:pred];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *info in fetchedObjects) {
+        NSLog(@"Name: %@", [info valueForKey:@"name"]);
+       
+        // NSManagedObject *details = [info valueForKey:@"details"];
+       // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
+    }
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -90,6 +115,7 @@
        [indicator2 setImage:fill];
        [indicator3 setImage:fill];
        [indicator4 setImage:fill];
+       
        
    }
 

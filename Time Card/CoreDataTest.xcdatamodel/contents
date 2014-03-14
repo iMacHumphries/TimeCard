@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="EmployeeAction" syncable="YES">
+        <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timeInitiated" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="actionToEmployees" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Employees" inverseName="employeesToAction" inverseEntity="Employees" syncable="YES"/>
+    </entity>
+    <entity name="Employees" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pin" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="employeesToAction" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EmployeeAction" inverseName="actionToEmployees" inverseEntity="EmployeeAction" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Employees" positionX="-1098" positionY="-2601" width="128" height="88"/>
+        <element name="EmployeeAction" positionX="-713" positionY="-2583" width="128" height="118"/>
+    </elements>
 </model>
