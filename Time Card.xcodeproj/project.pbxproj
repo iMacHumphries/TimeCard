@@ -41,6 +41,7 @@
 		B5E0E46318D39047005497DC /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E46218D39047005497DC /* bg.png */; };
 		B5E0E46618D392D0005497DC /* filledIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E46418D392D0005497DC /* filledIndicator.png */; };
 		B5E0E46718D392D0005497DC /* blankIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E46518D392D0005497DC /* blankIndicator.png */; };
+		B5E0E46A18D3AFFF005497DC /* CreateEmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,8 @@
 		B5E0E46218D39047005497DC /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
 		B5E0E46418D392D0005497DC /* filledIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filledIndicator.png; sourceTree = "<group>"; };
 		B5E0E46518D392D0005497DC /* blankIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blankIndicator.png; sourceTree = "<group>"; };
+		B5E0E46818D3AFFF005497DC /* CreateEmployeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateEmployeeViewController.h; sourceTree = "<group>"; };
+		B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateEmployeeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +165,8 @@
 				8339148618D23D3D0043FD66 /* Main.storyboard */,
 				B5E0E42E18D2424E005497DC /* LoginViewController.h */,
 				B5E0E42F18D2424E005497DC /* LoginViewController.m */,
+				B5E0E46818D3AFFF005497DC /* CreateEmployeeViewController.h */,
+				B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
 				83B489B218D243A700C39FB4 /* Employee.m */,
 				83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */,
@@ -338,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E0E46A18D3AFFF005497DC /* CreateEmployeeViewController.m in Sources */,
 				83B489B318D243A700C39FB4 /* Employee.m in Sources */,
 				83B48A0718D3AFF900C39FB4 /* Employees.m in Sources */,
 				83B48A0418D3AFF900C39FB4 /* EmployeeAction.m in Sources */,
