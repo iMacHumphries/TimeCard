@@ -21,6 +21,8 @@
 		8339149E18D23D3D0043FD66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8339149C18D23D3D0043FD66 /* InfoPlist.strings */; };
 		833914A018D23D3D0043FD66 /* Time_CardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339149F18D23D3D0043FD66 /* Time_CardTests.m */; };
 		83B489B318D243A700C39FB4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B489B218D243A700C39FB4 /* Employee.m */; };
+		83B489F618D3A9E400C39FB4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B489F518D3A9E400C39FB4 /* CoreData.framework */; };
+		83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */; };
 		B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E42F18D2424E005497DC /* LoginViewController.m */; };
 		B5E0E45718D38BBF005497DC /* b0.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E44C18D38BBF005497DC /* b0.png */; };
 		B5E0E45818D38BBF005497DC /* b1.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E44D18D38BBF005497DC /* b1.png */; };
@@ -68,6 +70,8 @@
 		8339149F18D23D3D0043FD66 /* Time_CardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Time_CardTests.m; sourceTree = "<group>"; };
 		83B489B118D243A700C39FB4 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
 		83B489B218D243A700C39FB4 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
+		83B489F518D3A9E400C39FB4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
 		B5E0E42E18D2424E005497DC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5E0E42F18D2424E005497DC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B5E0E44C18D38BBF005497DC /* b0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b0.png; sourceTree = "<group>"; };
@@ -91,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83B489F618D3A9E400C39FB4 /* CoreData.framework in Frameworks */,
 				8339147718D23D3D0043FD66 /* CoreGraphics.framework in Frameworks */,
 				8339147918D23D3D0043FD66 /* UIKit.framework in Frameworks */,
 				8339147518D23D3D0043FD66 /* Foundation.framework in Frameworks */,
@@ -132,6 +137,7 @@
 		8339147318D23D3D0043FD66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83B489F518D3A9E400C39FB4 /* CoreData.framework */,
 				8339147418D23D3D0043FD66 /* Foundation.framework */,
 				8339147618D23D3D0043FD66 /* CoreGraphics.framework */,
 				8339147818D23D3D0043FD66 /* UIKit.framework */,
@@ -150,6 +156,7 @@
 				B5E0E42F18D2424E005497DC /* LoginViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
 				83B489B218D243A700C39FB4 /* Employee.m */,
+				83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */,
 				8339148C18D23D3D0043FD66 /* Images.xcassets */,
 				8339147B18D23D3D0043FD66 /* Supporting Files */,
 			);
@@ -322,6 +329,7 @@
 				B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */,
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
+				83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
