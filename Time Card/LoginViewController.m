@@ -153,4 +153,9 @@
     [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
 
 }
+-(void)clearArrayAndIndicators{
+    [self allIndicatorsBlank];
+    pinArray = [[NSMutableArray alloc] init];
+}
+
 @end
