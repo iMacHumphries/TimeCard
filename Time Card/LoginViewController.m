@@ -65,7 +65,6 @@
     NSString *string =[NSString stringWithFormat:@"%i",pinNumber];
     [pinArray addObject:string];
     if ([pinArray count] == 4){
-        [self checkEmployeePin];
     }
     NSLog(@"pin : %@",pinArray);
 }
@@ -120,16 +119,16 @@
        [indicator4 setImage:fill];
        bool rightPin=[self checkPin];
        if(rightPin){
-           
+           [self performSegueWithIdentifier:@"mainMenu" sender:nil];
        }else{
-           
+           [self allIndicatorsBlank];
        }
    }
 
 }
 -(BOOL)checkPin{
-    NSString *string=[pinArray componentsJoinedByString:@""];
-    NSLog(@"String %@", string);
+    NSString *pinNumber=[pinArray componentsJoinedByString:@""];
+    NSLog(@"String %@", pinNumber);
     
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSError *error;
@@ -138,7 +137,7 @@
     NSEntityDescription *entity = [NSEntityDescription
                                    entityForName:@"Employees" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
-    NSPredicate *pred=[NSPredicate predicateWithFormat:@"pin like '1234'"];
+    NSPredicate *pred=[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"pin like '%@'", pinNumber]];
     [fetchRequest setPredicate:pred];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
 
@@ -146,6 +145,7 @@
     return [fetchedObjects count]>0;
     
 }
+
 -(void)allIndicatorsBlank{
     [indicator1 setImage:[UIImage imageNamed:@"blankIndicator"]];
     [indicator2 setImage:[UIImage imageNamed:@"blankIndicator"]];
