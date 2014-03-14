@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
+#import "Employees.h"
+#import "EmployeeAction.h"
 @interface LoginViewController : UIViewController{
     NSMutableArray *pinArray;
 }

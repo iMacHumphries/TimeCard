@@ -116,14 +116,31 @@
        [indicator3 setImage:fill];
        [indicator4 setImage:fill];
        bool rightPin=[self checkPin];
-       
+       if(rightPin){
+           
+       }else{
+           
+       }
    }
 
 }
 -(BOOL)checkPin{
     NSString *string=[pinArray componentsJoinedByString:@""];
     NSLog(@"String %@", string);
-    return true;
+    
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSError *error;
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Employees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSPredicate *pred=[NSPredicate predicateWithFormat:@"pin like '1234'"];
+    [fetchRequest setPredicate:pred];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+
+    
+    return [fetchedObjects count]>0;
     
 }
 -(void)allIndicatorsBlank{
