@@ -30,15 +30,14 @@
 - (void)viewDidLoad
 {
     NSLog(@"%@", employee.name);
+    praise = [[NSArray alloc] initWithObjects:@"Awesome",@"Fantastic",@"Great",@"Ok",@"Sweet", nil];
     welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
     lastLoginLabel.text = [self getSatus];
     
     if ([self clockedIn]){
-        //clockInOutButton.titleLabel.text = @"Clock Out";
         [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
     }
     else {
-        //clockInOutButton.titleLabel.text = @"Clock In";
         [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
 
     }
@@ -80,9 +79,18 @@
     }
 }
 - (IBAction)clockInOutButton:(UIButton *)sender {
+    NSString *clocked = [[clockInOutButton titleLabel]text];
+
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
+    [alert show];
     
 }
 
 
-
+-(NSString *)getRandomPraise{
+    
+    int i = arc4random()%[praise count];
+    NSString *string = [praise objectAtIndex:i];
+    return string;
+}
 @end
