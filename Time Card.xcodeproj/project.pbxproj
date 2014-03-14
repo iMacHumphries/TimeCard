@@ -39,6 +39,7 @@
 		B5E0E46618D392D0005497DC /* filledIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E46418D392D0005497DC /* filledIndicator.png */; };
 		B5E0E46718D392D0005497DC /* blankIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E46518D392D0005497DC /* blankIndicator.png */; };
 		B5E0E46A18D3AFFF005497DC /* CreateEmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */; };
+		B5E0E47018D3B445005497DC /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E46F18D3B445005497DC /* MainMenuViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +92,8 @@
 		B5E0E46518D392D0005497DC /* blankIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blankIndicator.png; sourceTree = "<group>"; };
 		B5E0E46818D3AFFF005497DC /* CreateEmployeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateEmployeeViewController.h; sourceTree = "<group>"; };
 		B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateEmployeeViewController.m; sourceTree = "<group>"; };
+		B5E0E46E18D3B445005497DC /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
+		B5E0E46F18D3B445005497DC /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +162,8 @@
 				B5E0E42F18D2424E005497DC /* LoginViewController.m */,
 				B5E0E46818D3AFFF005497DC /* CreateEmployeeViewController.h */,
 				B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */,
+				B5E0E46E18D3B445005497DC /* MainMenuViewController.h */,
+				B5E0E46F18D3B445005497DC /* MainMenuViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
 				83B489B218D243A700C39FB4 /* Employee.m */,
 				83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */,
@@ -336,6 +341,7 @@
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
 				83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */,
+				B5E0E47018D3B445005497DC /* MainMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
