@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "EmployeeAction.h"
 #import "Employee.h"
-@interface CreateEmployeeViewController : UIViewController{
+@interface CreateEmployeeViewController : UIViewController<UITextFieldDelegate>{
     
 }
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
