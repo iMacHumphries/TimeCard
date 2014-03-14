@@ -39,6 +39,9 @@
 -(void)addPinToArray:(NSInteger)pinNumber{
     NSString *string =[NSString stringWithFormat:@"%i",pinNumber];
     [pinArray addObject:string];
+    if ([pinArray count] == 4){
+        [self checkEmployeePin];
+    }
     NSLog(@"pin : %@",pinArray);
 }
 -(void)removeLastPinFromArray{
@@ -52,4 +55,8 @@
 - (IBAction)deleteButton:(UIButton *)sender {
     [self removeLastPinFromArray];
 }
+-(void)checkEmployeePin{
+    
+}
+
 @end

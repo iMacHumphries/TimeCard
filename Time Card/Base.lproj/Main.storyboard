@@ -16,6 +16,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="HYK-WO-Y5F">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7z-Xw-bqA">
                                 <rect key="frame" x="377" y="198" width="85" height="87"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -156,6 +160,7 @@
         <image name="b7.png" width="124" height="124"/>
         <image name="b8.png" width="124" height="124"/>
         <image name="b9.png" width="124" height="124"/>
+        <image name="bg.png" width="1024" height="768"/>
         <image name="delete.png" width="124" height="124"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
