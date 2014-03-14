@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "EmployeeAction.h"
+#import "Employee.h"
 @interface CreateEmployeeViewController : UIViewController{
     
 }
-
 @end

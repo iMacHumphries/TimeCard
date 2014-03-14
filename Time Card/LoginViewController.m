@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "MainMenuViewController.h"
 @interface LoginViewController ()
 
 @end
@@ -119,7 +120,7 @@
        [indicator4 setImage:fill];
        Employees *rightPin=[self checkPin];
        if(rightPin!=NULL){
-           [self performSegueWithIdentifier:@"mainMenu" sender:nil];
+           [self performSegueWithIdentifier:@"mainMenu" sender:rightPin];
        }else{
            [self allIndicatorsBlank];
        }
@@ -160,6 +161,12 @@
 -(void)clearArrayAndIndicators{
     [self allIndicatorsBlank];
     pinArray = [[NSMutableArray alloc] init];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"sequeu is happening");
+    MainMenuViewController *controller=segue.destinationViewController;
+    controller.employee=(Employees *)sender;
 }
 
 @end

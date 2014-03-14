@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Employees.h"
 @interface MainMenuViewController : UIViewController
+
+@property (nonatomic, retain) Employees *employee;
 
 @end
