@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController{
-    NSMutableArray *pin;
+    NSMutableArray *pinArray;
 }
-@property (retain,nonatomic) NSMutableArray *pin;
+- (IBAction)pinButton:(UIButton *)sender;
+- (IBAction)deleteButton:(UIButton *)sender;
+@property (retain,nonatomic) NSMutableArray *pinArray;
+
+
 
 @end

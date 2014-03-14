@@ -13,19 +13,20 @@
 @end
 
 @implementation LoginViewController
-@synthesize pin;
+@synthesize pinArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
-    }
+           }
     return self;
 }
 
 - (void)viewDidLoad
 {
+    pinArray = [[NSMutableArray alloc]init];
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -35,11 +36,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(void)addPinToArray:(int)pinNumber{
-    [pin addObject:[NSNumber numberWithInt:pinNumber]];
+-(void)addPinToArray:(NSInteger)pinNumber{
+    NSString *string =[NSString stringWithFormat:@"%i",pinNumber];
+    [pinArray addObject:string];
+    NSLog(@"pin : %@",pinArray);
 }
 -(void)removeLastPinFromArray{
-    [pin removeLastObject];
+    [pinArray removeLastObject];
+     NSLog(@"pin : %@",pinArray);
 }
 
+- (IBAction)pinButton:(UIButton *)sender {
+    [self addPinToArray:sender.tag];
+}
+- (IBAction)deleteButton:(UIButton *)sender {
+    [self removeLastPinFromArray];
+}
 @end
