@@ -13,6 +13,7 @@
 @end
 
 @implementation CreateEmployeeViewController
+@synthesize nameTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,7 +26,7 @@
 
 - (void)viewDidLoad
 {
-    
+    [nameTextField becomeFirstResponder];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

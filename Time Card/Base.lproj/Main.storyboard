@@ -228,6 +228,9 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="0I6-Rr-8PL" id="K8t-r2-sDW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yip-cy-AST" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
