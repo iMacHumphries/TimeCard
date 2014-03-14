@@ -84,6 +84,9 @@
 }
 -(void)checkEmployeePin{
     
+    //if Correct pin
+    [self performSegueWithIdentifier:@"mainMenu" sender:nil];
+    
 }
 -(void)changeIndicators{
     UIImage *fill = [UIImage imageNamed:@"filledIndicator"];

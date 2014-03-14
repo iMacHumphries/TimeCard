@@ -23,7 +23,6 @@
 		83B489B318D243A700C39FB4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B489B218D243A700C39FB4 /* Employee.m */; };
 		83B489F618D3A9E400C39FB4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B489F518D3A9E400C39FB4 /* CoreData.framework */; };
 		83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */; };
-		83B489FB18D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */; };
 		83B48A0418D3AFF900C39FB4 /* EmployeeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B48A0318D3AFF900C39FB4 /* EmployeeAction.m */; };
 		83B48A0718D3AFF900C39FB4 /* Employees.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B48A0618D3AFF900C39FB4 /* Employees.m */; };
 		B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E42F18D2424E005497DC /* LoginViewController.m */; };
@@ -43,6 +42,7 @@
 		B5E0E46718D392D0005497DC /* blankIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E46518D392D0005497DC /* blankIndicator.png */; };
 		B5E0E46A18D3AFFF005497DC /* CreateEmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */; };
 		B5E0E47018D3B445005497DC /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E46F18D3B445005497DC /* MainMenuViewController.m */; };
+		B5E0E47118D3B672005497DC /* EmployeeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -348,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5E0E47118D3B672005497DC /* EmployeeModel.xcdatamodeld in Sources */,
 				B5E0E46A18D3AFFF005497DC /* CreateEmployeeViewController.m in Sources */,
 				83B489B318D243A700C39FB4 /* Employee.m in Sources */,
 				83B48A0718D3AFF900C39FB4 /* Employees.m in Sources */,

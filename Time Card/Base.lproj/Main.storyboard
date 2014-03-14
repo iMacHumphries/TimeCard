@@ -174,25 +174,22 @@
                         <outlet property="indicator2" destination="zMD-MJ-XQO" id="0i0-Ng-iqQ"/>
                         <outlet property="indicator3" destination="akF-49-hPQ" id="jsQ-QU-H6k"/>
                         <outlet property="indicator4" destination="Sdv-dK-kMG" id="2xr-nh-Wpb"/>
+                        <segue destination="MtX-iT-fLp" kind="modal" identifier="mainMenu" modalTransitionStyle="crossDissolve" id="fot-EC-EoF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-251" y="-75"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="Jqd-Ex-aRw">
             <objects>
                 <viewController id="MtX-iT-fLp" customClass="MainMenuViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GYd-Ah-QzA"/>
-                        <viewControllerLayoutGuide type="bottom" id="lFn-Fh-9N9"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="hxC-p8-KAs">
+                    <imageView key="view" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.png" id="mnv-qc-v6s">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
-                    </view>
+                    </imageView>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vN3-l9-XVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
