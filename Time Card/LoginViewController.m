@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "MainMenuViewController.h"
 @interface LoginViewController ()
 
 @end
@@ -117,16 +118,16 @@
        [indicator2 setImage:fill];
        [indicator3 setImage:fill];
        [indicator4 setImage:fill];
-       bool rightPin=[self checkPin];
-       if(rightPin){
-           [self performSegueWithIdentifier:@"mainMenu" sender:nil];
+       Employees *rightPin=[self checkPin];
+       if(rightPin!=NULL){
+           [self performSegueWithIdentifier:@"mainMenu" sender:rightPin];
        }else{
            [self allIndicatorsBlank];
        }
    }
 
 }
--(BOOL)checkPin{
+-(Employees *)checkPin{
     NSString *pinNumber=[pinArray componentsJoinedByString:@""];
     NSLog(@"String %@", pinNumber);
     
@@ -140,9 +141,13 @@
     NSPredicate *pred=[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"pin like '%@'", pinNumber]];
     [fetchRequest setPredicate:pred];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-
+    for (Employees *info in fetchedObjects) {
+        return info;
+        // NSManagedObject *details = [info valueForKey:@"details"];
+        // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
+    }
     
-    return [fetchedObjects count]>0;
+    return NULL;
     
 }
 
@@ -156,6 +161,12 @@
 -(void)clearArrayAndIndicators{
     [self allIndicatorsBlank];
     pinArray = [[NSMutableArray alloc] init];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSLog(@"sequeu is happening");
+    MainMenuViewController *controller=segue.destinationViewController;
+    controller.employee=(Employees *)sender;
 }
 
 @end

@@ -13,7 +13,7 @@
 @end
 
 @implementation MainMenuViewController
-
+@synthesize employee;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,6 +25,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"%@", employee.name);
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
