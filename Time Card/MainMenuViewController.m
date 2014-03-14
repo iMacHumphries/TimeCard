@@ -52,10 +52,21 @@
     if([employee.employeesToAction count]==0){
         return false;
     }
+    EmployeeAction *currentAction;
     for(EmployeeAction *action in employee.employeesToAction) {
-        NSLog(@"%@", action.timeInitiated);
+        if(currentAction==NULL){
+            currentAction=action;
+        }else{
+            if(currentAction.timeInitiated<action.timeInitiated){
+                currentAction=action;
+            }
+        }
     }
-    return true;
+    if([currentAction.type isEqualToString:@"in"]){
+        return true;
+    }else{
+        return false;
+    }
 }
 - (IBAction)clockInOutButton:(UIButton *)sender {
 }
