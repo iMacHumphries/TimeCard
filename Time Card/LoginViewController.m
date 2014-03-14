@@ -115,10 +115,16 @@
        [indicator2 setImage:fill];
        [indicator3 setImage:fill];
        [indicator4 setImage:fill];
-       
+       bool rightPin=[self checkPin];
        
    }
 
+}
+-(BOOL)checkPin{
+    NSString *string=[pinArray componentsJoinedByString:@""];
+    NSLog(@"String %@", string);
+    return true;
+    
 }
 -(void)allIndicatorsBlank{
     [indicator1 setImage:[UIImage imageNamed:@"blankIndicator"]];
