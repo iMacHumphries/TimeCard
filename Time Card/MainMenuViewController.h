@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Employees.h"
-@interface MainMenuViewController : UIViewController
+@interface MainMenuViewController : UIViewController{
+}
 
 @property (nonatomic, retain) Employees *employee;
+@property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *lastLoginLabel;
+@property (weak, nonatomic) IBOutlet UIButton *clockInOutButton;
 
+- (IBAction)clockInOutButton:(UIButton *)sender;
 @end

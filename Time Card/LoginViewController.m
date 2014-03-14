@@ -29,12 +29,12 @@
     pinArray = [[NSMutableArray alloc]init];
 
    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-  /* NSManagedObject *failedBankInfo = [NSEntityDescription
+   /*NSManagedObject *failedBankInfo = [NSEntityDescription
                                        insertNewObjectForEntityForName:@"Employees"
                                        inManagedObjectContext:context];
     [failedBankInfo setValue:@"Pam Mays" forKey:@"name"];
-    [failedBankInfo setValue:@"1234" forKey:@"pin"];
-   */ NSError *error;
+    [failedBankInfo setValue:@"1234" forKey:@"pin"];*/
+    NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }

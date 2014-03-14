@@ -14,6 +14,9 @@
 
 @implementation MainMenuViewController
 @synthesize employee;
+@synthesize welcomeLabel;
+@synthesize lastLoginLabel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -26,6 +29,8 @@
 - (void)viewDidLoad
 {
     NSLog(@"%@", employee.name);
+    welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
+    lastLoginLabel.text = [NSString stringWithFormat:@"Last Login: "];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -36,4 +41,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(BOOL)clockedIn{
+    
+    return true;
+}
+- (IBAction)clockInOutButton:(UIButton *)sender {
+}
 @end
