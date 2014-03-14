@@ -117,8 +117,8 @@
        [indicator2 setImage:fill];
        [indicator3 setImage:fill];
        [indicator4 setImage:fill];
-       bool rightPin=[self checkPin];
-       if(rightPin){
+       Employees *rightPin=[self checkPin];
+       if(rightPin!=NULL){
            [self performSegueWithIdentifier:@"mainMenu" sender:nil];
        }else{
            [self allIndicatorsBlank];
@@ -126,7 +126,7 @@
    }
 
 }
--(BOOL)checkPin{
+-(Employees *)checkPin{
     NSString *pinNumber=[pinArray componentsJoinedByString:@""];
     NSLog(@"String %@", pinNumber);
     
@@ -140,9 +140,13 @@
     NSPredicate *pred=[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"pin like '%@'", pinNumber]];
     [fetchRequest setPredicate:pred];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-
+    for (Employees *info in fetchedObjects) {
+        return info;
+        // NSManagedObject *details = [info valueForKey:@"details"];
+        // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
+    }
     
-    return [fetchedObjects count]>0;
+    return NULL;
     
 }
 
