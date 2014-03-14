@@ -61,44 +61,44 @@
     
 }
 -(void)changeIndicators{
+    UIImage *fill = [UIImage imageNamed:@"filledIndicator"];
     
     if ([pinArray count]== 0) {
-        [indicator1 setImage:[UIImage imageNamed:@"blankIndicator"]];
-        [indicator2 setImage:[UIImage imageNamed:@"blankIndicator"]];
-        [indicator3 setImage:[UIImage imageNamed:@"blankIndicator"]];
-        [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+        [self allIndicatorsBlank];
     }
    else if ([pinArray count]== 1) {
-        [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
-        [indicator2 setImage:[UIImage imageNamed:@"blankIndicator"]];
-        [indicator3 setImage:[UIImage imageNamed:@"blankIndicator"]];
-        [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+       [self allIndicatorsBlank];
+        [indicator1 setImage:fill];
     }
    else if ([pinArray count]== 2) {
-       [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator2 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator3 setImage:[UIImage imageNamed:@"blankIndicator"]];
-       [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+       [self allIndicatorsBlank];
+       [indicator1 setImage:fill];
+       [indicator2 setImage:fill];
+       
        
    }
    else if ([pinArray count]== 3) {
-       [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator2 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator3 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
+       [self allIndicatorsBlank];
+       [indicator1 setImage:fill];
+       [indicator2 setImage:fill];
+       [indicator3 setImage:fill];
        
    }
 
    else if ([pinArray count]== 4) {
-       [indicator1 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator2 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator3 setImage:[UIImage imageNamed:@"filledIndicator"]];
-       [indicator4 setImage:[UIImage imageNamed:@"filledIndicator"]];
+       [indicator1 setImage:fill];
+       [indicator2 setImage:fill];
+       [indicator3 setImage:fill];
+       [indicator4 setImage:fill];
        
    }
 
-    
+}
+-(void)allIndicatorsBlank{
+    [indicator1 setImage:[UIImage imageNamed:@"blankIndicator"]];
+    [indicator2 setImage:[UIImage imageNamed:@"blankIndicator"]];
+    [indicator3 setImage:[UIImage imageNamed:@"blankIndicator"]];
+    [indicator4 setImage:[UIImage imageNamed:@"blankIndicator"]];
 
-    
 }
 @end
