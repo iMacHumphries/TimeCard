@@ -30,7 +30,7 @@
 {
     NSLog(@"%@", employee.name);
     welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
-    lastLoginLabel.text = [NSString stringWithFormat:@"Last Login: "];
+    lastLoginLabel.text = [NSString stringWithFormat:[self getSatus]];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -40,9 +40,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+-(NSString *)getSatus{
+    if([self clockedIn]){
+        return @"Clocked in @ ";
+    }else{
+        return @"Clocked out @ ";
 
+    }
+}
 -(BOOL)clockedIn{
-    
+    if([employee.employeesToAction count]==0){
+        return false;
+    }
+    for(EmployeeAction *action in employee.employeesToAction) {
+        NSLog(@"%@", action.timeInitiated);
+    }
     return true;
 }
 - (IBAction)clockInOutButton:(UIButton *)sender {
