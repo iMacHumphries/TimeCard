@@ -1,23 +1,21 @@
 //
-//  EmployeeAction.m
+//  EmployeeActionOut.m
 //  Time Card
 //
 //  Created by Chris Mays on 3/14/14.
 //  Copyright (c) 2014 Chris Mays. All rights reserved.
 //
 
-#import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
-#import "Employees.h"
+#import "EmployeeAction.h"
 
 
-@implementation EmployeeAction
+@implementation EmployeeActionOut
 
 @dynamic month;
 @dynamic timeInitiated;
 @dynamic type;
 @dynamic year;
-@dynamic actionToEmployees;
-@dynamic employeeOut;
+@dynamic emplyeeIn;
 
 @end

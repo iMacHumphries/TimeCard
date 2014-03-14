@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "AppDelegate.h"
 #import "Employees.h"
 #import "EmployeeAction.h"
+#import "EmployeeActionOut.h"
 @interface MainMenuViewController : UIViewController{
 }
 
