@@ -16,6 +16,7 @@
 @synthesize employee;
 @synthesize welcomeLabel;
 @synthesize lastLoginLabel;
+@synthesize clockInOutButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +31,17 @@
 {
     NSLog(@"%@", employee.name);
     welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
-    lastLoginLabel.text = [NSString stringWithFormat:[self getSatus]];
+    lastLoginLabel.text = [self getSatus];
+    
+    if ([self clockedIn]){
+        //clockInOutButton.titleLabel.text = @"Clock Out";
+        [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
+    }
+    else {
+        //clockInOutButton.titleLabel.text = @"Clock In";
+        [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
+
+    }
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -69,5 +80,9 @@
     }
 }
 - (IBAction)clockInOutButton:(UIButton *)sender {
+    
 }
+
+
+
 @end
