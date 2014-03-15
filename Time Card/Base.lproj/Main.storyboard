@@ -4,6 +4,61 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
+        <!--Remove Employee View Controller - Remove Employees-->
+        <scene sceneID="LnK-rz-kpT">
+            <objects>
+                <tableViewController id="dVz-Oh-F74" customClass="RemoveEmployeeViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zUN-GY-5Hk">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="4ux-B3-bXF" style="IBUITableViewCellStyleDefault" id="7sa-bO-iDR">
+                                <rect key="frame" x="0.0" y="86" width="1024" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sa-bO-iDR" id="Nvg-CV-8tV">
+                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Employee Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ux-B3-bXF">
+                                            <rect key="frame" x="15" y="0.0" width="994" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="dVz-Oh-F74" id="3ae-TE-G72"/>
+                            <outlet property="delegate" destination="dVz-Oh-F74" id="j3Q-PG-tFj"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Remove Employees" id="Mzr-xR-ycc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="Gk4-bF-TU4">
+                            <connections>
+                                <segue destination="MtX-iT-fLp" kind="modal" identifier="removeToMain" modalTransitionStyle="crossDissolve" id="OIg-pt-qMj"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="g8R-Os-CbK">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="dVz-Oh-F74" id="ziD-Jn-dyc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="tableView" destination="zUN-GY-5Hk" id="8kE-sd-Yik"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5CC-Mk-k5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1739" y="-179"/>
+        </scene>
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -170,7 +225,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-251" y="-75"/>
+            <point key="canvasLocation" x="723" y="-75"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="Jqd-Ex-aRw">
@@ -226,6 +281,9 @@
                                 <state key="normal" title="Remove Employee" backgroundImage="blankIndicator.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="oo4-e3-CcJ" kind="modal" identifier="remove" modalTransitionStyle="crossDissolve" id="O3M-bF-d2L"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aV-YG-r9d">
                                 <rect key="frame" x="600" y="477" width="160" height="160"/>
@@ -250,7 +308,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vN3-l9-XVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-265" y="859"/>
+            <point key="canvasLocation" x="-399" y="843"/>
         </scene>
         <!--Create Employee View Controller-->
         <scene sceneID="Y38-0G-sW7">
@@ -308,7 +366,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yip-cy-AST" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="954" y="-89"/>
+            <point key="canvasLocation" x="1928" y="-89"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4on-e6-WWZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oo4-e3-CcJ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DoH-0i-duC">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dVz-Oh-F74" kind="relationship" relationship="rootViewController" id="Ym6-tq-9uf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Q1-g5-lrz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1706" y="817"/>
         </scene>
     </scenes>
     <resources>
@@ -332,6 +409,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FKW-ps-yhE"/>
+        <segue reference="OIg-pt-qMj"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -45,6 +45,7 @@
 		B5E0E47018D3B445005497DC /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E46F18D3B445005497DC /* MainMenuViewController.m */; };
 		B5E0E47118D3B672005497DC /* EmployeeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */; };
 		B5E0E47318D3FBC0005497DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E0E47218D3FBC0005497DC /* QuartzCore.framework */; };
+		B5E0E47618D4B358005497DC /* RemoveEmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E47518D4B358005497DC /* RemoveEmployeeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,8 @@
 		B5E0E46E18D3B445005497DC /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		B5E0E46F18D3B445005497DC /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		B5E0E47218D3FBC0005497DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		B5E0E47418D4B358005497DC /* RemoveEmployeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveEmployeeViewController.h; sourceTree = "<group>"; };
+		B5E0E47518D4B358005497DC /* RemoveEmployeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveEmployeeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */,
 				B5E0E46E18D3B445005497DC /* MainMenuViewController.h */,
 				B5E0E46F18D3B445005497DC /* MainMenuViewController.m */,
+				B5E0E47418D4B358005497DC /* RemoveEmployeeViewController.h */,
+				B5E0E47518D4B358005497DC /* RemoveEmployeeViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
 				83B489B218D243A700C39FB4 /* Employee.m */,
 				83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */,
@@ -367,6 +372,7 @@
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
 				83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */,
 				B5E0E47018D3B445005497DC /* MainMenuViewController.m in Sources */,
+				B5E0E47618D4B358005497DC /* RemoveEmployeeViewController.m in Sources */,
 				83513E6E18D3CA580027E65D /* EmployeeActionOut.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
