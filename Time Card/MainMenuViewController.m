@@ -125,11 +125,14 @@
         [[self getLastIn] setEmployeeOut:action];
 
 
-    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@ at time" ,employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
-    [alert show];
+        NSString *clocked = [[clockInOutButton titleLabel]text];
+        
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
+        [alert show];
     
   
     
+}
 }
 
 
