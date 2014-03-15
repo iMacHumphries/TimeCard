@@ -63,7 +63,7 @@
     controller.employee=(Employees *)sender;
 }
 - (IBAction)cancelButton:(UIButton *)sender {
-    [self performSegueWithIdentifier:@"createToMain" sender:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(NSString *)generateUniquePinNumber{
     int x1 = arc4random()%10;

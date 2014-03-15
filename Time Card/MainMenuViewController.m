@@ -36,7 +36,7 @@
     lastLoginLabel.text = [self getSatus];
     
     if ([self clockedIn]){
-        [clockInOutButton setTitle:@"Clocked Out" forState:UIControlStateNormal];
+        [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
     }
     else {
         [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
@@ -63,7 +63,7 @@
     if([self clockedIn]){
         return [NSString stringWithFormat:@"Clocked in @ %@ " , [self getLastAction]];
     }else{
-        return [NSString stringWithFormat:@"Clock out @ %@", [self getLastAction]];
+        return [NSString stringWithFormat:@"Clocked out @ %@", [self getLastAction]];
 
     }
 }
