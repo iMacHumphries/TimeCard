@@ -13,6 +13,7 @@
 #import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
 @interface MainMenuViewController : UIViewController{
+    NSArray *praise;
 }
 
 @property (nonatomic, retain) Employees *employee;

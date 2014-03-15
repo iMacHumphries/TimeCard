@@ -30,15 +30,14 @@
 - (void)viewDidLoad
 {
     NSLog(@"%@", employee.name);
+    praise = [[NSArray alloc] initWithObjects:@"Awesome",@"Fantastic",@"Great",@"Ok",@"Sweet", nil];
     welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
     lastLoginLabel.text = [self getSatus];
     
     if ([self clockedIn]){
-        //clockInOutButton.titleLabel.text = @"Clock Out";
         [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
     }
     else {
-        //clockInOutButton.titleLabel.text = @"Clock In";
         [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
 
     }
@@ -143,5 +142,10 @@
 }
 
 
-
+-(NSString *)getRandomPraise{
+    
+    int i = arc4random()%[praise count];
+    NSString *string = [praise objectAtIndex:i];
+    return string;
+}
 @end
