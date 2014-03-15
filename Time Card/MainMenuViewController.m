@@ -141,6 +141,13 @@
     
     lastLoginLabel.text = [self getSatus];
    
+    if ([self clockedIn]){
+        [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
+    }
+    else {
+        [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
+        
+    }
     
     NSString *clocked = [[clockInOutButton titleLabel]text];
     
