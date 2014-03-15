@@ -123,16 +123,16 @@
         [action setValue:@"March" forKey:@"month"];
         [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
         [[self getLastIn] setEmployeeOut:action];
-
-
-        NSString *clocked = [[clockInOutButton titleLabel]text];
-        
-        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
-        [alert show];
     
   
     
 }
+    NSString *clocked = [[clockInOutButton titleLabel]text];
+    
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
+    [alert show];
+    
+    [self performSegueWithIdentifier:@"backToLogin" sender:nil];
 }
 
 

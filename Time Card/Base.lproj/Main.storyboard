@@ -240,6 +240,7 @@
                         <outlet property="lastLoginLabel" destination="m4J-aR-BOK" id="Mdq-0s-I7j"/>
                         <outlet property="welcomeLabel" destination="IKh-fw-MJn" id="AmW-4P-Qct"/>
                         <segue destination="w37-59-Kk6" kind="modal" identifier="create" id="Xec-uo-g8O"/>
+                        <segue destination="BYZ-38-t0r" kind="modal" identifier="backToLogin" modalTransitionStyle="crossDissolve" id="xhk-R4-TeA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vN3-l9-XVR" userLabel="First Responder" sceneMemberID="firstResponder"/>
