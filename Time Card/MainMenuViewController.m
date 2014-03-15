@@ -17,6 +17,7 @@
 @synthesize welcomeLabel;
 @synthesize lastLoginLabel;
 @synthesize clockInOutButton;
+@synthesize addEmployeeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -105,14 +106,18 @@
         return false;
     }
 }
+- (IBAction)addEmployeeButton:(UIButton *)sender {
+    //Admin Only
+    [self performSegueWithIdentifier:@"addEmployee" sender:sender];
+    
+}
+
 - (IBAction)clockInOutButton:(UIButton *)sender {
    
     
     
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 
-   
-    
 
     if([self clockedIn]){
       
@@ -127,6 +132,23 @@
   
     
 }
+    else{
+        EmployeeAction *action = [NSEntityDescription
+                                  insertNewObjectForEntityForName:@"EmployeeAction"
+                                  inManagedObjectContext:context];
+        [action setValue:@"in" forKey:@"type"];
+        [action setValue:@"March" forKey:@"month"];
+        [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
+        [employee addEmployeesToActionObject:action];
+    }
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    lastLoginLabel.text = [self getSatus];
+    
+
     NSString *clocked = [[clockInOutButton titleLabel]text];
     
     UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];

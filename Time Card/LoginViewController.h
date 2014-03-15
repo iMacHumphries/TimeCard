@@ -12,9 +12,11 @@
 #import "EmployeeAction.h"
 @interface LoginViewController : UIViewController{
     NSMutableArray *pinArray;
+    
 }
 - (IBAction)pinButton:(UIButton *)sender;
 - (IBAction)deleteButton:(UIButton *)sender;
+- (IBAction)questionButton:(UIButton *)sender;
 @property (retain,nonatomic) NSMutableArray *pinArray;
 @property (weak, nonatomic) IBOutlet UIImageView *indicator1;
 @property (weak, nonatomic) IBOutlet UIImageView *indicator2;

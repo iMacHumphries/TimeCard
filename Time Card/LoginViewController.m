@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "MainMenuViewController.h"
+#import <QuartzCore/QuartzCore.h>
+
 @interface LoginViewController ()
 
 @end
@@ -29,11 +31,11 @@
     pinArray = [[NSMutableArray alloc]init];
 
    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-   NSManagedObject *failedBankInfo = [NSEntityDescription
-                                       insertNewObjectForEntityForName:@"Employees"
-                                       inManagedObjectContext:context];
-    [failedBankInfo setValue:@"Pam Mays" forKey:@"name"];
-    [failedBankInfo setValue:@"1234" forKey:@"pin"];
+   //NSManagedObject *failedBankInfo = [NSEntityDescription
+                                     //  insertNewObjectForEntityForName:@"Employees"
+                                      // inManagedObjectContext:context];
+//    [failedBankInfo setValue:@"Pam Mays" forKey:@"name"];
+  //  [failedBankInfo setValue:@"1234" forKey:@"pin"];
     NSError *error;
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -82,6 +84,13 @@
     [self removeLastPinFromArray];
     [self changeIndicators];
 }
+
+- (IBAction)questionButton:(UIButton *)sender {
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Forgot Pin Number?" message:@"Please ask Mrs. Mays for help! " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+    [alert show];
+    
+    
+}
 -(void)checkEmployeePin{
     
     //if Correct pin
@@ -122,9 +131,14 @@
        if(rightPin!=NULL){
            [self performSegueWithIdentifier:@"mainMenu" sender:rightPin];
        }else{
-           [self allIndicatorsBlank];
+           [self clearArrayAndIndicators];
+           [self shakeView:indicator1];
+           [self shakeView:indicator2];
+           [self shakeView:indicator3];
+           [self shakeView:indicator4];
        }
-   }
+
+         }
 
 }
 -(Employees *)checkPin{
@@ -167,6 +181,20 @@
     NSLog(@"sequeu is happening");
     MainMenuViewController *controller=segue.destinationViewController;
     controller.employee=(Employees *)sender;
+}
+
+-(void)shakeView:(UIImageView *)view {
+    
+    CABasicAnimation *shake = [CABasicAnimation animationWithKeyPath:@"position"];
+    
+    [shake setDuration:0.1];
+    [shake setRepeatCount:2];
+    [shake setAutoreverses:YES];
+    [shake setFromValue:[NSValue valueWithCGPoint:
+                         CGPointMake(view.center.x - 25,view.center.y)]];
+    [shake setToValue:[NSValue valueWithCGPoint:
+                       CGPointMake(view.center.x + 25, view.center.y)]];
+    [view.layer addAnimation:shake forKey:@"position"];
 }
 
 @end
