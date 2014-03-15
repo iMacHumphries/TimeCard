@@ -36,11 +36,16 @@
     lastLoginLabel.text = [self getSatus];
     
     if ([self clockedIn]){
-        [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
+        [clockInOutButton setTitle:@"Clocked Out" forState:UIControlStateNormal];
     }
     else {
         [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
 
+    }
+    for(EmployeeAction *action in employee.employeesToAction) {
+        NSLog(@"in %@ out %@", action.timeInitiated, action.employeeOut.timeInitiated);
+      
+        
     }
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -58,7 +63,7 @@
     if([self clockedIn]){
         return [NSString stringWithFormat:@"Clocked in @ %@ " , [self getLastAction]];
     }else{
-        return [NSString stringWithFormat:@"Clocked out @ %@", [self getLastAction]];
+        return [NSString stringWithFormat:@"Clock out @ %@", [self getLastAction]];
 
     }
 }
@@ -67,15 +72,20 @@
         return NULL;
     }
     EmployeeAction *currentAction;
+    NSLog(@"Count is %d", [employee.employeesToAction count]);
     for(EmployeeAction *action in employee.employeesToAction) {
         if(currentAction==NULL){
+            NSLog(@"Current action is null %@", action.timeInitiated);
             currentAction=action;
         }else{
-            if(currentAction.timeInitiated<action.timeInitiated){
+            if([currentAction.timeInitiated doubleValue]<[action.timeInitiated doubleValue]){
+                NSLog(@"Current action is less than before:%@ After:%@",currentAction.timeInitiated ,action.timeInitiated);
+
                 currentAction=action;
             }
         }
     }
+    NSLog(@"Found this %@ found time out %@", currentAction.timeInitiated, currentAction.employeeOut.timeInitiated);
     
     return currentAction;
 }
@@ -85,6 +95,7 @@
         return @"Never";
     }
     if (lastIn.employeeOut!=NULL) {
+        
         NSDate *theDate = [NSDate dateWithTimeIntervalSince1970:[lastIn.employeeOut.timeInitiated doubleValue]];
         
         return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle];
@@ -120,7 +131,8 @@
 
 
     if([self clockedIn]){
-      
+        NSLog(@"Clocked out");
+
         EmployeeActionOut *action = [NSEntityDescription
                                      insertNewObjectForEntityForName:@"EmployeeActionOut"
                                      inManagedObjectContext:context];
@@ -131,8 +143,9 @@
     
   
     
-}
+    }
     else{
+        NSLog(@"Clocked in");
         EmployeeAction *action = [NSEntityDescription
                                   insertNewObjectForEntityForName:@"EmployeeAction"
                                   inManagedObjectContext:context];
@@ -145,7 +158,7 @@
     if (![context save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
-    
+    [(AppDelegate *)[[UIApplication sharedApplication] delegate] saveContext];
     lastLoginLabel.text = [self getSatus];
     
 
@@ -153,7 +166,7 @@
     
     UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
     [alert show];
-    
+
     [self performSegueWithIdentifier:@"backToLogin" sender:nil];
 }
 
