@@ -106,6 +106,9 @@
     }
 }
 - (IBAction)clockInOutButton:(UIButton *)sender {
+   
+    
+    
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 
    
@@ -137,7 +140,9 @@
     }
     
     lastLoginLabel.text = [self getSatus];
-
+   
+    
+  
     
 }
 
