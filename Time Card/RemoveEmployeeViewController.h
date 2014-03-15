@@ -12,6 +12,8 @@
     NSMutableArray *employeeNames;
 }
 - (IBAction)editButtonPressed:(id)sender;
+- (IBAction)doneButtonPressed:(id)sender;
+
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end

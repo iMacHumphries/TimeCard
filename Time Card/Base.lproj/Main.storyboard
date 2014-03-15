@@ -40,7 +40,7 @@
                     <navigationItem key="navigationItem" title="Remove Employees" id="Mzr-xR-ycc">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="Gk4-bF-TU4">
                             <connections>
-                                <segue destination="MtX-iT-fLp" kind="modal" identifier="removeToMain" modalTransitionStyle="crossDissolve" id="OIg-pt-qMj"/>
+                                <action selector="doneButtonPressed:" destination="dVz-Oh-F74" id="t3E-RS-fWf"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="g8R-Os-CbK">
@@ -409,6 +409,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="OIg-pt-qMj"/>
+        <segue reference="fot-EC-EoF"/>
     </inferredMetricsTieBreakers>
 </document>
