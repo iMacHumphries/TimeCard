@@ -42,7 +42,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Adding Employee" message:[NSString stringWithFormat:@"Adding employee with the name %@.",textField.text] delegate:self cancelButtonTitle:@"No wait!" otherButtonTitles:@"Add Employee", nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Adding Employee" message:[NSString stringWithFormat:@"Adding employee with the name %@. Pin Number %@",textField.text,[self generateUniquePinNumber] ] delegate:self cancelButtonTitle:@"No wait!" otherButtonTitles:@"Add Employee", nil];
     alert.delegate = self;
     [alert show];
     
@@ -52,7 +52,18 @@
     
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:@"Add Employee"]){
-        [self performSegueWithIdentifier:@"createToMain" sender:NULL];
+        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        
+         NSManagedObject *failedBankInfo = [NSEntityDescription
+         insertNewObjectForEntityForName:@"Employees"
+         inManagedObjectContext:context];
+         [failedBankInfo setValue:nameTextField.text forKey:@"name"];
+         [failedBankInfo setValue:pin forKey:@"pin"];
+        NSError *error;
+        if (![context save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
         
             }
 }
@@ -66,13 +77,28 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(NSString *)generateUniquePinNumber{
-    int x1 = arc4random()%10;
-    int x2 = arc4random()%10;
-    int x3 = arc4random()%10;
-    int x4 = arc4random()%10;
+    bool unique=false;
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+
+    while(unique==false){
+        int x1 = arc4random()%10;
+        int x2 = arc4random()%10;
+        int x3 = arc4random()%10;
+        int x4 = arc4random()%10;
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription
+                                       entityForName:@"Employees" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        pin = [NSString stringWithFormat:@"%i%i%i%i",x1,x2,x3,x4];
+
+        NSPredicate *pred=[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"pin like '%@'", pin]];
+        [fetchRequest setPredicate:pred];
+        NSError *error;
+
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+        unique=[fetchedObjects count]==0;
     
-    
-    pin = [NSString stringWithFormat:@"%i%i%i%i",x1,x2,x3,x4];
+    }
     [self checkPin:pin];
 
     return pin;

@@ -11,6 +11,7 @@
 #import "Employee.h"
 @interface CreateEmployeeViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
     NSString *pin;
+    NSString *name;
 }
 - (IBAction)cancelButton:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
