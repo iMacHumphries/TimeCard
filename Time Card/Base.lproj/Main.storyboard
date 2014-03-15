@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--Remove Employee View Controller - Remove Employees-->
+        <!--Remove Employee View Controller - Manage Employees-->
         <scene sceneID="LnK-rz-kpT">
             <objects>
                 <tableViewController id="dVz-Oh-F74" customClass="RemoveEmployeeViewController" sceneMemberID="viewController">
@@ -14,15 +14,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="4ux-B3-bXF" style="IBUITableViewCellStyleDefault" id="7sa-bO-iDR">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="4ux-B3-bXF" style="IBUITableViewCellStyleDefault" id="7sa-bO-iDR">
                                 <rect key="frame" x="0.0" y="86" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sa-bO-iDR" id="Nvg-CV-8tV">
-                                    <rect key="frame" x="0.0" y="0.0" width="1024" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="957" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Employee Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ux-B3-bXF">
-                                            <rect key="frame" x="15" y="0.0" width="994" height="43"/>
+                                            <rect key="frame" x="15" y="0.0" width="942" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -37,7 +37,7 @@
                             <outlet property="delegate" destination="dVz-Oh-F74" id="j3Q-PG-tFj"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Remove Employees" id="Mzr-xR-ycc">
+                    <navigationItem key="navigationItem" title="Manage Employees" id="Mzr-xR-ycc">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="Gk4-bF-TU4">
                             <connections>
                                 <action selector="doneButtonPressed:" destination="dVz-Oh-F74" id="t3E-RS-fWf"/>
@@ -278,7 +278,7 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-pQ-Amw">
                                 <rect key="frame" x="432" y="477" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Remove Employee" backgroundImage="blankIndicator.png">
+                                <state key="normal" title="Manage Employees" backgroundImage="blankIndicator.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
