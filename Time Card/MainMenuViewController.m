@@ -30,6 +30,12 @@
 
 - (void)viewDidLoad
 {
+    NSDate *Date=[self getDateFor8AM];
+    NSLog(@"date is %@", Date);
+    if([self dateBeforeEightAM:[NSDate date]]){
+        NSLog(@"date is before %@", [self getDateFor8AM]);
+    }
+    
     NSLog(@"%@", employee.name);
     praise = [[NSArray alloc] initWithObjects:@"Awesome",@"Fantastic",@"Great",@"Ok",@"Sweet", nil];
     welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
@@ -151,7 +157,13 @@
                                   inManagedObjectContext:context];
         [action setValue:@"in" forKey:@"type"];
         [action setValue:@"March" forKey:@"month"];
-        [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
+        if([self dateBeforeEightAM:[NSDate date]]){
+            [action setValue:[NSNumber numberWithDouble:[[self getDateFor8AM] timeIntervalSince1970]] forKey:@"timeInitiated"];
+
+        }else{
+            [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
+            
+        }
         [employee addEmployeesToActionObject:action];
     }
     NSError *error;
@@ -170,7 +182,41 @@
     [self performSegueWithIdentifier:@"backToLogin" sender:nil];
 }
 
+-(BOOL)dateBeforeEightAM:(NSDate *)date{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"HH"];
+    
+   
+    
+    NSString *dateString = [format stringFromDate:date];
+    
+    if([dateString intValue]<8){
+        return true;
+    }
+    
+    /*NSDateFormatter *inFormat = [[NSDateFormatter alloc] init];
+    [inFormat setDateFormat:@"MMM dd, yyyy"];
+    
+    NSDate *parsed = [inFormat dateFromString:dateString];
+     */
+    return false;
+}
+-(NSDate *)getDateFor8AM{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.timeZone = [NSTimeZone systemTimeZone];
+    format.locale=[NSLocale systemLocale];
+    [format setDateFormat:@"L dd yyyy"];
+    NSString *curDate=[format stringFromDate:[NSDate date]];
+    
+    [format setDateFormat:@"L dd yyyy HH"];
+    NSLog(@"formatting this date %@", curDate);
+    NSDate *parsed = [format dateFromString:[NSString stringWithFormat:@"%@ 08",curDate]];
+    
+   
 
+    return parsed;
+
+}
 -(NSString *)getRandomPraise{
     
     int i = arc4random()%[praise count];
