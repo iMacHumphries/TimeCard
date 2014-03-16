@@ -147,9 +147,11 @@
         //delete actuall employee!
         for (NSManagedObject *info in fetchedObjects) {
            
-        if ([[info valueForKey:@"name"] isEqualToString:[employeeNames objectAtIndex:indexPath.row]])
+            if ([[info valueForKey:@"name"] isEqualToString:[employeeNames objectAtIndex:indexPath.row]]){
             NSLog(@"DELETING : %@",info);
              [context deleteObject:info];
+            [context save:nil];
+            }
             
         }
         

@@ -22,7 +22,7 @@
     </entity>
     <elements>
         <element name="EmployeeAction" positionX="0" positionY="0" width="128" height="133"/>
-        <element name="Employees" positionX="-306" positionY="-117" width="128" height="90"/>
         <element name="EmployeeActionOut" positionX="-279" positionY="92" width="128" height="118"/>
+        <element name="Employees" positionX="-306" positionY="-117" width="128" height="90"/>
     </elements>
 </model>
