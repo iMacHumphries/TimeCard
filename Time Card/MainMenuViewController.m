@@ -128,7 +128,10 @@
     [self performSegueWithIdentifier:@"addEmployee" sender:sender];
     
 }
-
+- (IBAction)cancelButton:(UIButton *)sender {
+   // [self dismissViewControllerAnimated:YES completion:nil];
+     [self performSegueWithIdentifier:@"backToLogin" sender:nil];
+}
 - (IBAction)clockInOutButton:(UIButton *)sender {
    
     
@@ -178,11 +181,13 @@
 
     NSString *clocked = [[clockInOutButton titleLabel]text];
     
-    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,clocked] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@ at %@",employee.name,clocked,[self getSatus]] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
     [alert show];
 
     [self performSegueWithIdentifier:@"backToLogin" sender:nil];
 }
+
+
 
 -(BOOL)dateBeforeEightAM:(NSDate *)date{
     NSDateFormatter *format = [[NSDateFormatter alloc] init];

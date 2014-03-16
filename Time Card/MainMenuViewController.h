@@ -25,5 +25,7 @@
 - (IBAction)addEmployeeButton:(UIButton *)sender;
 
 - (IBAction)clockInOutButton:(UIButton *)sender;
+- (IBAction)cancelButton:(UIButton *)sender;
+
 
 @end

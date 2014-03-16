@@ -8,6 +8,7 @@
 
 #import "RemoveEmployeeViewController.h"
 #import "AppDelegate.h"
+#import "DetailViewController.h"
 
 @interface RemoveEmployeeViewController ()
 
@@ -28,6 +29,7 @@
 - (void)viewDidLoad
 {
      employeeNames = [[NSMutableArray alloc]init];
+     employeePins = [[NSMutableArray alloc]init];
      NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
@@ -40,12 +42,25 @@
         [employeeNames addObject:[info valueForKey:@"name"]];
         
     }
+    for (NSManagedObject *info in fetchedObjects) {
+        NSLog(@"PIN: %@", [info valueForKey:@"pin"]);
+        [employeePins addObject:[info valueForKey:@"pin"]];
+        
+    }
+
 
    
+    
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg"]];
+    [tempImageView setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = tempImageView;
+    
     
     tableView.delegate = self;
     tableView.dataSource = self;
     
+
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -83,7 +98,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
+   
      cell.textLabel.text=[employeeNames objectAtIndex:indexPath.row];
     
     return cell;
@@ -102,6 +117,10 @@
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
+- (IBAction)addEmployeeButton:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"manageAdd" sender:sender];
+}
+
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -117,7 +136,30 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription
+                                       entityForName:@"Employees" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        NSError *error;
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+        //delete actuall employee!
+        for (NSManagedObject *info in fetchedObjects) {
+           
+        if ([[info valueForKey:@"name"] isEqualToString:[employeeNames objectAtIndex:indexPath.row]])
+            NSLog(@"DELETING : %@",info);
+             [context deleteObject:info];
+            
+        }
+        
+       
+        [employeeNames removeObjectAtIndex:indexPath.row];
+        [employeePins removeObjectAtIndex:indexPath.row];
+        [tableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+        [tableView reloadData];
+
+        
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -141,16 +183,34 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([[segue identifier] isEqualToString:@"detail"]){
+
+    DetailViewController *detail = [segue destinationViewController];
+    
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+        [detail setDetailIndex:path.row];
+        detail.name = [self getEmployeeNameForIndex:path.row];
+        detail.pin = [self getEmployeePinForIndex:path.row];
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+
+    
+    }
 }
-
- */
-
+ 
+-(NSString *)getEmployeeNameForIndex:(int)ndex {
+    NSString *eName = [employeeNames objectAtIndex:ndex];
+    return eName;
+}
+-(NSString *)getEmployeePinForIndex:(int)ndex {
+    NSString *ePin = [employeePins objectAtIndex:ndex];
+    return ePin;
+}
 @end

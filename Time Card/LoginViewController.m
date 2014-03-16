@@ -30,31 +30,7 @@
 {
     pinArray = [[NSMutableArray alloc]init];
 
-   NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-  /*
-   NSManagedObject *failedBankInfo = [NSEntityDescription
-                                      insertNewObjectForEntityForName:@"Employees"
-                                       inManagedObjectContext:context];
-    [failedBankInfo setValue:@"Pam Mays" forKey:@"name"];
-    [failedBankInfo setValue:@"1234" forKey:@"pin"];*/
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Employees" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate *pred=[NSPredicate predicateWithFormat:@"pin like '1234'"];
-    [fetchRequest setPredicate:pred];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@", [info valueForKey:@"name"]);
-       
-        // NSManagedObject *details = [info valueForKey:@"details"];
-       // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
-    }
+    //[self addPam];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -92,6 +68,8 @@
     
     
 }
+
+
 -(void)checkEmployeePin{
     
     //if Correct pin
@@ -198,4 +176,48 @@
     [view.layer addAnimation:shake forKey:@"position"];
 }
 
+-(void)addPam{
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    
+    NSManagedObject *failedBankInfo = [NSEntityDescription
+                                       insertNewObjectForEntityForName:@"Employees"
+                                       inManagedObjectContext:context];
+    [failedBankInfo setValue:@"Pam Mays" forKey:@"name"];
+    [failedBankInfo setValue:@"1234" forKey:@"pin"];
+
+    
+    NSError *error;
+    if (![context save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Employees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSPredicate *pred=[NSPredicate predicateWithFormat:@"pin like '1234'"];
+    [fetchRequest setPredicate:pred];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (NSManagedObject *info in fetchedObjects) {
+        NSLog(@"Name: %@", [info valueForKey:@"name"]);
+        
+        // NSManagedObject *details = [info valueForKey:@"details"];
+        // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
+    }
+
+   }
+- (IBAction)admin:(UIButton *)sender {
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"TroubleShooting" message:@"Enter admin password:" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:@"Cancel", nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert show];
+    
+}
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSLog(@"%@", [alertView textFieldAtIndex:0].text);
+    if ( [[alertView textFieldAtIndex:0].text isEqualToString:@"1234"]){
+        
+        [self addPam];
+        
+    }
+}
 @end
