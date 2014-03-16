@@ -46,6 +46,8 @@
 		B5E0E47118D3B672005497DC /* EmployeeModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */; };
 		B5E0E47318D3FBC0005497DC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E0E47218D3FBC0005497DC /* QuartzCore.framework */; };
 		B5E0E47618D4B358005497DC /* RemoveEmployeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E47518D4B358005497DC /* RemoveEmployeeViewController.m */; };
+		B5E0E47818D5E29A005497DC /* ui.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E47718D5E29A005497DC /* ui.png */; };
+		B5E0E47E18D62300005497DC /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E47D18D62300005497DC /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +112,9 @@
 		B5E0E47218D3FBC0005497DC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B5E0E47418D4B358005497DC /* RemoveEmployeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveEmployeeViewController.h; sourceTree = "<group>"; };
 		B5E0E47518D4B358005497DC /* RemoveEmployeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveEmployeeViewController.m; sourceTree = "<group>"; };
+		B5E0E47718D5E29A005497DC /* ui.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ui.png; sourceTree = "<group>"; };
+		B5E0E47C18D62300005497DC /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		B5E0E47D18D62300005497DC /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +189,8 @@
 				B5E0E46F18D3B445005497DC /* MainMenuViewController.m */,
 				B5E0E47418D4B358005497DC /* RemoveEmployeeViewController.h */,
 				B5E0E47518D4B358005497DC /* RemoveEmployeeViewController.m */,
+				B5E0E47C18D62300005497DC /* DetailViewController.h */,
+				B5E0E47D18D62300005497DC /* DetailViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
 				83B489B218D243A700C39FB4 /* Employee.m */,
 				83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */,
@@ -204,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				B5E0E46218D39047005497DC /* bg.png */,
+				B5E0E47718D5E29A005497DC /* ui.png */,
 				B5E0E44B18D38BBF005497DC /* buttons */,
 				8339147C18D23D3D0043FD66 /* Time Card-Info.plist */,
 				8339147D18D23D3D0043FD66 /* InfoPlist.strings */,
@@ -340,6 +348,7 @@
 				B5E0E45D18D38BBF005497DC /* b6.png in Resources */,
 				B5E0E45718D38BBF005497DC /* b0.png in Resources */,
 				B5E0E45F18D38BBF005497DC /* b8.png in Resources */,
+				B5E0E47818D5E29A005497DC /* ui.png in Resources */,
 				B5E0E45A18D38BBF005497DC /* b3.png in Resources */,
 				B5E0E45C18D38BBF005497DC /* b5.png in Resources */,
 				B5E0E45B18D38BBF005497DC /* b4.png in Resources */,
@@ -371,6 +380,7 @@
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
 				83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */,
+				B5E0E47E18D62300005497DC /* DetailViewController.m in Sources */,
 				B5E0E47018D3B445005497DC /* MainMenuViewController.m in Sources */,
 				B5E0E47618D4B358005497DC /* RemoveEmployeeViewController.m in Sources */,
 				83513E6E18D3CA580027E65D /* EmployeeActionOut.m in Sources */,

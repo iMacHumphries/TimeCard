@@ -128,7 +128,10 @@
     [self performSegueWithIdentifier:@"addEmployee" sender:sender];
     
 }
-
+- (IBAction)cancelButton:(UIButton *)sender {
+   // [self dismissViewControllerAnimated:YES completion:nil];
+     [self performSegueWithIdentifier:@"backToLogin" sender:nil];
+}
 - (IBAction)clockInOutButton:(UIButton *)sender {
    
     
@@ -181,6 +184,8 @@
 
     [self performSegueWithIdentifier:@"backToLogin" sender:nil];
 }
+
+
 
 -(BOOL)dateBeforeEightAM:(NSDate *)date{
     NSDateFormatter *format = [[NSDateFormatter alloc] init];

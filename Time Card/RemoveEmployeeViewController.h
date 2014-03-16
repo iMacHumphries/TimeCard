@@ -10,6 +10,7 @@
 
 @interface RemoveEmployeeViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *employeeNames;
+    NSMutableArray *employeePins;
 }
 - (IBAction)editButtonPressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;

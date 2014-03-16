@@ -8,6 +8,7 @@
 
 #import "RemoveEmployeeViewController.h"
 #import "AppDelegate.h"
+#import "DetailViewController.h"
 
 @interface RemoveEmployeeViewController ()
 
@@ -28,6 +29,7 @@
 - (void)viewDidLoad
 {
      employeeNames = [[NSMutableArray alloc]init];
+     employeePins = [[NSMutableArray alloc]init];
      NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
@@ -40,6 +42,12 @@
         [employeeNames addObject:[info valueForKey:@"name"]];
         
     }
+    for (NSManagedObject *info in fetchedObjects) {
+        NSLog(@"PIN: %@", [info valueForKey:@"pin"]);
+        [employeePins addObject:[info valueForKey:@"pin"]];
+        
+    }
+
 
    
     
@@ -152,16 +160,26 @@
 }
 */
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    if ([[segue identifier] isEqualToString:@"detail"]){
+
+    DetailViewController *detail = [segue destinationViewController];
+    
+    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
+      //  detail.detailIndex= path.row ;
+    
+    
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-}
 
- */
+    
+    }
+}
+ 
 
 @end
