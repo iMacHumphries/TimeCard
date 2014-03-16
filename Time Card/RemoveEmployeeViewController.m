@@ -52,6 +52,7 @@
     tableView.delegate = self;
     tableView.dataSource = self;
     
+
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -106,6 +107,10 @@
 
 - (IBAction)doneButtonPressed:(id)sender {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (IBAction)addEmployeeButton:(UIButton *)sender {
+    [self performSegueWithIdentifier:@"manageAdd" sender:sender];
 }
 
 

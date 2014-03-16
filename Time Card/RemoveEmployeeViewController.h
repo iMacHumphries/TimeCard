@@ -13,6 +13,7 @@
 }
 - (IBAction)editButtonPressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;
+- (IBAction)addEmployeeButton:(UIButton *)sender;
 
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
