@@ -132,6 +132,12 @@
    // [self dismissViewControllerAnimated:YES completion:nil];
      [self performSegueWithIdentifier:@"backToLogin" sender:nil];
 }
+
+- (IBAction)emailButton:(UIButton *)sender {
+    [self email];
+    
+    
+}
 - (IBAction)clockInOutButton:(UIButton *)sender {
    
     
@@ -230,4 +236,19 @@
     NSString *string = [praise objectAtIndex:i];
     return string;
 }
+-(void)email{
+
+    MFMailComposeViewController *mViewController = [[MFMailComposeViewController alloc] init];
+    [mViewController setDelegate:self];
+    [mViewController setSubject:@"TIME_CARD"];
+    [mViewController setMessageBody:@"MESSAGE_HERE" isHTML:NO];
+    
+    
+    [self presentViewController:mViewController animated:YES completion:^{
+        
+        NSLog(@"Email completion");
+    }];
+
+
+     }
 @end

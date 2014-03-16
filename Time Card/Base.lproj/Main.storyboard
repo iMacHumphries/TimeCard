@@ -384,6 +384,9 @@
                                 <state key="normal" title="Email Time Sheet" backgroundImage="blankIndicator.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="emailButton:" destination="MtX-iT-fLp" eventType="touchUpInside" id="GwU-Ur-ro7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xfg-U9-dLR">
                                 <rect key="frame" x="432" y="390" width="160" height="160"/>
@@ -514,6 +517,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="fot-EC-EoF"/>
-        <segue reference="lpG-g7-JFK"/>
+        <segue reference="Xec-uo-g8O"/>
     </inferredMetricsTieBreakers>
 </document>

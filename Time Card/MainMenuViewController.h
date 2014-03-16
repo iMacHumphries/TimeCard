@@ -12,6 +12,8 @@
 #import "Employees.h"
 #import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
+#import <MessageUI/MessageUI.h>
+
 @interface MainMenuViewController : UIViewController{
     NSArray *praise;
 }
@@ -26,6 +28,8 @@
 
 - (IBAction)clockInOutButton:(UIButton *)sender;
 - (IBAction)cancelButton:(UIButton *)sender;
+- (IBAction)emailButton:(UIButton *)sender;
+
 
 
 @end
