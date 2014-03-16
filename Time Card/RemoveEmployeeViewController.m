@@ -98,7 +98,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
+   
      cell.textLabel.text=[employeeNames objectAtIndex:indexPath.row];
     
     return cell;
@@ -136,7 +136,30 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+        NSEntityDescription *entity = [NSEntityDescription
+                                       entityForName:@"Employees" inManagedObjectContext:context];
+        [fetchRequest setEntity:entity];
+        NSError *error;
+        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+        //delete actuall employee!
+        for (NSManagedObject *info in fetchedObjects) {
+           
+        if ([[info valueForKey:@"name"] isEqualToString:[employeeNames objectAtIndex:indexPath.row]])
+            NSLog(@"DELETING : %@",info);
+             [context deleteObject:info];
+            
+        }
+        
+       
+        [employeeNames removeObjectAtIndex:indexPath.row];
+        [employeePins removeObjectAtIndex:indexPath.row];
+        [tableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
+        [tableView reloadData];
+
+        
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -171,9 +194,10 @@
     DetailViewController *detail = [segue destinationViewController];
     
     NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-      //  detail.detailIndex= path.row ;
-    
-    
+        [detail setDetailIndex:path.row];
+        detail.name = [self getEmployeeNameForIndex:path.row];
+        detail.pin = [self getEmployeePinForIndex:path.row];
+
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 
@@ -181,5 +205,12 @@
     }
 }
  
-
+-(NSString *)getEmployeeNameForIndex:(int)ndex {
+    NSString *eName = [employeeNames objectAtIndex:ndex];
+    return eName;
+}
+-(NSString *)getEmployeePinForIndex:(int)ndex {
+    NSString *ePin = [employeePins objectAtIndex:ndex];
+    return ePin;
+}
 @end

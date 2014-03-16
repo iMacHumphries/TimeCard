@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 @class RemoveEmployeeViewController;
 @interface DetailViewController : UIViewController{
-    RemoveEmployeeViewController *remEmployeeViewController;
-    NSString *pin;
+       NSString *pin;
     NSString *name;
-    
+    NSInteger detailIndex;
 }
-@property (nonatomic,retain)RemoveEmployeeViewController *remEmployeeViewController;
-@property (nonatomic) int detailIndex;
+-(void)setDetailIndex:(NSInteger)ndex;
+
+@property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
+@property (nonatomic,retain)  NSString *name;
+@property (nonatomic,retain)  NSString *pin;
+@property (nonatomic) NSInteger detailIndex;
 @end

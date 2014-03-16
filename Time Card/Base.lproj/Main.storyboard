@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Detail View Controller - Managing Employee-->
         <scene sceneID="ePr-pH-uTj">
             <objects>
-                <viewController id="udB-iJ-2hs" sceneMemberID="viewController">
+                <viewController id="udB-iJ-2hs" customClass="DetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zu9-a5-H9c"/>
                         <viewControllerLayoutGuide type="bottom" id="FC0-Yt-V5b"/>
@@ -15,11 +15,21 @@
                     <view key="view" contentMode="scaleToFill" id="Tgg-Yh-MQL">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="RuK-2E-3Wn">
+                                <rect key="frame" x="0.0" y="65" width="1024" height="703"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
-                    <navigationItem key="navigationItem" id="0Hs-iA-IwH"/>
+                    <navigationItem key="navigationItem" title="Managing Employee" id="0Hs-iA-IwH"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
+                    <connections>
+                        <outlet property="navBar" destination="0Hs-iA-IwH" id="Jcx-mx-QBj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WsJ-Q5-ebt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -53,12 +63,13 @@
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEd-g6-UMD">
                                     <rect key="frame" x="20" y="3" width="40" height="40"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" backgroundImage="blankIndicator.png">
+                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                    <state key="normal" title="+" backgroundImage="blankIndicator.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add New Employee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVS-3M-Uiu">
-                                    <rect key="frame" x="68" y="12" width="192" height="21"/>
+                                    <rect key="frame" x="68" y="15" width="192" height="21"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -266,6 +277,16 @@
                                 </state>
                                 <connections>
                                     <action selector="questionButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CZa-Jd-DFu"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ICH-Qa-FUX">
+                                <rect key="frame" x="934" y="678" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Admin" backgroundImage="blankIndicator.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="admin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5bT-VB-L7g"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -478,7 +499,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="FKW-ps-yhE"/>
+        <segue reference="fot-EC-EoF"/>
         <segue reference="lpG-g7-JFK"/>
     </inferredMetricsTieBreakers>
 </document>
