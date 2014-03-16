@@ -43,6 +43,12 @@
 
    
     
+    UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg"]];
+    [tempImageView setFrame:self.tableView.frame];
+    
+    self.tableView.backgroundView = tempImageView;
+    
+    
     tableView.delegate = self;
     tableView.dataSource = self;
     
