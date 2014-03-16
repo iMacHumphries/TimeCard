@@ -141,7 +141,9 @@
 
     if([self clockedIn]){
         NSLog(@"Clocked out");
-
+        if([[self getLastIn].timeInitiated intValue]>[[NSDate date] timeIntervalSince1970]){
+            [context deleteObject:[self getLastIn]];
+        }else{
         EmployeeActionOut *action = [NSEntityDescription
                                      insertNewObjectForEntityForName:@"EmployeeActionOut"
                                      inManagedObjectContext:context];
@@ -149,7 +151,7 @@
         [action setValue:@"March" forKey:@"month"];
         [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
         [[self getLastIn] setEmployeeOut:action];
-    
+        }
   
     
     }
