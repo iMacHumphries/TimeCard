@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3401" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="EmployeeAction" representedClassName="EmployeeAction" syncable="YES">
+        <attribute name="archived" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="archivedDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="month" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timeInitiated" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,13 +18,14 @@
         <relationship name="emplyeeIn" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EmployeeAction" inverseName="employeeOut" inverseEntity="EmployeeAction" syncable="YES"/>
     </entity>
     <entity name="Employees" representedClassName="Employees" syncable="YES">
+        <attribute name="admin" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pin" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="employeesToAction" optional="YES" toMany="YES" deletionRule="No Action" destinationEntity="EmployeeAction" inverseName="actionToEmployees" inverseEntity="EmployeeAction" syncable="YES"/>
     </entity>
     <elements>
-        <element name="EmployeeAction" positionX="0" positionY="0" width="128" height="133"/>
-        <element name="EmployeeActionOut" positionX="-279" positionY="92" width="128" height="118"/>
-        <element name="Employees" positionX="-306" positionY="-117" width="128" height="90"/>
+        <element name="EmployeeAction" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EmployeeActionOut" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Employees" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

@@ -2,7 +2,7 @@
 //  EmployeeAction.h
 //  Time Card
 //
-//  Created by Chris Mays on 3/14/14.
+//  Created by Chris Mays on 3/17/14.
 //  Copyright (c) 2014 Chris Mays. All rights reserved.
 //
 
@@ -17,6 +17,8 @@
 @property (nonatomic, retain) NSNumber * timeInitiated;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSNumber * year;
+@property (nonatomic, retain) NSNumber * archived;
+@property (nonatomic, retain) NSDate * archivedDate;
 @property (nonatomic, retain) Employees *actionToEmployees;
 @property (nonatomic, retain) EmployeeActionOut *employeeOut;
 

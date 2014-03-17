@@ -2,7 +2,7 @@
 //  Employees.h
 //  Time Card
 //
-//  Created by Chris Mays on 3/14/14.
+//  Created by Chris Mays on 3/17/14.
 //  Copyright (c) 2014 Chris Mays. All rights reserved.
 //
 
@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * pin;
+@property (nonatomic, retain) NSNumber * admin;
 @property (nonatomic, retain) NSSet *employeesToAction;
 @end
 

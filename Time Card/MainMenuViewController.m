@@ -170,6 +170,7 @@
         [action setValue:@"in" forKey:@"type"];
         [action setValue:[self getCurrentMonth] forKey:@"month"];
         [action setValue:[self getCurrentYear] forKey:@"year"];
+        action.archived=[NSNumber numberWithBool:false];
         if([self dateBeforeEightAM:[NSDate date]]){
             [action setValue:[NSNumber numberWithDouble:[[self getDateFor8AM] timeIntervalSince1970]] forKey:@"timeInitiated"];
 
@@ -268,5 +269,18 @@
     [format setDateFormat:@"yyyy"];
     
     return [NSNumber numberWithInt:[[format stringFromDate:[NSDate date]] intValue]];
+}
+-(void)startNewPayPeriod{
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"EmployeeAction" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:NULL];
+    for (EmployeeAction *info in fetchedObjects) {
+        info.archived=[NSNumber numberWithBool:TRUE];
+        // NSManagedObject *details = [info valueForKey:@"details"];
+        // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
+    }
+
 }
 @end

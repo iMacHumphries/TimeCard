@@ -41,7 +41,7 @@
     double totalSecondsWorked = 0.0;
     NSSet *hours=currentEmployee.employeesToAction;
     for(EmployeeAction *a in hours){
-        if(a.employeeOut!=NULL && [a.month isEqualToString:[self getCurrentMonth]] && [a.year intValue]==[[self getCurrentYear] intValue]){
+        if(a.employeeOut!=NULL && (a.archived==NULL || [a.archived boolValue]==false)){
             totalSecondsWorked+=[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
             NSLog(@"totalSeconds Worked is %f %f",[a.timeInitiated doubleValue],[a.employeeOut.timeInitiated doubleValue]);
         }
