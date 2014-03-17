@@ -213,4 +213,49 @@
     NSString *ePin = [employeePins objectAtIndex:ndex];
     return ePin;
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    if ([title isEqualToString:@"Remove Employee"]){
+        [self removeEmployeeAtRow:[self getEditingIndex]];
+    }
+}
+-(void)removeEmployeeAtRow:(int)theRow {
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Employees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    //delete actuall employee!
+    for (NSManagedObject *info in fetchedObjects) {
+        
+        if ([[info valueForKey:@"pin"] isEqualToString:[employeePins objectAtIndex:theRow]] && ![[info valueForKey:@"pin"] isEqualToString:[employeePins objectAtIndex:0]] ){
+            
+            [context deleteObject:info];
+            [context save:&error];
+            
+        }
+    }
+    NSLog(@"got here!!");
+    [employeeNames removeObjectAtIndex:theRow];
+    [employeePins removeObjectAtIndex:theRow];
+    
+    [tableView deleteRowsAtIndexPaths:@[[self getEditingIndexPath]] withRowAnimation:UITableViewRowAnimationMiddle];
+    [tableView reloadData];
+
+}
+-(void)setEditingIndex:(NSIndexPath *)indexPath{
+    editingIndex =indexPath.row;
+   editingIndexPath = indexPath;
+  }
+-(int)getEditingIndex{
+    return editingIndex;
+}
+
+-(NSIndexPath *)getEditingIndexPath{
+    return editingIndexPath;
+}
+
 @end

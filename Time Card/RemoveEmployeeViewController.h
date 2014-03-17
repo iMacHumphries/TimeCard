@@ -11,6 +11,8 @@
 @interface RemoveEmployeeViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *employeeNames;
     NSMutableArray *employeePins;
+    int editingIndex;
+    NSIndexPath *editingIndexPath;
 }
 - (IBAction)editButtonPressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;
@@ -19,4 +21,6 @@
 -(NSString *)getEmployeePinForIndex:(int)ndex;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+
 @end

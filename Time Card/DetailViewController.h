@@ -15,6 +15,8 @@
 }
 -(void)setDetailIndex:(NSInteger)ndex;
 
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *pinLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
 @property (nonatomic,retain)  NSString *name;
 @property (nonatomic,retain)  NSString *pin;
