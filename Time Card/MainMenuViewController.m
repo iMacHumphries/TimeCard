@@ -242,18 +242,41 @@
 -(void)email{
 
     MFMailComposeViewController *mViewController = [[MFMailComposeViewController alloc] init];
-    [mViewController setDelegate:self];
+    mViewController.mailComposeDelegate = self;
     [mViewController setSubject:@"TIME_CARD"];
     [mViewController setMessageBody:@"MESSAGE_HERE" isHTML:NO];
     
     
     [self presentViewController:mViewController animated:YES completion:^{
         
-        NSLog(@"Email completion");
+       
     }];
 
 
      }
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 -(NSString *)getCurrentMonth{
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.timeZone = [NSTimeZone systemTimeZone];

@@ -14,7 +14,7 @@
 #import "EmployeeActionOut.h"
 #import <MessageUI/MessageUI.h>
 
-@interface MainMenuViewController : UIViewController{
+@interface MainMenuViewController : UIViewController<MFMailComposeViewControllerDelegate>{
     NSArray *praise;
 }
 
