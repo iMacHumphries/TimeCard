@@ -275,6 +275,8 @@
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"EmployeeAction" inManagedObjectContext:context];
     [fetchRequest setEntity:entity];
+    NSPredicate *pred=[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"archived == 0"]];
+    [fetchRequest setPredicate:pred];
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:NULL];
     for (EmployeeAction *info in fetchedObjects) {
         info.archived=[NSNumber numberWithBool:TRUE];
