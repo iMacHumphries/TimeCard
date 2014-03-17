@@ -136,37 +136,34 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        
-        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-        NSEntityDescription *entity = [NSEntityDescription
-                                       entityForName:@"Employees" inManagedObjectContext:context];
-        [fetchRequest setEntity:entity];
-        NSError *error;
-        NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-        //delete actuall employee!
-        for (NSManagedObject *info in fetchedObjects) {
-           
-        if ([[info valueForKey:@"name"] isEqualToString:[employeeNames objectAtIndex:indexPath.row]])
-            NSLog(@"DELETING : %@",info);
-             [context deleteObject:info];
-             [context save:&error];
-        }
-        
-       
-        [employeeNames removeObjectAtIndex:indexPath.row];
-        [employeePins removeObjectAtIndex:indexPath.row];
-        [tableview deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationMiddle];
-        [tableView reloadData];
-
-        
-    }   
+        [self setEditingIndex:indexPath];
+        UIAlertView *alert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Removing %@",[employeeNames objectAtIndex:indexPath.row]] message:[NSString stringWithFormat:@"Are you sure you would like to delete the employee: %@? All time sheets will be lost.", [employeeNames objectAtIndex:indexPath.row]] delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Remove Employee", nil];
+        [alert show];
+    }
+    
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"called row touched");
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Employees" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    //delete actuall employee!
+    for (Employees *info in fetchedObjects) {
+        
+        if ([info.pin isEqualToString:[employeePins objectAtIndex:indexPath.row]] ){
+            NSLog(@"found employee touched %@", info.name);
+            [self performSegueWithIdentifier:@"detail" sender:info];
 
-
+        }
+    }
+}
 /*
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
@@ -191,13 +188,8 @@
 {
     if ([[segue identifier] isEqualToString:@"detail"]){
 
-    DetailViewController *detail = [segue destinationViewController];
-    
-    NSIndexPath *path = [self.tableView indexPathForSelectedRow];
-        [detail setDetailIndex:path.row];
-        detail.name = [self getEmployeeNameForIndex:path.row];
-        detail.pin = [self getEmployeePinForIndex:path.row];
-
+        DetailViewController *detail = [segue destinationViewController];
+        detail.currentEmployee=(Employees *)sender;
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 

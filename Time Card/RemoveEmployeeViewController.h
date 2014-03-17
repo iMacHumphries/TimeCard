@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Employees.h"
 @interface RemoveEmployeeViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>{
     NSMutableArray *employeeNames;
     NSMutableArray *employeePins;
     int editingIndex;
     NSIndexPath *editingIndexPath;
+    
 }
 - (IBAction)editButtonPressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;

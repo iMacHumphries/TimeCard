@@ -26,6 +26,7 @@
 @synthesize name,pin;
 @synthesize nameLabel;
 @synthesize pinLabel;
+@synthesize currentEmployee;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,13 +40,15 @@
 - (void)viewDidLoad
 {
 
-    nameLabel.text = [NSString stringWithFormat:@"Name: %@",name];
-    pinLabel.text = [NSString stringWithFormat:@"Pin: %@",pin];
-    navBar.title = [NSString stringWithFormat:@"Managing %@",name];
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    NSLog(@"View will appear");
+    nameLabel.text = [NSString stringWithFormat:@"Name: %@", currentEmployee.name];
+    pinLabel.text = [NSString stringWithFormat:@"Pin: %@", currentEmployee.pin];
+    navBar.title = [NSString stringWithFormat:@"Managing %@",currentEmployee.name];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

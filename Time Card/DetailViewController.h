@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Employees.h"
 @class RemoveEmployeeViewController;
 @interface DetailViewController : UIViewController{
        NSString *pin;
@@ -20,5 +21,7 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
 @property (nonatomic,retain)  NSString *name;
 @property (nonatomic,retain)  NSString *pin;
+@property (nonatomic,retain) Employees *currentEmployee;
 @property (nonatomic) NSInteger detailIndex;
+
 @end

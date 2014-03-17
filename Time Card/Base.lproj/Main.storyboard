@@ -109,9 +109,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="udB-iJ-2hs" kind="push" identifier="detail" id="5oj-x3-CEt"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -136,6 +133,7 @@
                     <connections>
                         <outlet property="tableView" destination="zUN-GY-5Hk" id="8kE-sd-Yik"/>
                         <segue destination="w37-59-Kk6" kind="push" identifier="manageAdd" id="lpG-g7-JFK"/>
+                        <segue destination="udB-iJ-2hs" kind="push" identifier="detail" id="JRv-PC-FDk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5CC-Mk-k5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,7 +514,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="lpG-g7-JFK"/>
         <segue reference="fot-EC-EoF"/>
-        <segue reference="Xec-uo-g8O"/>
     </inferredMetricsTieBreakers>
 </document>
