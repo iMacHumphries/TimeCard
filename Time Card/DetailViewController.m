@@ -26,6 +26,7 @@
 @synthesize name,pin;
 @synthesize nameLabel;
 @synthesize pinLabel;
+@synthesize hoursWorkedLabel;
 @synthesize currentEmployee;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -36,9 +37,22 @@
     }
     return self;
 }
-
+-(int)getTotalHoursWorkedForThisMonth{
+    double totalSecondsWorked = 0.0;
+    NSSet *hours=currentEmployee.employeesToAction;
+    for(EmployeeAction *a in hours){
+        if(a.employeeOut!=NULL && [a.month isEqualToString:[self getCurrentMonth]] && [a.year intValue]==[[self getCurrentYear] intValue]){
+            totalSecondsWorked+=[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
+            NSLog(@"totalSeconds Worked is %f %f",[a.timeInitiated doubleValue],[a.employeeOut.timeInitiated doubleValue]);
+        }
+    }
+    NSLog(@"%f", totalSecondsWorked);
+    NSLog(@"%d", (int)totalSecondsWorked/(60*60));
+    return (int)totalSecondsWorked/(60*60);
+}
 - (void)viewDidLoad
 {
+    
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -48,6 +62,8 @@
     nameLabel.text = [NSString stringWithFormat:@"Name: %@", currentEmployee.name];
     pinLabel.text = [NSString stringWithFormat:@"Pin: %@", currentEmployee.pin];
     navBar.title = [NSString stringWithFormat:@"Managing %@",currentEmployee.name];
+    hoursWorkedLabel.text=[NSString stringWithFormat:@"Hours Worked: %d", [self getTotalHoursWorkedForThisMonth]];
+    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -57,5 +73,22 @@
 -(void)setDetailIndex:(NSInteger)ndex{
     
     detailIndex =ndex;
+}
+
+-(NSString *)getCurrentMonth{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.timeZone = [NSTimeZone systemTimeZone];
+    format.locale=[NSLocale systemLocale];
+    [format setDateFormat:@"MMM"];
+    
+    return [format stringFromDate:[NSDate date]];
+}
+-(NSNumber *)getCurrentYear{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.timeZone = [NSTimeZone systemTimeZone];
+    format.locale=[NSLocale systemLocale];
+    [format setDateFormat:@"yyyy"];
+    
+    return [NSNumber numberWithInt:[[format stringFromDate:[NSDate date]] intValue]];
 }
 @end

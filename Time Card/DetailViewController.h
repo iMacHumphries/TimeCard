@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Employees.h"
+#import "EmployeeAction.h"
+#import "EmployeeActionOut.h"
 @class RemoveEmployeeViewController;
 @interface DetailViewController : UIViewController{
        NSString *pin;
@@ -23,5 +25,6 @@
 @property (nonatomic,retain)  NSString *pin;
 @property (nonatomic,retain) Employees *currentEmployee;
 @property (nonatomic) NSInteger detailIndex;
+@property (weak, nonatomic) IBOutlet UILabel *hoursWorkedLabel;
 
 @end

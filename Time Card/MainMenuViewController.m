@@ -154,7 +154,8 @@
                                      insertNewObjectForEntityForName:@"EmployeeActionOut"
                                      inManagedObjectContext:context];
         [action setValue:@"out" forKey:@"type"];
-        [action setValue:@"March" forKey:@"month"];
+        [action setValue:[self getCurrentMonth] forKey:@"month"];
+        [action setValue:[self getCurrentYear] forKey:@"year"];
         [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
         [[self getLastIn] setEmployeeOut:action];
         }
@@ -167,7 +168,8 @@
                                   insertNewObjectForEntityForName:@"EmployeeAction"
                                   inManagedObjectContext:context];
         [action setValue:@"in" forKey:@"type"];
-        [action setValue:@"March" forKey:@"month"];
+        [action setValue:[self getCurrentMonth] forKey:@"month"];
+        [action setValue:[self getCurrentYear] forKey:@"year"];
         if([self dateBeforeEightAM:[NSDate date]]){
             [action setValue:[NSNumber numberWithDouble:[[self getDateFor8AM] timeIntervalSince1970]] forKey:@"timeInitiated"];
 
@@ -251,4 +253,20 @@
 
 
      }
+-(NSString *)getCurrentMonth{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.timeZone = [NSTimeZone systemTimeZone];
+    format.locale=[NSLocale systemLocale];
+    [format setDateFormat:@"MMM"];
+
+    return [format stringFromDate:[NSDate date]];
+}
+-(NSNumber *)getCurrentYear{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.timeZone = [NSTimeZone systemTimeZone];
+    format.locale=[NSLocale systemLocale];
+    [format setDateFormat:@"yyyy"];
+    
+    return [NSNumber numberWithInt:[[format stringFromDate:[NSDate date]] intValue]];
+}
 @end
