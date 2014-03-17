@@ -150,7 +150,7 @@
         if ([[info valueForKey:@"name"] isEqualToString:[employeeNames objectAtIndex:indexPath.row]])
             NSLog(@"DELETING : %@",info);
              [context deleteObject:info];
-            
+             [context save:&error];
         }
         
        
