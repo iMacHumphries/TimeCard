@@ -4,11 +4,7 @@
  
  
  Need a way to view clock ins and outs!
- 
- 
- (we need to do this more often!)
- 
- I will work on the email feature tonight!
+ I need to be able to have possibly an array for pulling individual clock ins and outs
  
  
  */

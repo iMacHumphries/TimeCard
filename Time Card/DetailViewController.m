@@ -62,7 +62,7 @@
     nameLabel.text = [NSString stringWithFormat:@"Name: %@", currentEmployee.name];
     pinLabel.text = [NSString stringWithFormat:@"Pin: %@", currentEmployee.pin];
     navBar.title = [NSString stringWithFormat:@"Managing %@",currentEmployee.name];
-    hoursWorkedLabel.text=[NSString stringWithFormat:@"Hours Worked: %d", [self getTotalHoursWorkedForThisMonth]];
+    hoursWorkedLabel.text=[NSString stringWithFormat:@"Total Hours Worked: %d", [self getTotalHoursWorkedForThisMonth]];
     
 }
 - (void)didReceiveMemoryWarning
@@ -91,4 +91,32 @@
     
     return [NSNumber numberWithInt:[[format stringFromDate:[NSDate date]] intValue]];
 }
+
+//TableVIEW
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // I Need an array with clocked ins and an array with clocked outs for the employees
+    return 1;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableview cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableview dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+       
+    return cell;
+}
+
 @end

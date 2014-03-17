@@ -11,13 +11,15 @@
 #import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
 @class RemoveEmployeeViewController;
-@interface DetailViewController : UIViewController{
+@interface DetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
        NSString *pin;
     NSString *name;
     NSInteger detailIndex;
+   IBOutlet UITableView *tableView;
 }
 -(void)setDetailIndex:(NSInteger)ndex;
 
+@property (retain,nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pinLabel;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
