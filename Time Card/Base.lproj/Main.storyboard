@@ -363,7 +363,7 @@
                                     <action selector="clockInOutButton:" destination="MtX-iT-fLp" eventType="touchUpInside" id="Vlx-kG-tVc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcf-Co-FZC">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcf-Co-FZC">
                                 <rect key="frame" x="264" y="390" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Employee" backgroundImage="blankIndicator.png">
@@ -373,7 +373,7 @@
                                     <action selector="addEmployeeButton:" destination="MtX-iT-fLp" eventType="touchUpInside" id="IIx-vD-A7P"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-pQ-Amw">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Lc-pQ-Amw">
                                 <rect key="frame" x="264" y="217" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Manage Employees" backgroundImage="blankIndicator.png">
@@ -383,7 +383,7 @@
                                     <segue destination="oo4-e3-CcJ" kind="modal" identifier="remove" modalTransitionStyle="crossDissolve" id="O3M-bF-d2L"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aV-YG-r9d">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6aV-YG-r9d">
                                 <rect key="frame" x="600" y="390" width="160" height="160"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Email Time Sheet" backgroundImage="blankIndicator.png">
@@ -411,7 +411,9 @@
                     <connections>
                         <outlet property="addEmployeeButton" destination="pcf-Co-FZC" id="kzg-Li-1cU"/>
                         <outlet property="clockInOutButton" destination="QAs-Vh-WeL" id="lge-tc-HDk"/>
+                        <outlet property="emailTimeSheetButton" destination="6aV-YG-r9d" id="0Rw-NF-Oit"/>
                         <outlet property="lastLoginLabel" destination="m4J-aR-BOK" id="Mdq-0s-I7j"/>
+                        <outlet property="manageEmployees" destination="2Lc-pQ-Amw" id="qxa-ww-mdy"/>
                         <outlet property="welcomeLabel" destination="IKh-fw-MJn" id="AmW-4P-Qct"/>
                         <segue destination="w37-59-Kk6" kind="modal" identifier="addEmployee" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="Xec-uo-g8O"/>
                         <segue destination="BYZ-38-t0r" kind="modal" identifier="backToLogin" modalTransitionStyle="crossDissolve" id="xhk-R4-TeA"/>
@@ -521,7 +523,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="lpG-g7-JFK"/>
         <segue reference="fot-EC-EoF"/>
+        <segue reference="Xec-uo-g8O"/>
     </inferredMetricsTieBreakers>
 </document>

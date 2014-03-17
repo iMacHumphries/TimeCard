@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *lastLoginLabel;
 @property (weak, nonatomic) IBOutlet UIButton *clockInOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *addEmployeeButton;
+@property (weak, nonatomic) IBOutlet UIButton *manageEmployees;
+@property (weak, nonatomic) IBOutlet UIButton *emailTimeSheetButton;
 
 - (IBAction)addEmployeeButton:(UIButton *)sender;
 

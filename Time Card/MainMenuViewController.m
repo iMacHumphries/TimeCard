@@ -18,6 +18,8 @@
 @synthesize lastLoginLabel;
 @synthesize clockInOutButton;
 @synthesize addEmployeeButton;
+@synthesize manageEmployees;
+@synthesize emailTimeSheetButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,6 +54,12 @@
         NSLog(@"in %@ out %@", action.timeInitiated, action.employeeOut.timeInitiated);
       
         
+        
+    }
+    if([employee admin]!=NULL && [[employee admin] boolValue]==TRUE){
+        manageEmployees.hidden=false;
+        addEmployeeButton.hidden=false;
+        emailTimeSheetButton.hidden=false;
     }
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
