@@ -237,19 +237,19 @@
     }
     else if (i == monthSelect){
         rightLabel.text = @"Months";
-        NSString *test = @"Months";
+        NSString *test = @"                                      Months                                             Hours for the months";
          [clockedInDate addObject:test];
         
     }
     else if (i == yearSelect){
         rightLabel.text = @"Years";
-        NSString *test = @"Years";
+        NSString *test = @"                                      Years                                              Hours for the years";
         [clockedInDate addObject:test];
         
     }
     else if (i == allSelect){
-        rightLabel.text = @"ClockINs and CLockOuts";
-        NSString *test = @"ALL CLOCKINS / CLOCK OUTS";
+        rightLabel.text = @"ClockINS / Clock OUTS";
+        NSString *test = @"                                ClockINs and CLockOuts                           Hours between clock out and clock ins";
         [clockedInDate addObject:test];
     }
     
