@@ -15,6 +15,10 @@
  */
 
 #import "DetailViewController.h"
+#define daySelect 0
+#define monthSelect 1
+#define yearSelect 2
+#define allSelect 3
 
 @interface DetailViewController ()
 
@@ -29,6 +33,8 @@
 @synthesize hoursWorkedLabel;
 @synthesize currentEmployee;
 @synthesize tableView;
+@synthesize dayButton,yearButton,monthButton,allButton;
+@synthesize rightLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -75,48 +81,10 @@
 	// Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
-    clockedInDate = [[NSMutableArray alloc] init];
-    NSSet *hours=currentEmployee.employeesToAction;
-
-    for(EmployeeAction *a in hours){
+   
     
-        NSString *month = [NSString stringWithFormat:@"%@",a.month];
-        NSArray * mon = [month componentsSeparatedByString:@"h"];
-        if (mon != nil){
-            month = [mon objectAtIndex:1];
-        }
-        
-        double d = [a.timeInitiated doubleValue];
-        NSTimeInterval *day = &d;
-        
-        NSString *year = [NSString stringWithFormat:@"%@", a.year];
-          double totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
-        NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
-        NSString *theDate = [NSString stringWithFormat:@"%@/%@/%@                                                         %@",month,[self getDay:day],year,dayHours];
-        
-         [clockedInDate addObject:theDate];
-        
-        
-            }
-    
-    for (EmployeeActionOut *a in hours){
-        NSString *month = [NSString stringWithFormat:@"%@",a.month];
-        NSArray * mon = [month componentsSeparatedByString:@"h"];
-        if (mon != nil){
-            month = [mon objectAtIndex:1];
-        }
-        
-        double d = [a.timeInitiated doubleValue];
-        NSTimeInterval *day = &d;
-        
-        NSString *year = [NSString stringWithFormat:@"%@", a.year];
 
-        NSString *theDate = [NSString stringWithFormat:@"%@/%@/%@",month,[self getDay:day],year];
-        
-        [clockedOutDates addObject:theDate];
-
-    }
-    
+    [self configureTableViewForButtonSelected];
     
     
     nameLabel.text = [NSString stringWithFormat:@"Name: %@", currentEmployee.name];
@@ -181,4 +149,111 @@
     return cell;
 }
 
+- (IBAction)dayButton:(UIButton *)sender {
+    [self configureSelectedButtonWithTheTag:sender.tag];
+    [self configureTableViewForButtonSelected];
+}
+
+- (IBAction)monthButton:(UIButton *)sender {
+    [self configureSelectedButtonWithTheTag:sender.tag];
+    [self configureTableViewForButtonSelected];
+
+}
+
+- (IBAction)yearButton:(UIButton *)sender {
+    [self configureSelectedButtonWithTheTag:sender.tag];
+    [self configureTableViewForButtonSelected];
+
+}
+
+- (IBAction)allButton:(UIButton *)sender {
+    [self configureSelectedButtonWithTheTag:sender.tag];
+    [self configureTableViewForButtonSelected];
+
+}
+
+-(void)configureSelectedButtonWithTheTag:(int)tag{
+    UIImage *filled = [UIImage imageNamed:@"filledIndicator"];
+    [self setAllButtonsToNotSelected];
+    [self setSelectedIndex:tag];
+    
+    if (tag == 0){
+        [dayButton setBackgroundImage:filled forState:UIControlStateNormal];
+    }
+    else if (tag == 1){
+        [monthButton setBackgroundImage:filled forState:UIControlStateNormal];
+    }
+    else if (tag ==2){
+        [yearButton setBackgroundImage:filled forState:UIControlStateNormal];
+    }
+    else if (tag ==3){
+        [allButton setBackgroundImage:filled forState:UIControlStateNormal];
+    }
+    
+}
+-(void)setAllButtonsToNotSelected{
+    UIImage *blank = [UIImage imageNamed:@"blankIndicator"];
+    [dayButton setBackgroundImage:blank forState:UIControlStateNormal];
+    [monthButton setBackgroundImage:blank forState:UIControlStateNormal];
+    [yearButton setBackgroundImage:blank forState:UIControlStateNormal];
+    [allButton setBackgroundImage:blank forState:UIControlStateNormal];
+}
+
+-(void)setSelectedIndex:(int)tag{
+    selectedButtonIndex =tag;
+}
+-(int)getSelectedButtonIndex{
+    return selectedButtonIndex;
+}
+-(void)configureTableViewForButtonSelected{
+     clockedInDate = [[NSMutableArray alloc] init];
+    int i = [self getSelectedButtonIndex];
+    NSSet *hours=currentEmployee.employeesToAction;
+    
+    
+    if (i == daySelect){
+        rightLabel.text = @"Days";
+        for(EmployeeAction *a in hours){
+            
+            NSString *month = [NSString stringWithFormat:@"%@",a.month];
+            NSArray * mon = [month componentsSeparatedByString:@"h"];
+            if (mon != nil){
+                month = [mon objectAtIndex:1];
+            }
+            
+            double d = [a.timeInitiated doubleValue];
+            NSTimeInterval *day = &d;
+            
+            NSString *year = [NSString stringWithFormat:@"%@", a.year];
+            double totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
+            NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
+            NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               %@",month,[self getDay:day],year,dayHours];
+            
+            [clockedInDate addObject:theDate];
+            
+            
+        }
+        
+    }
+    else if (i == monthSelect){
+        rightLabel.text = @"Months";
+        NSString *test = @"Months";
+         [clockedInDate addObject:test];
+        
+    }
+    else if (i == yearSelect){
+        rightLabel.text = @"Years";
+        NSString *test = @"Years";
+        [clockedInDate addObject:test];
+        
+    }
+    else if (i == allSelect){
+        rightLabel.text = @"ClockINs and CLockOuts";
+        NSString *test = @"ALL CLOCKINS / CLOCK OUTS";
+        [clockedInDate addObject:test];
+    }
+    
+    
+    [tableView reloadData];
+}
 @end

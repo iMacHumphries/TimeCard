@@ -19,6 +19,7 @@
    IBOutlet UITableView *tableView;
     NSMutableArray *clockedInDate;
     NSMutableArray *clockedOutDates;
+    int selectedButtonIndex;
 }
 -(void)setDetailIndex:(NSInteger)ndex;
 
@@ -31,5 +32,17 @@
 @property (nonatomic,retain) Employees *currentEmployee;
 @property (nonatomic) NSInteger detailIndex;
 @property (weak, nonatomic) IBOutlet UILabel *hoursWorkedLabel;
+
+- (IBAction)dayButton:(UIButton *)sender;
+- (IBAction)monthButton:(UIButton *)sender;
+- (IBAction)yearButton:(UIButton *)sender;
+- (IBAction)allButton:(UIButton *)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *dayButton;
+@property (weak, nonatomic) IBOutlet UIButton *monthButton;
+@property (weak, nonatomic) IBOutlet UIButton *yearButton;
+@property (weak, nonatomic) IBOutlet UIButton *allButton;
+
+@property (weak, nonatomic) IBOutlet UILabel *rightLabel;
 
 @end
