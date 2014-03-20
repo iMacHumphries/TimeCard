@@ -46,11 +46,9 @@
     [pinArray addObject:string];
     if ([pinArray count] == 4){
     }
-    NSLog(@"pin : %@",pinArray);
 }
 -(void)removeLastPinFromArray{
     [pinArray removeLastObject];
-     NSLog(@"pin : %@",pinArray);
 }
 
 - (IBAction)pinButton:(UIButton *)sender {

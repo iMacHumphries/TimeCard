@@ -28,6 +28,7 @@
 @synthesize pinLabel;
 @synthesize hoursWorkedLabel;
 @synthesize currentEmployee;
+@synthesize tableView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -46,24 +47,49 @@
             NSLog(@"totalSeconds Worked is %f %f",[a.timeInitiated doubleValue],[a.employeeOut.timeInitiated doubleValue]);
         }
     }
-    NSLog(@"%f", totalSecondsWorked);
-    NSLog(@"%d", (int)totalSecondsWorked/(60*60));
-    return (int)totalSecondsWorked/(60*60);
+   
+   // NSLog(@"%f", (double)totalSecondsWorked/(60*60));
+    return (double)totalSecondsWorked/(60*60);
+}
+-(NSString *)getDay:(NSTimeInterval *)seconds{
+    NSDateFormatter* theDateFormatter = [[NSDateFormatter alloc] init];
+    [theDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+    [theDateFormatter setDateFormat:@"dd"];
+    NSString *weekDay =  [theDateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:*seconds]];
+    return weekDay;
 }
 - (void)viewDidLoad
 {
-    
+   
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
-    NSLog(@"View will appear");
+    clockedInDate = [[NSMutableArray alloc] init];
+    NSSet *hours=currentEmployee.employeesToAction;
+    for(EmployeeAction *a in hours){
+        
+    
+        NSString *month = [NSString stringWithFormat:@"%@",a.employeeOut.emplyeeIn.month];
+        NSArray * mon = [month componentsSeparatedByString:@"h"];
+        month = [mon objectAtIndex:1];
+        
+        double d = [a.employeeOut.emplyeeIn.timeInitiated doubleValue];
+        NSTimeInterval *day = &d;
+        
+        NSString *year = [NSString stringWithFormat:@"%@", a.employeeOut.emplyeeIn.year];
+        NSString *theDate = [NSString stringWithFormat:@"%@/%@/%@",month,[self getDay:day],year];
+        
+        [clockedInDate addObject:theDate];
+    }
+
     nameLabel.text = [NSString stringWithFormat:@"Name: %@", currentEmployee.name];
     pinLabel.text = [NSString stringWithFormat:@"Pin: %@", currentEmployee.pin];
     navBar.title = [NSString stringWithFormat:@"Managing %@",currentEmployee.name];
     hoursWorkedLabel.text=[NSString stringWithFormat:@"Total Hours Worked: %d", [self getTotalHoursWorkedForThisMonth]];
     
+
 }
 - (void)didReceiveMemoryWarning
 {
@@ -97,13 +123,13 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // I Need an array with clocked ins and an array with clocked outs for the employees
-    return 1;
+    return [clockedInDate count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableview cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,7 +141,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-       
+    cell.textLabel.text = [clockedInDate objectAtIndex:indexPath.row];
+
     return cell;
 }
 

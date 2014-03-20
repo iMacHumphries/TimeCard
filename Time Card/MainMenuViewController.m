@@ -198,7 +198,7 @@
 
     NSString *clocked = [[clockInOutButton titleLabel]text];
     
-    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@ at %@",employee.name,clocked,[self getSatus]] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
+    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,[self getSatus]] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
     [alert show];
 
     [self performSegueWithIdentifier:@"backToLogin" sender:nil];

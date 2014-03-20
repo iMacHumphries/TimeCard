@@ -10,12 +10,15 @@
 #import "Employees.h"
 #import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
+
 @class RemoveEmployeeViewController;
 @interface DetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
        NSString *pin;
     NSString *name;
     NSInteger detailIndex;
    IBOutlet UITableView *tableView;
+    NSMutableArray *clockedInDate;
+    ;
 }
 -(void)setDetailIndex:(NSInteger)ndex;
 

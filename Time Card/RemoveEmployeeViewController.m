@@ -38,12 +38,10 @@
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@", [info valueForKey:@"name"]);
         [employeeNames addObject:[info valueForKey:@"name"]];
         
     }
     for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"PIN: %@", [info valueForKey:@"pin"]);
         [employeePins addObject:[info valueForKey:@"pin"]];
         
     }
