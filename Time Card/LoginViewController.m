@@ -29,8 +29,6 @@
 - (void)viewDidLoad
 {
     pinArray = [[NSMutableArray alloc]init];
-
-    //[self addPam];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -134,9 +132,7 @@
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     for (Employees *info in fetchedObjects) {
         return info;
-        // NSManagedObject *details = [info valueForKey:@"details"];
-        // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
-    }
+           }
     
     return NULL;
     
@@ -155,7 +151,6 @@
 }
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"sequeu is happening");
     MainMenuViewController *controller=segue.destinationViewController;
     controller.employee=(Employees *)sender;
 }
@@ -190,19 +185,7 @@
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
     }
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Employees" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSPredicate *pred=[NSPredicate predicateWithFormat:@"pin like '1234'"];
-    [fetchRequest setPredicate:pred];
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        NSLog(@"Name: %@", [info valueForKey:@"name"]);
-        
-        // NSManagedObject *details = [info valueForKey:@"details"];
-        // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
-    }
+    
 
    }
 - (IBAction)admin:(UIButton *)sender {

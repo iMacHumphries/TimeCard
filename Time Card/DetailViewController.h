@@ -18,7 +18,7 @@
     NSInteger detailIndex;
    IBOutlet UITableView *tableView;
     NSMutableArray *clockedInDate;
-    ;
+    NSMutableArray *clockedOutDates;
 }
 -(void)setDetailIndex:(NSInteger)ndex;
 
