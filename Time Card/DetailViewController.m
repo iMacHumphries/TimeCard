@@ -181,6 +181,73 @@
 
 }
 
+- (IBAction)emailButton:(UIBarButtonItem *)sender {
+    [self email];
+    
+}
+-(void)email{
+    
+    // save all table
+    CGRect frame = self.tableView.frame;
+    frame.size.height = self.tableView.contentSize.height;
+    self.tableView.frame = frame;
+    
+    UIGraphicsBeginImageContextWithOptions(self.tableView.bounds.size, self.tableView.opaque, 0.0);
+    [self.tableView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *saveImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    NSData *imageData = UIImagePNGRepresentation(saveImage);
+    NSFileManager *fileMan = [NSFileManager defaultManager];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    
+    NSString *pdfFileName = [documentsDirectory stringByAppendingPathComponent:@"image.png"];
+    [fileMan createFileAtPath:pdfFileName contents:imageData attributes:nil];
+    
+    
+    NSLog(@"path %@", pdfFileName); 
+
+    
+    MFMailComposeViewController *mViewController = [[MFMailComposeViewController alloc] init];
+    mViewController.mailComposeDelegate = self;
+    [mViewController setSubject:@"TIME_CARD"];
+    [mViewController setMessageBody:[NSString stringWithFormat:@"%@'s Work Hours",currentEmployee.name] isHTML:NO];
+   
+    [mViewController addAttachmentData:imageData mimeType:@"image/png" fileName:pdfFileName];
+    
+    [self presentViewController:mViewController animated:YES completion:^{
+        
+        
+    }];
+    
+    
+}
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
+            [a show];
+            break;
+            
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
 -(void)configureSelectedButtonWithTheTag:(int)tag{
     UIImage *filled = [UIImage imageNamed:@"filledIndicator"];
     [self setAllButtonsToNotSelected];

@@ -10,9 +10,10 @@
 #import "Employees.h"
 #import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
+#import <MessageUI/MessageUI.h>
 
 @class RemoveEmployeeViewController;
-@interface DetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface DetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate>{
        NSString *pin;
     NSString *name;
     NSInteger detailIndex;
@@ -37,6 +38,7 @@
 - (IBAction)monthButton:(UIButton *)sender;
 - (IBAction)yearButton:(UIButton *)sender;
 - (IBAction)allButton:(UIButton *)sender;
+- (IBAction)emailButton:(UIBarButtonItem *)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *dayButton;
 @property (weak, nonatomic) IBOutlet UIButton *monthButton;
