@@ -74,6 +74,13 @@
     NSString *weekDay =  [theDateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:*seconds]];
     return weekDay;
 }
+-(NSString *)getHours:(NSTimeInterval *)seconds{
+    NSDate *currentTime = [NSDate dateWithTimeIntervalSince1970:*seconds];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm a"];
+    NSString *resultString = [dateFormatter stringFromDate: currentTime];
+    return resultString;
+}
 - (void)viewDidLoad
 {
    
@@ -91,7 +98,7 @@
     nameLabel.text = [NSString stringWithFormat:@"Name: %@", currentEmployee.name];
     pinLabel.text = [NSString stringWithFormat:@"Pin: %@", currentEmployee.pin];
     navBar.title = [NSString stringWithFormat:@"Managing %@",currentEmployee.name];
-    hoursWorkedLabel.text=[NSString stringWithFormat:@"Total Hours Worked: %d", [self getTotalHoursWorkedForThisMonth]];
+    hoursWorkedLabel.text=[NSString stringWithFormat:@"Total Hours Worked: %d", [self getTotalHoursForLiveTime]];
     
 
 }
@@ -243,7 +250,7 @@
             break;
             
     }
-    
+    self.tableView.frame = CGRectMake(0, 251, 1024,446);
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
@@ -302,8 +309,7 @@
     }
     else if (i == allSelect){
         rightLabel.text = @"ClockINS / Clock OUTS";
-        NSString *test = @"                                ClockINs and CLockOuts                           Hours between clock out and clock ins";
-        [clockedInDate addObject:test];
+        [self changeToClockedInOut];
     }
     
    
@@ -436,5 +442,53 @@
     
     
 }
+-(void)changeToClockedInOut{
+    NSSet *hours=currentEmployee.employeesToAction;
+    NSMutableArray *ins= [[NSMutableArray alloc] init];
+    NSMutableArray *outs= [[NSMutableArray alloc] init];
+    NSMutableArray *prevInTimes= [[NSMutableArray alloc] init];
+    NSMutableArray *prevOutTimes= [[NSMutableArray alloc] init];
+    NSString *timeOut;
+    NSString *timeIn;
+    
+    double totalSecondsWorkedThatDay;
+   
+    for(EmployeeAction *a in hours){
+        double d = [a.timeInitiated doubleValue];
+        NSTimeInterval *day = &d;
+        NSString *theDay = [self getDay:day];
+        NSString *theYear = [a.year stringValue];
+        NSString *theMonth = [self getMonthForSeconds:day];
+        timeIn =[self getHours:day];
+        NSString *theInDate = [NSString stringWithFormat:@"                  IN:       %@/%@/%@  %@                ",theDay,theMonth,theYear,timeIn];
+        [ins addObject:theInDate];
+        totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
+        [prevInTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
 
+         d = [a.employeeOut.timeInitiated doubleValue];
+        day = &d;
+        theDay = [self getDay:day];
+        theYear = [a.employeeOut.year stringValue];
+        theMonth = [self getMonthForSeconds:day];
+        timeOut =[self getHours:&d];
+    
+        NSString *theOutDate = [NSString stringWithFormat:@"OUT:       %@/%@/%@  %@       ",theDay,theMonth,theYear,timeOut];
+        [outs addObject:theOutDate];
+        
+        
+        
+    }
+  
+    for (int i = 0; i <[outs count]; i++) {
+        NSArray *times = [prevInTimes arrayByAddingObjectsFromArray:prevOutTimes];
+        totalSecondsWorkedThatDay = [[times objectAtIndex:i] doubleValue];
+        
+        NSString *msg = [[ins objectAtIndex:i] stringByAppendingString:[outs objectAtIndex:i]];
+        NSString *dayHours = [NSString stringWithFormat:@"                %f hours",totalSecondsWorkedThatDay/(60*60)];
+        msg = [msg stringByAppendingString:dayHours];
+        [clockedInDate addObject:msg];
+    }
+    
+    
+}
 @end

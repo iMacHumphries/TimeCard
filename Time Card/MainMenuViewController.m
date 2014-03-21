@@ -39,7 +39,7 @@
     }
     
     NSLog(@"%@", employee.name);
-    praise = [[NSArray alloc] initWithObjects:@"Awesome",@"Fantastic",@"Great",@"Ok",@"Sweet", nil];
+    praise = [[NSArray alloc] initWithObjects:@"Awesome",@"Fantastic",@"Great",@"Ok",@"Sweet",@"Have A Great Day!", nil];
     welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
     lastLoginLabel.text = [self getSatus];
     
