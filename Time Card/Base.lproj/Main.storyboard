@@ -32,8 +32,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name : Pam Mays" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sq8-g3-GQs">
-                                <rect key="frame" x="63" y="130" width="296" height="39"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name : Pam Mays" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sq8-g3-GQs">
+                                <rect key="frame" x="63" y="130" width="246" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="highlightedColor"/>
@@ -59,7 +59,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Days" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rZk-Wm-VFn">
-                                <rect key="frame" x="99" y="215" width="314" height="28"/>
+                                <rect key="frame" x="15" y="215" width="499" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <nil key="highlightedColor"/>
@@ -71,7 +71,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LYJ-Nt-BbX">
-                                <rect key="frame" x="414" y="99" width="124" height="124"/>
+                                <rect key="frame" x="308" y="99" width="124" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Day" backgroundImage="filledIndicator.png">
@@ -82,7 +82,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GTo-h3-hEc">
-                                <rect key="frame" x="546" y="99" width="124" height="124"/>
+                                <rect key="frame" x="440" y="99" width="124" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Month" backgroundImage="blankIndicator.png">
@@ -93,7 +93,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRB-de-B4r">
-                                <rect key="frame" x="678" y="99" width="124" height="124"/>
+                                <rect key="frame" x="572" y="99" width="124" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Year" backgroundImage="blankIndicator.png">
@@ -104,7 +104,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PqB-cZ-pxc">
-                                <rect key="frame" x="810" y="99" width="124" height="124"/>
+                                <rect key="frame" x="704" y="99" width="124" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="All" backgroundImage="blankIndicator.png">
@@ -112,6 +112,19 @@
                                 </state>
                                 <connections>
                                     <action selector="allButton:" destination="udB-iJ-2hs" eventType="touchUpInside" id="MbO-pa-0bI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zqb-2f-eiO">
+                                <rect key="frame" x="836" y="99" width="124" height="124"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="PayPeriod" backgroundImage="blankIndicator.png">
+                                    <color key="titleColor" red="0.40000000596046448" green="0.40000000596046448" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="allButton:" destination="udB-iJ-2hs" eventType="touchUpInside" id="lhJ-XV-UKB"/>
+                                    <action selector="payPeriodButton:" destination="udB-iJ-2hs" eventType="touchUpInside" id="JYW-gi-dHX"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -131,11 +144,12 @@
                         <outlet property="allButton" destination="PqB-cZ-pxc" id="Ctk-hg-aLf"/>
                         <outlet property="dayButton" destination="LYJ-Nt-BbX" id="uIz-WH-EFX"/>
                         <outlet property="hoursWorkedLabel" destination="uU3-HP-ILH" id="UnL-wX-vfv"/>
+                        <outlet property="leftLabel" destination="rZk-Wm-VFn" id="Mws-Tg-KNn"/>
                         <outlet property="monthButton" destination="GTo-h3-hEc" id="Du4-Sr-wLb"/>
                         <outlet property="nameLabel" destination="Sq8-g3-GQs" id="0bO-8M-fYD"/>
                         <outlet property="navBar" destination="0Hs-iA-IwH" id="Jcx-mx-QBj"/>
+                        <outlet property="payPeriodButton" destination="Zqb-2f-eiO" id="vTJ-c1-Cjd"/>
                         <outlet property="pinLabel" destination="CYc-fX-e6e" id="D6P-lo-zza"/>
-                        <outlet property="rightLabel" destination="rZk-Wm-VFn" id="Y18-kw-DWn"/>
                         <outlet property="tableView" destination="U9d-t2-2Mb" id="XnX-tg-uBP"/>
                         <outlet property="yearButton" destination="PRB-de-B4r" id="rl8-pq-we6"/>
                     </connections>

@@ -38,13 +38,15 @@
 - (IBAction)monthButton:(UIButton *)sender;
 - (IBAction)yearButton:(UIButton *)sender;
 - (IBAction)allButton:(UIButton *)sender;
+- (IBAction)payPeriodButton:(UIButton *)sender;
 - (IBAction)emailButton:(UIBarButtonItem *)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *dayButton;
 @property (weak, nonatomic) IBOutlet UIButton *monthButton;
 @property (weak, nonatomic) IBOutlet UIButton *yearButton;
 @property (weak, nonatomic) IBOutlet UIButton *allButton;
+@property (weak, nonatomic) IBOutlet UIButton *payPeriodButton;
 
-@property (weak, nonatomic) IBOutlet UILabel *rightLabel;
+@property (weak, nonatomic) IBOutlet UILabel *leftLabel;
 
 @end

@@ -19,6 +19,7 @@
 #define monthSelect 1
 #define yearSelect 2
 #define allSelect 3
+#define paySelect 4
 
 @interface DetailViewController ()
 
@@ -33,8 +34,8 @@
 @synthesize hoursWorkedLabel;
 @synthesize currentEmployee;
 @synthesize tableView;
-@synthesize dayButton,yearButton,monthButton,allButton;
-@synthesize rightLabel;
+@synthesize dayButton,yearButton,monthButton,allButton,payPeriodButton;
+@synthesize leftLabel;
 @synthesize clockedInDate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -89,18 +90,13 @@
 	// Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
-   
-    
-
     [self configureTableViewForButtonSelected];
-    
     
     nameLabel.text = [NSString stringWithFormat:@"Name: %@", currentEmployee.name];
     pinLabel.text = [NSString stringWithFormat:@"Pin: %@", currentEmployee.pin];
     navBar.title = [NSString stringWithFormat:@"Managing %@",currentEmployee.name];
     hoursWorkedLabel.text=[NSString stringWithFormat:@"Total Hours Worked: %d", [self getTotalHoursForLiveTime]];
     
-
 }
 - (void)didReceiveMemoryWarning
 {
@@ -188,6 +184,11 @@
 
 }
 
+- (IBAction)payPeriodButton:(UIButton *)sender {
+    [self configureSelectedButtonWithTheTag:sender.tag];
+    [self configureTableViewForButtonSelected];
+}
+
 - (IBAction)emailButton:(UIBarButtonItem *)sender {
     [self email];
     
@@ -272,6 +273,9 @@
     else if (tag ==3){
         [allButton setBackgroundImage:filled forState:UIControlStateNormal];
     }
+    else if (tag ==4){
+         [payPeriodButton setBackgroundImage:filled forState:UIControlStateNormal];
+    }
     
 }
 -(void)setAllButtonsToNotSelected{
@@ -280,6 +284,7 @@
     [monthButton setBackgroundImage:blank forState:UIControlStateNormal];
     [yearButton setBackgroundImage:blank forState:UIControlStateNormal];
     [allButton setBackgroundImage:blank forState:UIControlStateNormal];
+    [payPeriodButton setBackgroundImage:blank forState:UIControlStateNormal];
 }
 
 -(void)setSelectedIndex:(int)tag{
@@ -294,38 +299,60 @@
     int i = [self getSelectedButtonIndex];
    
     if (i == daySelect){
-        rightLabel.text = @"Days";
+        leftLabel.text = @"Days";
         [self changeTableToDay];
     }
     else if (i == monthSelect){
-        rightLabel.text = @"Months";
+        leftLabel.text = @"Months";
         [self changeTableToMonth];
         
     }
     else if (i == yearSelect){
-        rightLabel.text = @"Years";
+        leftLabel.text = @"Years";
         [self changeTableToYear];
         
     }
     else if (i == allSelect){
-        rightLabel.text = @"ClockINS / Clock OUTS";
+        leftLabel.text = @"ClockINS / Clock OUTS";
         [self changeToClockedInOut];
+    }
+    else if (i == paySelect){
+        leftLabel.text = @"Pay Periods                    Start                    End";
+        [self changeTableToPayPeriod];
     }
     
    
     [tableView reloadData];
 }
--(void)changeTableToDay{
-    
-    
-    
-     NSSet *hours=currentEmployee.employeesToAction;
-    NSMutableArray *previousDates = [[NSMutableArray alloc]init];
-     NSMutableArray *previousTimes = [[NSMutableArray alloc]init];
-    NSMutableArray *inDates = [[NSMutableArray alloc]init];
+-(void)changeTableToPayPeriod{
+    NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay = 0;
-    int index = 0;
-    
+    for(EmployeeAction *a in hours){
+        double d = [a.timeInitiated doubleValue];
+        NSTimeInterval *day = &d;
+         NSString *theDay = [self getDay:day];
+        NSString *year = [NSString stringWithFormat:@"%@", a.year];
+        totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
+        
+        NSString *month = [self getMonthForSeconds:day];
+        NSString *theDate = [NSString stringWithFormat:@"%@/%@/%@",month,theDay,year];
+         for (int i = 0; i < [clockedInDate count]; i ++){
+             NSArray *split = [[clockedInDate objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+             split = [split filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+             NSString *prevDate = [split objectAtIndex:0];
+        
+              NSLog(@"Here it is : %@",split);
+             
+         }
+        
+        
+        
+    }
+}
+
+-(void)changeTableToDay{
+     NSSet *hours=currentEmployee.employeesToAction;
+    double totalSecondsWorkedThatDay = 0;
     for(EmployeeAction *a in hours){
         double d = [a.timeInitiated doubleValue];
         NSTimeInterval *day = &d;
@@ -336,43 +363,32 @@
       
         NSString *month = [self getMonthForSeconds:day];
         NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               ",month,theDay,year];
-     NSString *test =[NSString stringWithFormat:@"%@/%@/%@",month,theDay,year];
-        [inDates addObject:test];
-       [self sortArrayNumerically:inDates];
-        [self sortArrayNumerically:previousDates];
-        if ([previousDates count] >0 ){
-            NSLog(@"COMPARE : %@ TO : %@",[previousDates lastObject],[inDates lastObject]);
-            if ([[previousDates lastObject] isEqualToString:[inDates lastObject]]){
-               [clockedInDate removeLastObject];
-               totalSecondsWorkedThatDay += [[previousTimes objectAtIndex:(index -1 )] doubleValue];
-            }
+        NSString *test =[NSString stringWithFormat:@"%@/%@/%@",month,theDay,year];
+        
+        for (int i = 0; i < [clockedInDate count]; i ++){
             
+            NSArray *split = [[clockedInDate objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            split = [split filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+            NSString *compareDate = [split objectAtIndex:0];
+            double lastHours = [[split objectAtIndex:1] doubleValue];
+            if ([test isEqualToString:compareDate]){
+                [clockedInDate removeObjectAtIndex:i];
+                totalSecondsWorkedThatDay =totalSecondsWorkedThatDay +(lastHours * (60*60));
+            }
         }
-       NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
-        [previousDates addObject:test];
-        [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
+        NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
         theDate = [theDate stringByAppendingString:dayHours];
         [clockedInDate addObject:theDate];
         [self sortArrayNumerically:clockedInDate];
        
-         index ++;
         }
     
-  
-    [self sortArrayNumerically:previousDates];
-
     }
 
 -(void)changeTableToMonth{
-    [clockedInDate removeAllObjects];
+    NSLog(@"called!!!!");
  NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay;
-    NSMutableArray *prevMonthYear = [[NSMutableArray alloc] init];
-    NSMutableArray *previousTimes = [[NSMutableArray alloc]init];
-     NSMutableArray *inDates = [[NSMutableArray alloc]init];
-    
-    int index = 0;
-    
      for(EmployeeAction *a in hours){
          
          double d = [a.timeInitiated doubleValue];
@@ -385,63 +401,57 @@
          
          NSString *monthYear  = [NSString stringWithFormat:@"                                            %@/%@                                                            ",theMonth,year];
 
-         NSString *test =[NSString stringWithFormat:@"%@,%@",theMonth,year];
-         [inDates addObject:test];
-         [self sortArrayNumerically:inDates];
-         [self sortArrayNumerically:prevMonthYear];
-         
-         if ([prevMonthYear count] >0){
+         NSString *test =[NSString stringWithFormat:@"%@/%@",theMonth,year];
+        
+         for (int i = 0; i < [clockedInDate count]; i ++){
              
-            if ([[prevMonthYear lastObject] isEqualToString:[inDates lastObject]]){
-                 [clockedInDate removeLastObject];
-                totalSecondsWorkedThatDay += [[previousTimes objectAtIndex:(index -1 )] doubleValue];
+             NSArray *split = [[clockedInDate objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+             split = [split filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+             NSString *compareDate = [split objectAtIndex:0];
+             double lastHours = [[split objectAtIndex:1] doubleValue];
+             if ([test isEqualToString:compareDate]){
+                 [clockedInDate removeObjectAtIndex:i];
+                 totalSecondsWorkedThatDay =totalSecondsWorkedThatDay +(lastHours * (60*60));
              }
-             
          }
+
          NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
-         [prevMonthYear addObject:test];
-         [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
          monthYear = [monthYear stringByAppendingString:dayHours];
          [clockedInDate addObject:monthYear];
          [self sortArrayNumerically:clockedInDate];
-         index ++;
+        
             }
-    [self sortArrayNumerically:clockedInDate];
+   
     
 }
 -(void)changeTableToYear{
     
     NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay;
-    NSMutableArray *prevYear = [[NSMutableArray alloc] init];
-    NSMutableArray *previousTimes = [[NSMutableArray alloc]init];
-    int index = 0;
     
     for(EmployeeAction *a in hours){
         NSString *year = [NSString stringWithFormat:@"                                            %@                                                             ", a.year];
         totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
         
-        
 
-        if ([prevYear count] >0 && [clockedInDate count] >0){
+        for (int i = 0; i < [clockedInDate count]; i ++){
             
-            if ([[prevYear objectAtIndex:(index -1)] isEqualToString:[a.year stringValue]]){
-                [clockedInDate removeLastObject];
-               
-                totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
-               
+            NSArray *split = [[clockedInDate objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+            split = [split filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+            NSString *compareDate = [split objectAtIndex:0];
+            double lastHours = [[split objectAtIndex:1] doubleValue];
+            if ([[a.year stringValue] isEqualToString:compareDate]){
+                [clockedInDate removeObjectAtIndex:i];
+                totalSecondsWorkedThatDay =totalSecondsWorkedThatDay +(lastHours * (60*60));
             }
-            
         }
+
     
         NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
-        [prevYear addObject:[a.year stringValue]];
-        [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
-        year = [year stringByAppendingString:dayHours];
+            year = [year stringByAppendingString:dayHours];
         [clockedInDate addObject:year];
         [self sortArrayNumerically:clockedInDate];
-        [self sortArrayNumerically:prevYear];
-        index ++;
+        
     }
 
     
