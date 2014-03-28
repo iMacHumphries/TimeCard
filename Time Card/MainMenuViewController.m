@@ -20,6 +20,7 @@
 @synthesize addEmployeeButton;
 @synthesize manageEmployees;
 @synthesize emailTimeSheetButton;
+@synthesize audioPlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -49,12 +50,12 @@
         [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
 
     }
-    for(EmployeeAction *action in employee.employeesToAction) {
-        NSLog(@"in %@ out %@", action.timeInitiated, action.employeeOut.timeInitiated);
+    //for(EmployeeAction *action in employee.employeesToAction) {
+     //  NSLog(@"in %@ out %@", action.timeInitiated, action.employeeOut.timeInitiated);
       
         
         
-    }
+    //}
     if([employee admin]!=NULL && [[employee admin] boolValue]==TRUE){
         manageEmployees.hidden=false;
         addEmployeeButton.hidden=false;
@@ -92,13 +93,13 @@
             currentAction=action;
         }else{
             if([currentAction.timeInitiated doubleValue]<[action.timeInitiated doubleValue]){
-                NSLog(@"Current action is less than before:%@ After:%@",currentAction.timeInitiated ,action.timeInitiated);
+               // NSLog(@"Current action is less than before:%@ After:%@",currentAction.timeInitiated ,action.timeInitiated);
 
                 currentAction=action;
             }
         }
     }
-    NSLog(@"Found this %@ found time out %@", currentAction.timeInitiated, currentAction.employeeOut.timeInitiated);
+   // NSLog(@"Found this %@ found time out %@", currentAction.timeInitiated, currentAction.employeeOut.timeInitiated);
     
     return currentAction;
 }
@@ -132,20 +133,29 @@
 }
 - (IBAction)addEmployeeButton:(UIButton *)sender {
     //Admin Only
+    [self defaultSound];
     [self performSegueWithIdentifier:@"addEmployee" sender:sender];
     
 }
 - (IBAction)cancelButton:(UIButton *)sender {
    // [self dismissViewControllerAnimated:YES completion:nil];
+    [self defaultSound];
      [self performSegueWithIdentifier:@"backToLogin" sender:nil];
 }
 
 - (IBAction)emailButton:(UIButton *)sender {
+    [self defaultSound];
     [self email];
+}
+
+- (IBAction)manageEmployeeButton:(UIButton *)sender {
+    
+    [self defaultSound];
+       
 }
 - (IBAction)clockInOutButton:(UIButton *)sender {
    
-    
+    [self clockSound];
     
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
 
@@ -315,5 +325,22 @@
         // NSLog(@"Zip: %@", [details valueForKey:@"zip"]);
     }
 
+}
+-(void)clockSound{
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"unlock"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+    
+}
+-(void)defaultSound{
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"click1"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
 }
 @end

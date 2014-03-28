@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Employees.h"
-@interface RemoveEmployeeViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate>{
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+@interface RemoveEmployeeViewController : UITableViewController<UITableViewDataSource, UITableViewDelegate,AVAudioPlayerDelegate>{
     NSMutableArray *employeeNames;
     NSMutableArray *employeePins;
     int editingIndex;
     NSIndexPath *editingIndexPath;
-    
+    AVAudioPlayer* audioPlayer;
 }
 - (IBAction)editButtonPressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;
@@ -22,6 +24,6 @@
 -(NSString *)getEmployeePinForIndex:(int)ndex;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property (retain,nonatomic) AVAudioPlayer* audioPlayer;
 
 @end

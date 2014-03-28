@@ -127,6 +127,17 @@
                                     <action selector="payPeriodButton:" destination="udB-iJ-2hs" eventType="touchUpInside" id="JYW-gi-dHX"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIp-mb-Lt8">
+                                <rect key="frame" x="958" y="714" width="46" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="?" backgroundImage="blankIndicator.png">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="questionButton:" destination="udB-iJ-2hs" eventType="touchUpInside" id="Uim-gQ-G4i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -484,6 +495,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="manageEmployeeButton:" destination="MtX-iT-fLp" eventType="touchUpInside" id="T3c-bp-xxa"/>
                                     <segue destination="oo4-e3-CcJ" kind="modal" identifier="remove" modalTransitionStyle="crossDissolve" id="O3M-bF-d2L"/>
                                 </connections>
                             </button>
@@ -629,6 +641,6 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="fot-EC-EoF"/>
-        <segue reference="lpG-g7-JFK"/>
+        <segue reference="Xec-uo-g8O"/>
     </inferredMetricsTieBreakers>
 </document>

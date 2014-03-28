@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "EmployeeAction.h"
 #import "Employee.h"
-@interface CreateEmployeeViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate>{
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+@interface CreateEmployeeViewController : UIViewController<UITextFieldDelegate,UIAlertViewDelegate,AVAudioPlayerDelegate>{
     NSString *pin;
     NSString *name;
+     AVAudioPlayer* audioPlayer;
 }
 - (IBAction)cancelButton:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+@property (retain,nonatomic) AVAudioPlayer* audioPlayer;
 
 @end

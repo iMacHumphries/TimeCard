@@ -16,6 +16,7 @@
 
 @implementation RemoveEmployeeViewController
 @synthesize tableView;
+@synthesize audioPlayer;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -102,6 +103,7 @@
     return cell;
 }
 - (IBAction)editButtonPressed:(id)sender {
+    [self defaultSound];
     if(tableView.editing){
         [tableView setEditing:NO];
     }
@@ -112,10 +114,12 @@
 }
 
 - (IBAction)doneButtonPressed:(id)sender {
+    [self defaultSound];
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 - (IBAction)addEmployeeButton:(UIButton *)sender {
+    [self defaultSound];
     [self performSegueWithIdentifier:@"manageAdd" sender:sender];
 }
 
@@ -247,5 +251,12 @@
 -(NSIndexPath *)getEditingIndexPath{
     return editingIndexPath;
 }
-
+-(void)defaultSound{
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"click1"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+}
 @end

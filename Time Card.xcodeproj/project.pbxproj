@@ -52,6 +52,13 @@
 		B5E0E47818D5E29A005497DC /* ui.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E47718D5E29A005497DC /* ui.png */; };
 		B5E0E47E18D62300005497DC /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E47D18D62300005497DC /* DetailViewController.m */; };
 		B5E0E48118D66EA4005497DC /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5E0E48018D66EA4005497DC /* MessageUI.framework */; };
+		B5F9B26B18E5BA570068C86E /* click0.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5F9B26618E5BA570068C86E /* click0.wav */; };
+		B5F9B26C18E5BA570068C86E /* click1.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5F9B26718E5BA570068C86E /* click1.wav */; };
+		B5F9B26D18E5BA570068C86E /* del.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5F9B26818E5BA570068C86E /* del.wav */; };
+		B5F9B26E18E5BA570068C86E /* error.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5F9B26918E5BA570068C86E /* error.wav */; };
+		B5F9B26F18E5BA570068C86E /* unlock.wav in Resources */ = {isa = PBXBuildFile; fileRef = B5F9B26A18E5BA570068C86E /* unlock.wav */; };
+		B5F9B27118E5BACC0068C86E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F9B27018E5BACC0068C86E /* AudioToolbox.framework */; };
+		B5F9B27318E5BDCA0068C86E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F9B27218E5BDCA0068C86E /* AVFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,6 +132,13 @@
 		B5E0E47D18D62300005497DC /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
 		B5E0E47F18D66C09005497DC /* TODO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TODO.h; sourceTree = "<group>"; };
 		B5E0E48018D66EA4005497DC /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		B5F9B26618E5BA570068C86E /* click0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click0.wav; sourceTree = "<group>"; };
+		B5F9B26718E5BA570068C86E /* click1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click1.wav; sourceTree = "<group>"; };
+		B5F9B26818E5BA570068C86E /* del.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = del.wav; sourceTree = "<group>"; };
+		B5F9B26918E5BA570068C86E /* error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = error.wav; sourceTree = "<group>"; };
+		B5F9B26A18E5BA570068C86E /* unlock.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = unlock.wav; sourceTree = "<group>"; };
+		B5F9B27018E5BACC0068C86E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		B5F9B27218E5BDCA0068C86E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +146,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B5F9B27318E5BDCA0068C86E /* AVFoundation.framework in Frameworks */,
+				B5F9B27118E5BACC0068C86E /* AudioToolbox.framework in Frameworks */,
 				B5E0E48118D66EA4005497DC /* MessageUI.framework in Frameworks */,
 				B5E0E47318D3FBC0005497DC /* QuartzCore.framework in Frameworks */,
 				83B489F618D3A9E400C39FB4 /* CoreData.framework in Frameworks */,
@@ -176,6 +192,8 @@
 		8339147318D23D3D0043FD66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B5F9B27218E5BDCA0068C86E /* AVFoundation.framework */,
+				B5F9B27018E5BACC0068C86E /* AudioToolbox.framework */,
 				B5E0E48018D66EA4005497DC /* MessageUI.framework */,
 				B5E0E47218D3FBC0005497DC /* QuartzCore.framework */,
 				83B489F518D3A9E400C39FB4 /* CoreData.framework */,
@@ -225,6 +243,7 @@
 		8339147B18D23D3D0043FD66 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B5F9B26518E5BA570068C86E /* TimeCardSounds */,
 				83EB3E5218D6985C006DBB12 /* timeCard002.png */,
 				B5E0E46218D39047005497DC /* bg.png */,
 				B5161107195A3750003099EA /* bg2.png */,
@@ -274,6 +293,18 @@
 				B5E0E45618D38BBF005497DC /* delete.png */,
 			);
 			path = buttons;
+			sourceTree = "<group>";
+		};
+		B5F9B26518E5BA570068C86E /* TimeCardSounds */ = {
+			isa = PBXGroup;
+			children = (
+				B5F9B26618E5BA570068C86E /* click0.wav */,
+				B5F9B26718E5BA570068C86E /* click1.wav */,
+				B5F9B26818E5BA570068C86E /* del.wav */,
+				B5F9B26918E5BA570068C86E /* error.wav */,
+				B5F9B26A18E5BA570068C86E /* unlock.wav */,
+			);
+			path = TimeCardSounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,7 +392,9 @@
 				B5E0E46118D38BBF005497DC /* delete.png in Resources */,
 				B5E0E46718D392D0005497DC /* blankIndicator.png in Resources */,
 				B5E0E46318D39047005497DC /* bg.png in Resources */,
+				B5F9B26D18E5BA570068C86E /* del.wav in Resources */,
 				8339147F18D23D3D0043FD66 /* InfoPlist.strings in Resources */,
+				B5F9B26F18E5BA570068C86E /* unlock.wav in Resources */,
 				8339148818D23D3D0043FD66 /* Main.storyboard in Resources */,
 				B5E0E45D18D38BBF005497DC /* b6.png in Resources */,
 				B5E0E45718D38BBF005497DC /* b0.png in Resources */,
@@ -371,7 +404,10 @@
 				B5E0E45A18D38BBF005497DC /* b3.png in Resources */,
 				B5E0E45C18D38BBF005497DC /* b5.png in Resources */,
 				B5E0E45B18D38BBF005497DC /* b4.png in Resources */,
+				B5F9B26C18E5BA570068C86E /* click1.wav in Resources */,
 				B5E0E45E18D38BBF005497DC /* b7.png in Resources */,
+				B5F9B26B18E5BA570068C86E /* click0.wav in Resources */,
+				B5F9B26E18E5BA570068C86E /* error.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

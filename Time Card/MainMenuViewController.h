@@ -14,9 +14,13 @@
 #import "EmployeeActionOut.h"
 #import <MessageUI/MessageUI.h>
 #import "EmailMessage.h"
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
-@interface MainMenuViewController : UIViewController<MFMailComposeViewControllerDelegate>{
+@interface MainMenuViewController : UIViewController<MFMailComposeViewControllerDelegate,AVAudioPlayerDelegate>{
     NSArray *praise;
+    AVAudioPlayer* audioPlayer;
+    
 }
 
 @property (nonatomic, retain) Employees *employee;
@@ -32,7 +36,8 @@
 - (IBAction)clockInOutButton:(UIButton *)sender;
 - (IBAction)cancelButton:(UIButton *)sender;
 - (IBAction)emailButton:(UIButton *)sender;
-
+- (IBAction)manageEmployeeButton:(UIButton *)sender;
+@property (retain,nonatomic) AVAudioPlayer* audioPlayer;
 
 
 @end

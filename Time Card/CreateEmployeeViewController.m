@@ -15,6 +15,7 @@
 
 @implementation CreateEmployeeViewController
 @synthesize nameTextField;
+@synthesize audioPlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -74,6 +75,7 @@
     controller.employee=(Employees *)sender;
 }
 - (IBAction)cancelButton:(UIButton *)sender {
+    [self defaultSound];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 -(NSString *)generateUniquePinNumber{
@@ -110,5 +112,13 @@
         [self generateUniquePinNumber];
     }
 
+}
+-(void)defaultSound{
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"click1"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
 }
 @end

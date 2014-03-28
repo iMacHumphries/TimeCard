@@ -17,6 +17,7 @@
 
 @implementation LoginViewController
 @synthesize pinArray;
+@synthesize audioPlayer;
 @synthesize indicator1,indicator2,indicator3,indicator4;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,20 +42,31 @@
     // Dispose of any resources that can be recreated.
 }
 -(void)addPinToArray:(NSInteger)pinNumber{
+    
     NSString *string =[NSString stringWithFormat:@"%i",pinNumber];
     [pinArray addObject:string];
-    if ([pinArray count] == 4){
-    }
+   
 }
 -(void)removeLastPinFromArray{
     [pinArray removeLastObject];
 }
 
 - (IBAction)pinButton:(UIButton *)sender {
+    [self clickSound:sender.tag];
     [self addPinToArray:sender.tag];
     [self changeIndicators];
 }
 - (IBAction)deleteButton:(UIButton *)sender {
+    
+    if ([pinArray count] > 0){
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"del"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+
+    }
     [self removeLastPinFromArray];
     [self changeIndicators];
 }
@@ -106,8 +118,10 @@
        [indicator4 setImage:fill];
        Employees *rightPin=[self checkPin];
        if(rightPin!=NULL){
+           [self successSound];
            [self performSegueWithIdentifier:@"mainMenu" sender:rightPin];
        }else{
+           [self failSound];
            [self clearArrayAndIndicators];
            [self shakeView:indicator1];
            [self shakeView:indicator2];
@@ -204,5 +218,32 @@
         [self addPam];
     }
     }
+}
+-(void)clickSound:(int)tick{
+
+audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"click1"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+}
+-(void)successSound{
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"unlock"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+
+}
+-(void)failSound{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"error"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    [audioPlayer setVolume:0.09];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
 }
 @end

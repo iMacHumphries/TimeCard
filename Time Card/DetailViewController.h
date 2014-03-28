@@ -11,15 +11,19 @@
 #import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
 #import <MessageUI/MessageUI.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+
 
 @class RemoveEmployeeViewController;
-@interface DetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate>{
+@interface DetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate,AVAudioPlayerDelegate>{
        NSString *pin;
     NSString *name;
     NSInteger detailIndex;
    IBOutlet UITableView *tableView;
     NSMutableArray *clockedInDate;
     int selectedButtonIndex;
+    AVAudioPlayer* audioPlayer;
 }
 -(void)setDetailIndex:(NSInteger)ndex;
 
@@ -40,6 +44,7 @@
 - (IBAction)allButton:(UIButton *)sender;
 - (IBAction)payPeriodButton:(UIButton *)sender;
 - (IBAction)emailButton:(UIBarButtonItem *)sender;
+- (IBAction)questionButton:(UIButton *)sender;
 
 @property (weak, nonatomic) IBOutlet UIButton *dayButton;
 @property (weak, nonatomic) IBOutlet UIButton *monthButton;
@@ -48,5 +53,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *payPeriodButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *leftLabel;
-
+@property (retain,nonatomic) AVAudioPlayer* audioPlayer;
 @end

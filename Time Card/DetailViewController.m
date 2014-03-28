@@ -37,6 +37,7 @@
 @synthesize dayButton,yearButton,monthButton,allButton,payPeriodButton;
 @synthesize leftLabel;
 @synthesize clockedInDate;
+@synthesize audioPlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -162,36 +163,48 @@
 }
 
 - (IBAction)dayButton:(UIButton *)sender {
+    [self defaultSound];
     [self configureSelectedButtonWithTheTag:sender.tag];
     [self configureTableViewForButtonSelected];
 }
 
 - (IBAction)monthButton:(UIButton *)sender {
+    [self defaultSound];
     [self configureSelectedButtonWithTheTag:sender.tag];
     [self configureTableViewForButtonSelected];
 
 }
 
 - (IBAction)yearButton:(UIButton *)sender {
+    [self defaultSound];
     [self configureSelectedButtonWithTheTag:sender.tag];
     [self configureTableViewForButtonSelected];
 
 }
 
 - (IBAction)allButton:(UIButton *)sender {
+    [self defaultSound];
     [self configureSelectedButtonWithTheTag:sender.tag];
     [self configureTableViewForButtonSelected];
 
 }
 
 - (IBAction)payPeriodButton:(UIButton *)sender {
+    [self defaultSound];
     [self configureSelectedButtonWithTheTag:sender.tag];
     [self configureTableViewForButtonSelected];
 }
 
 - (IBAction)emailButton:(UIBarButtonItem *)sender {
+    [self defaultSound];
     [self email];
     
+}
+
+- (IBAction)questionButton:(UIButton *)sender {
+
+    UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"Problems?" message:[NSString stringWithFormat:@"If the hours are large negative numbers or the word ('null') is present, please ensure that the employee, %@, has been properly clocked out.",currentEmployee.name] delegate:self cancelButtonTitle:@"Thanks!" otherButtonTitles:nil, nil];
+    [al show];
 }
 -(void)email{
     
@@ -317,7 +330,7 @@
         [self changeToClockedInOut];
     }
     else if (i == paySelect){
-        leftLabel.text = @"Pay Periods                    Start                    End";
+        leftLabel.text = @"Pay Periods                  Start                            End";
         [self changeTableToPayPeriod];
     }
     
@@ -327,7 +340,10 @@
 -(void)changeTableToPayPeriod{
     NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay = 0;
+    NSMutableArray *prevDateArray = [[NSMutableArray alloc]init];
+    
     for(EmployeeAction *a in hours){
+      
         double d = [a.timeInitiated doubleValue];
         NSTimeInterval *day = &d;
          NSString *theDay = [self getDay:day];
@@ -336,18 +352,54 @@
         
         NSString *month = [self getMonthForSeconds:day];
         NSString *theDate = [NSString stringWithFormat:@"%@/%@/%@",month,theDay,year];
-         for (int i = 0; i < [clockedInDate count]; i ++){
-             NSArray *split = [[clockedInDate objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+         for (int i = 0; i < [prevDateArray count]; i++){
+           
+             NSArray *split = [[prevDateArray objectAtIndex:i] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
              split = [split filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF != ''"]];
+            
              NSString *prevDate = [split objectAtIndex:0];
-        
-              NSLog(@"Here it is : %@",split);
+             split = [prevDate componentsSeparatedByString:@"/"];
+             NSString *prevMonth = [split objectAtIndex:0];
+              NSString *prevDay = [split objectAtIndex:1];
+             NSString *prevYear = [split objectAtIndex:2];
+             double prevHrs = [[split objectAtIndex:3] doubleValue];
+             //1. is the date the exact same as another?
+             //2. is the month = next month - (1 month back) and day less than 15?
+             //3. is the month = next month (-11 months back) if so then the month was the 12th month and is the year = prevyear -1 year back?
+             
+            if (([month isEqualToString:prevMonth] && [theDay intValue]>=16 && [year isEqualToString:prevYear]) || ([month intValue] == [prevMonth intValue]-1 && [theDay intValue] <= 15) || ([month intValue]== [prevMonth intValue]+1  &&  [theDay intValue]>=16)|| ([month intValue] == [prevMonth intValue]-11  && [theDay intValue]<=15  && [year intValue] == [prevYear intValue]+1) || ([month isEqualToString:prevMonth] && [theDay isEqualToString:prevDay] && [year isEqualToString:prevYear])){
+                NSLog(@"CALLEd");
+                [prevDateArray removeObjectAtIndex:i];
+                [clockedInDate removeObjectAtIndex:i];
+                 totalSecondsWorkedThatDay += prevHrs * (60*60);
+                 
+             }
              
          }
+       
         
+
+        NSString *dayHours = [NSString stringWithFormat:@"/%f hours",totalSecondsWorkedThatDay/(60*60)];
+        //ex payPeriod 1  (started) 03/16/2014  (ends)  04/15/2014
+        NSString *nextMonth = [NSString stringWithFormat:@"0%i",[month intValue]+1];
+        NSString *nextYear = [NSString stringWithFormat:@"%@",year];
+        if ([month intValue] == 12){
+            nextMonth = [NSString stringWithFormat:@"01"];
+            nextYear = [NSString stringWithFormat:@"%i",[nextYear intValue]+1];
+        }
+       
+       
+
+       
+        [prevDateArray addObject:[theDate stringByAppendingString:dayHours]];
+         theDate = [NSString stringWithFormat:@"Pay Period %i                         %@/16/%@                         %@/15/%@",[prevDateArray count],month,year,nextMonth,nextYear];
+        theDate = [theDate stringByAppendingString:[NSString stringWithFormat:@"                    %@",dayHours]];
+        [clockedInDate addObject:theDate];
         
-        
-    }
+        [self sortArrayNumerically:clockedInDate];
+        [self sortArrayNumerically:prevDateArray];
+                   }
+    
 }
 
 -(void)changeTableToDay{
@@ -386,7 +438,6 @@
     }
 
 -(void)changeTableToMonth{
-    NSLog(@"called!!!!");
  NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay;
      for(EmployeeAction *a in hours){
@@ -509,5 +560,13 @@
     [array sortUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
         return [str1 compare:str2 options:(NSNumericSearch)];
     }];
+}
+-(void)defaultSound{
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"click1"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
 }
 @end

@@ -10,10 +10,13 @@
 #import <CoreData/CoreData.h>
 #import "Employees.h"
 #import "EmployeeAction.h"
-@interface LoginViewController : UIViewController{
+#import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
+
+@interface LoginViewController : UIViewController<AVAudioPlayerDelegate>{
     NSMutableArray *pinArray;
     BOOL textFieldAlert;
-    
+    AVAudioPlayer* audioPlayer;
 }
 - (IBAction)pinButton:(UIButton *)sender;
 - (IBAction)deleteButton:(UIButton *)sender;
@@ -25,6 +28,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *indicator3;
 @property (weak, nonatomic) IBOutlet UIImageView *indicator4;
 
-
+@property (retain,nonatomic) AVAudioPlayer* audioPlayer;
 
 @end
