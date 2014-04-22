@@ -340,10 +340,11 @@
         if ([previousDates count] >0 && [clockedInDate count] >0){
             
             if ([[previousDates objectAtIndex:(index -1)] isEqualToString:[NSString stringWithFormat:@"%@/%@/%@",[self getMonthForSeconds:day],theDay,year]]){
+                NSLog(@"The prev year month day was same!");
                  [clockedInDate removeLastObject];
                totalSecondsWorkedThatDay += [[previousTimes objectAtIndex:(index -1 )] doubleValue];
             }
-           
+            NSLog(@"The prev year month day was NOT!");
         }
        NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
         [previousDates addObject:[NSString stringWithFormat:@"%@/%@/%@",[self getMonthForSeconds:day],theDay,year]];
@@ -460,7 +461,7 @@
         NSString *theYear = [a.year stringValue];
         NSString *theMonth = [self getMonthForSeconds:day];
         timeIn =[self getHours:day];
-        NSString *theInDate = [NSString stringWithFormat:@"                  IN:       %@/%@/%@  %@                ",theDay,theMonth,theYear,timeIn];
+        NSString *theInDate = [NSString stringWithFormat:@"                  IN:       %@/%@/%@  %@                ",theMonth,theDay,theYear,timeIn];
         [ins addObject:theInDate];
         totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
         [prevInTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
@@ -472,11 +473,9 @@
         theMonth = [self getMonthForSeconds:day];
         timeOut =[self getHours:&d];
     
-        NSString *theOutDate = [NSString stringWithFormat:@"OUT:       %@/%@/%@  %@       ",theDay,theMonth,theYear,timeOut];
+        NSString *theOutDate = [NSString stringWithFormat:@"OUT:       %@/%@/%@  %@       ",theMonth,theDay,theYear,timeOut];
         [outs addObject:theOutDate];
-        
-        
-        
+    
     }
   
     for (int i = 0; i <[outs count]; i++) {
@@ -488,7 +487,6 @@
         msg = [msg stringByAppendingString:dayHours];
         [clockedInDate addObject:msg];
     }
-    
-    
+
 }
 @end

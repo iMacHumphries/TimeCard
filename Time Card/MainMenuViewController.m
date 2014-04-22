@@ -38,10 +38,9 @@
         NSLog(@"date is before %@", [self getDateFor8AM]);
     }
     
-    NSLog(@"%@", employee.name);
     praise = [[NSArray alloc] initWithObjects:@"Awesome",@"Fantastic",@"Great",@"Ok",@"Sweet",@"Have A Great Day!", nil];
     welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
-    lastLoginLabel.text = [self getSatus];
+    lastLoginLabel.text = [NSString stringWithFormat:@"Last %@",[self getSatus]];
     
     if ([self clockedIn]){
         [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
@@ -143,8 +142,6 @@
 
 - (IBAction)emailButton:(UIButton *)sender {
     [self email];
-    
-    
 }
 - (IBAction)clockInOutButton:(UIButton *)sender {
    
