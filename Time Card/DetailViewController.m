@@ -112,6 +112,14 @@
     
     return [format stringFromDate:[NSDate date]];
 }
+-(NSString *)getMonthForSeconds:(NSTimeInterval *)seconds{
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    format.timeZone = [NSTimeZone systemTimeZone];
+    format.locale=[NSLocale systemLocale];
+    [format setDateFormat:@"MM"];
+
+    return [format stringFromDate:[NSDate dateWithTimeIntervalSince1970:*seconds]];
+}
 -(NSNumber *)getCurrentYear{
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
     format.timeZone = [NSTimeZone systemTimeZone];
@@ -208,32 +216,10 @@
 -(void)configureTableViewForButtonSelected{
      clockedInDate = [[NSMutableArray alloc] init];
     int i = [self getSelectedButtonIndex];
-    NSSet *hours=currentEmployee.employeesToAction;
-    
-    
+   
     if (i == daySelect){
         rightLabel.text = @"Days";
-        for(EmployeeAction *a in hours){
-            
-            NSString *month = [NSString stringWithFormat:@"%@",a.month];
-            NSArray * mon = [month componentsSeparatedByString:@"h"];
-            if (mon != nil){
-                month = [mon objectAtIndex:1];
-            }
-            
-            double d = [a.timeInitiated doubleValue];
-            NSTimeInterval *day = &d;
-            
-            NSString *year = [NSString stringWithFormat:@"%@", a.year];
-            double totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
-            NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
-            NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               %@",month,[self getDay:day],year,dayHours];
-            
-            [clockedInDate addObject:theDate];
-            
-            
-        }
-        
+        [self changeTableToDay];
     }
     else if (i == monthSelect){
         rightLabel.text = @"Months";
@@ -256,4 +242,49 @@
     
     [tableView reloadData];
 }
+-(void)changeTableToDay{
+    
+    
+    
+     NSSet *hours=currentEmployee.employeesToAction;
+    NSMutableArray *previousDates = [[NSMutableArray alloc]init];
+     NSMutableArray *previousTimes = [[NSMutableArray alloc]init];
+    double totalSecondsWorkedThatDay;
+    int index = 0;
+    
+    for(EmployeeAction *a in hours){
+        double d = [a.timeInitiated doubleValue];
+        NSTimeInterval *day = &d;
+        
+        NSString *year = [NSString stringWithFormat:@"%@", a.year];
+        totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
+      
+        NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               ",[self getMonthForSeconds:day],[self getDay:day],year];
+        
+        
+        
+        if ([previousDates count] >0 && [clockedInDate count] >0){
+            
+            if ([[previousDates objectAtIndex:(index -1)] isEqualToString:theDate]){
+                totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
+                [clockedInDate removeLastObject];
+            }
+           
+        }
+        NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
+        [previousDates addObject:theDate];
+        [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
+        theDate = [theDate stringByAppendingString:dayHours];
+        [clockedInDate addObject:theDate];
+        
+         index ++;
+        }
+    
+            
+    
+    
+    
+    
+    }
+
 @end
