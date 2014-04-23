@@ -255,19 +255,20 @@
     for(EmployeeAction *a in hours){
         double d = [a.timeInitiated doubleValue];
         NSTimeInterval *day = &d;
+        NSString *theDay = [self getDay:day];
         
         NSString *year = [NSString stringWithFormat:@"%@", a.year];
         totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
       
-        NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               ",[self getMonthForSeconds:day],[self getDay:day],year];
+        NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               ",[self getMonthForSeconds:day],theDay,year];
         
         
         
         if ([previousDates count] >0 && [clockedInDate count] >0){
             
             if ([[previousDates objectAtIndex:(index -1)] isEqualToString:theDate]){
+                 [clockedInDate removeLastObject];
                 totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
-                [clockedInDate removeLastObject];
             }
            
         }
