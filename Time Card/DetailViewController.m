@@ -35,6 +35,7 @@
 @synthesize tableView;
 @synthesize dayButton,yearButton,monthButton,allButton;
 @synthesize rightLabel;
+@synthesize clockedInDate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -214,7 +215,8 @@
     return selectedButtonIndex;
 }
 -(void)configureTableViewForButtonSelected{
-     clockedInDate = [[NSMutableArray alloc] init];
+    clockedInDate = [[NSMutableArray alloc] init];
+    [clockedInDate removeAllObjects];
     int i = [self getSelectedButtonIndex];
    
     if (i == daySelect){
@@ -237,7 +239,7 @@
         [clockedInDate addObject:test];
     }
     
-    
+   
     [tableView reloadData];
 }
 -(void)changeTableToDay{
@@ -264,7 +266,7 @@
         
         if ([previousDates count] >0 && [clockedInDate count] >0){
             
-            NSLog(@"THE PREV DATE : %@ : THE COMPARE DATE %@",[previousDates objectAtIndex:(index -1)], theDate);
+           // NSLog(@"THE PREV DATE : %@ : THE COMPARE DATE %@",[previousDates objectAtIndex:(index -1)], theDate);
             if ([[previousDates objectAtIndex:(index -1)] isEqualToString:theDate]){
                  [clockedInDate removeLastObject];
                 totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
@@ -277,6 +279,7 @@
         theDate = [theDate stringByAppendingString:dayHours];
         [clockedInDate addObject:theDate];
         
+        
          index ++;
         }
     
@@ -288,6 +291,7 @@
     }
 
 -(void)changeTableToMonth{
+    [clockedInDate removeAllObjects];
  NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay;
     NSMutableArray *prevMonthYear = [[NSMutableArray alloc] init];
@@ -295,18 +299,19 @@
     int index = 0;
     
      for(EmployeeAction *a in hours){
+         
          double d = [a.timeInitiated doubleValue];
          NSTimeInterval *day = &d;
-         NSString *theDay = [self getDay:day];
-         
+
          NSString *year = [NSString stringWithFormat:@"%@", a.year];
          totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
          
          NSString *theMonth = [self getMonthForSeconds:day];
          
-         NSString *monthYear  = [NSString stringWithFormat:@"%@/%@",theMonth,year];
+         NSString *monthYear  = [NSString stringWithFormat:@"                                            %@/%@                                                            ",theMonth,year];
+        
+
          
-           NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               ",theMonth,theDay,year];
           NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
          
          if ([prevMonthYear count] >0 && [clockedInDate count] >0){
@@ -320,8 +325,8 @@
          
          [prevMonthYear addObject:monthYear];
          [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
-         theDate = [theDate stringByAppendingString:dayHours];
-         [clockedInDate addObject:theDate];
+         monthYear = [monthYear stringByAppendingString:dayHours];
+         [clockedInDate addObject:monthYear];
 
          
          index ++;
@@ -337,16 +342,9 @@
     int index = 0;
     
     for(EmployeeAction *a in hours){
-        double d = [a.timeInitiated doubleValue];
-        NSTimeInterval *day = &d;
-        NSString *theDay = [self getDay:day];
-        
-        NSString *year = [NSString stringWithFormat:@"%@", a.year];
+        NSString *year = [NSString stringWithFormat:@"                                                   %@                                                         ", a.year];
         totalSecondsWorkedThatDay =[a.employeeOut.timeInitiated doubleValue]-[a.timeInitiated doubleValue];
         
-        NSString *theMonth = [self getMonthForSeconds:day];
-        
-        NSString *theDate = [NSString stringWithFormat:@"                                         %@/%@/%@                                                               ",theMonth,theDay,year];
         NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
 
         if ([prevYear count] >0 && [clockedInDate count] >0){
@@ -361,8 +359,8 @@
         
         [prevYear addObject:year];
         [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
-        theDate = [theDate stringByAppendingString:dayHours];
-        [clockedInDate addObject:theDate];
+        year = [year stringByAppendingString:dayHours];
+        [clockedInDate addObject:year];
         index ++;
     }
 
