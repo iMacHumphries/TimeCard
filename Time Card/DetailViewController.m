@@ -266,15 +266,14 @@
         
         if ([previousDates count] >0 && [clockedInDate count] >0){
             
-           // NSLog(@"THE PREV DATE : %@ : THE COMPARE DATE %@",[previousDates objectAtIndex:(index -1)], theDate);
-            if ([[previousDates objectAtIndex:(index -1)] isEqualToString:theDate]){
+            if ([[previousDates objectAtIndex:(index -1)] isEqualToString:[NSString stringWithFormat:@"%@/%@/%@",[self getMonthForSeconds:day],theDay,year]]){
                  [clockedInDate removeLastObject];
-                totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
+               totalSecondsWorkedThatDay += [[previousTimes objectAtIndex:(index -1 )] doubleValue];
             }
            
         }
        
-        [previousDates addObject:theDate];
+        [previousDates addObject:[NSString stringWithFormat:@"%@/%@/%@",[self getMonthForSeconds:day],theDay,year]];
         [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
         theDate = [theDate stringByAppendingString:dayHours];
         [clockedInDate addObject:theDate];
@@ -316,14 +315,14 @@
          
          if ([prevMonthYear count] >0 && [clockedInDate count] >0){
              
-            if ([[prevMonthYear objectAtIndex:(index -1)] isEqualToString:monthYear]){
+            if ([[prevMonthYear objectAtIndex:(index -1)] isEqualToString:[NSString stringWithFormat:@"%@,%@",theMonth,year]]){
                  [clockedInDate removeLastObject];
-                 totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
+                totalSecondsWorkedThatDay += [[previousTimes objectAtIndex:(index -1 )] doubleValue];
              }
              
          }
          
-         [prevMonthYear addObject:monthYear];
+         [prevMonthYear addObject:[NSString stringWithFormat:@"%@,%@",theMonth,year]];
          [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
          monthYear = [monthYear stringByAppendingString:dayHours];
          [clockedInDate addObject:monthYear];
@@ -349,15 +348,15 @@
 
         if ([prevYear count] >0 && [clockedInDate count] >0){
             
-            if ([[prevYear objectAtIndex:(index -1)] isEqualToString:year]){
+            if ([[prevYear objectAtIndex:(index -1)] isEqualToString:[a.year stringValue]]){
                 [clockedInDate removeLastObject];
-                totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
+                totalSecondsWorkedThatDay += [[previousTimes objectAtIndex:(index -1 )] doubleValue];
             }
             
         }
     
         
-        [prevYear addObject:year];
+        [prevYear addObject:[a.year stringValue]];
         [previousTimes addObject:[NSNumber numberWithDouble:totalSecondsWorkedThatDay]];
         year = [year stringByAppendingString:dayHours];
         [clockedInDate addObject:year];
