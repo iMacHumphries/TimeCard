@@ -248,11 +248,14 @@
     return string;
 }
 -(void)email{
+    
+    
+    EmailMessage *em = [[EmailMessage alloc] init];
 
     MFMailComposeViewController *mViewController = [[MFMailComposeViewController alloc] init];
     mViewController.mailComposeDelegate = self;
     [mViewController setSubject:@"TIME_CARD"];
-    [mViewController setMessageBody:@"MESSAGE_HERE" isHTML:NO];
+    [mViewController setMessageBody:[NSString stringWithFormat:@"%@",[em getMessage]] isHTML:NO];
     
     
     [self presentViewController:mViewController animated:YES completion:^{

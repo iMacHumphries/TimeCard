@@ -350,9 +350,9 @@
             
             if ([[prevYear objectAtIndex:(index -1)] isEqualToString:[a.year stringValue]]){
                 [clockedInDate removeLastObject];
-                NSLog(@"first%f",totalSecondsWorkedThatDay);
+               
                 totalSecondsWorkedThatDay = totalSecondsWorkedThatDay + [[previousTimes objectAtIndex:(index -1 )] doubleValue];
-                 NSLog(@"second%f",totalSecondsWorkedThatDay);
+               
             }
             
         }

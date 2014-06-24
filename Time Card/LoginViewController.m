@@ -28,6 +28,7 @@
 
 - (void)viewDidLoad
 {
+    textFieldAlert = false;
     pinArray = [[NSMutableArray alloc]init];
     
     [super viewDidLoad];
@@ -59,10 +60,11 @@
 }
 
 - (IBAction)questionButton:(UIButton *)sender {
+     textFieldAlert = false;
     UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Forgot Pin Number?" message:@"Please ask Mrs. Mays for help! " delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
     [alert show];
     
-    
+   
 }
 
 
@@ -192,14 +194,15 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"TroubleShooting" message:@"Enter admin password:" delegate:self cancelButtonTitle:@"Done" otherButtonTitles:@"Cancel", nil];
     alert.alertViewStyle = UIAlertViewStylePlainTextInput;
     [alert show];
+    textFieldAlert = true;
     
 }
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSLog(@"%@", [alertView textFieldAtIndex:0].text);
+   
+    if (textFieldAlert){
     if ( [[alertView textFieldAtIndex:0].text isEqualToString:@"1234"]){
-        
         [self addPam];
-        
+    }
     }
 }
 @end

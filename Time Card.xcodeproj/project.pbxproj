@@ -27,6 +27,8 @@
 		83B489F618D3A9E400C39FB4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B489F518D3A9E400C39FB4 /* CoreData.framework */; };
 		83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */; };
 		83EB3E5318D6985C006DBB12 /* timeCard002.png in Resources */ = {isa = PBXBuildFile; fileRef = 83EB3E5218D6985C006DBB12 /* timeCard002.png */; };
+		B5161108195A3750003099EA /* bg2.png in Resources */ = {isa = PBXBuildFile; fileRef = B5161107195A3750003099EA /* bg2.png */; };
+		B516110B195A38F3003099EA /* EmailMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = B516110A195A38F3003099EA /* EmailMessage.m */; };
 		B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E0E42F18D2424E005497DC /* LoginViewController.m */; };
 		B5E0E45718D38BBF005497DC /* b0.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E44C18D38BBF005497DC /* b0.png */; };
 		B5E0E45818D38BBF005497DC /* b1.png in Resources */ = {isa = PBXBuildFile; fileRef = B5E0E44D18D38BBF005497DC /* b1.png */; };
@@ -92,6 +94,9 @@
 		83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataTest.xcdatamodel; sourceTree = "<group>"; };
 		83B489FA18D3AE6900C39FB4 /* EmployeeModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeModel.xcdatamodel; sourceTree = "<group>"; };
 		83EB3E5218D6985C006DBB12 /* timeCard002.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timeCard002.png; sourceTree = "<group>"; };
+		B5161107195A3750003099EA /* bg2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg2.png; sourceTree = "<group>"; };
+		B5161109195A38F3003099EA /* EmailMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailMessage.h; sourceTree = "<group>"; };
+		B516110A195A38F3003099EA /* EmailMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailMessage.m; sourceTree = "<group>"; };
 		B5E0E42E18D2424E005497DC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B5E0E42F18D2424E005497DC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B5E0E44C18D38BBF005497DC /* b0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = b0.png; sourceTree = "<group>"; };
@@ -207,6 +212,8 @@
 				832B8EA918D6AB62003CE38C /* EmployeeActionOut.m */,
 				832B8EA518D6AB61003CE38C /* Employees.h */,
 				832B8EA618D6AB61003CE38C /* Employees.m */,
+				B5161109195A38F3003099EA /* EmailMessage.h */,
+				B516110A195A38F3003099EA /* EmailMessage.m */,
 				B5E0E47F18D66C09005497DC /* TODO.h */,
 				83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */,
 				8339148C18D23D3D0043FD66 /* Images.xcassets */,
@@ -220,6 +227,7 @@
 			children = (
 				83EB3E5218D6985C006DBB12 /* timeCard002.png */,
 				B5E0E46218D39047005497DC /* bg.png */,
+				B5161107195A3750003099EA /* bg2.png */,
 				B5E0E47718D5E29A005497DC /* ui.png */,
 				B5E0E44B18D38BBF005497DC /* buttons */,
 				8339147C18D23D3D0043FD66 /* Time Card-Info.plist */,
@@ -357,6 +365,7 @@
 				8339148818D23D3D0043FD66 /* Main.storyboard in Resources */,
 				B5E0E45D18D38BBF005497DC /* b6.png in Resources */,
 				B5E0E45718D38BBF005497DC /* b0.png in Resources */,
+				B5161108195A3750003099EA /* bg2.png in Resources */,
 				B5E0E45F18D38BBF005497DC /* b8.png in Resources */,
 				B5E0E47818D5E29A005497DC /* ui.png in Resources */,
 				B5E0E45A18D38BBF005497DC /* b3.png in Resources */,
@@ -387,6 +396,7 @@
 				83B489B318D243A700C39FB4 /* Employee.m in Sources */,
 				B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */,
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
+				B516110B195A38F3003099EA /* EmailMessage.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
 				832B8EA718D6AB61003CE38C /* Employees.m in Sources */,
 				83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */,

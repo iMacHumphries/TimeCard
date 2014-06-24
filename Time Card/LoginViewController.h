@@ -12,6 +12,7 @@
 #import "EmployeeAction.h"
 @interface LoginViewController : UIViewController{
     NSMutableArray *pinArray;
+    BOOL textFieldAlert;
     
 }
 - (IBAction)pinButton:(UIButton *)sender;

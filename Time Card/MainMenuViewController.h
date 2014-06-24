@@ -13,6 +13,7 @@
 #import "EmployeeAction.h"
 #import "EmployeeActionOut.h"
 #import <MessageUI/MessageUI.h>
+#import "EmailMessage.h"
 
 @interface MainMenuViewController : UIViewController<MFMailComposeViewControllerDelegate>{
     NSArray *praise;
