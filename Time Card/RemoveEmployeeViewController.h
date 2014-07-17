@@ -16,10 +16,12 @@
     int editingIndex;
     NSIndexPath *editingIndexPath;
     AVAudioPlayer* audioPlayer;
+    
 }
 - (IBAction)editButtonPressed:(id)sender;
 - (IBAction)doneButtonPressed:(id)sender;
 - (IBAction)addEmployeeButton:(UIButton *)sender;
+
 -(NSString *)getEmployeeNameForIndex:(int)ndex;
 -(NSString *)getEmployeePinForIndex:(int)ndex;
 

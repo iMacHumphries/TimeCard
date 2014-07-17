@@ -24,9 +24,11 @@
     NSMutableArray *clockedInDate;
     int selectedButtonIndex;
     AVAudioPlayer* audioPlayer;
+    NSMutableArray* employActionArray;
 }
 -(void)setDetailIndex:(NSInteger)ndex;
 
+@property (retain,nonatomic) NSMutableArray *employActionArray;
 @property (retain,nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *pinLabel;
@@ -37,6 +39,7 @@
 @property (nonatomic) NSInteger detailIndex;
 @property (weak, nonatomic) IBOutlet UILabel *hoursWorkedLabel;
 @property (nonatomic, retain) NSMutableArray *clockedInDate;
+
 
 - (IBAction)dayButton:(UIButton *)sender;
 - (IBAction)monthButton:(UIButton *)sender;

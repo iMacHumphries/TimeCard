@@ -50,12 +50,6 @@
         [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
 
     }
-    //for(EmployeeAction *action in employee.employeesToAction) {
-     //  NSLog(@"in %@ out %@", action.timeInitiated, action.employeeOut.timeInitiated);
-      
-        
-        
-    //}
     if([employee admin]!=NULL && [[employee admin] boolValue]==TRUE){
         manageEmployees.hidden=false;
         addEmployeeButton.hidden=false;

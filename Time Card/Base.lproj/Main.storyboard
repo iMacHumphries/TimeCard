@@ -143,7 +143,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Managing Employee" id="0Hs-iA-IwH">
-                        <barButtonItem key="rightBarButtonItem" title="Email" id="gIY-fZ-lxN">
+                        <barButtonItem key="rightBarButtonItem" title="Email" systemItem="compose" id="gIY-fZ-lxN">
                             <connections>
                                 <action selector="emailButton:" destination="udB-iJ-2hs" id="cF2-0L-d09"/>
                             </connections>
@@ -213,15 +213,15 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="4ux-B3-bXF" style="IBUITableViewCellStyleDefault" id="7sa-bO-iDR">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="4ux-B3-bXF" style="IBUITableViewCellStyleDefault" id="7sa-bO-iDR">
                                 <rect key="frame" x="0.0" y="131" width="1024" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7sa-bO-iDR" id="Nvg-CV-8tV">
-                                    <rect key="frame" x="0.0" y="0.0" width="957" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="991" height="44"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Employee Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4ux-B3-bXF">
-                                            <rect key="frame" x="15" y="0.0" width="942" height="44"/>
+                                            <rect key="frame" x="15" y="0.0" width="974" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -640,7 +640,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="lpG-g7-JFK"/>
         <segue reference="fot-EC-EoF"/>
-        <segue reference="Xec-uo-g8O"/>
     </inferredMetricsTieBreakers>
 </document>

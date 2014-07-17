@@ -15,6 +15,7 @@
  */
 
 #import "DetailViewController.h"
+#import "AppDelegate.h"
 #define daySelect 0
 #define monthSelect 1
 #define yearSelect 2
@@ -38,12 +39,20 @@
 @synthesize leftLabel;
 @synthesize clockedInDate;
 @synthesize audioPlayer;
+@synthesize employActionArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        employActionArray = [[NSMutableArray alloc]init];
+        NSSet *hours=currentEmployee.employeesToAction;
+        for(EmployeeAction *a in hours){
+            
+            [employActionArray addObject:a];
+            }
+        
     }
     return self;
 }
@@ -85,8 +94,6 @@
 }
 - (void)viewDidLoad
 {
-   
-
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -138,7 +145,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    
     return 1;
 }
 
@@ -161,6 +167,47 @@
 
     return cell;
 }
+- (void)tableView:(UITableView *)tableview commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        [self removeEmployeeDataAtRow:indexPath.row :indexPath];
+    }
+    
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+-(void)removeEmployeeDataAtRow:(int)theRow :(NSIndexPath *)indexpat{
+    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"EmployeeAction" inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    
+   
+    for (NSManagedObject *info in fetchedObjects) {
+          NSLog(@"%@",info);
+        for (int x = 0; x < [employActionArray count]; x ++){
+          
+        if ([[info valueForKey:@"emplyeeIn"] isEqual:[employActionArray objectAtIndex:x]]){
+            NSLog(@"Equal");
+        [context deleteObject:info];
+        
+            [context save:&error];
+            
+        }
+        }
+    }
+        [clockedInDate removeObjectAtIndex:theRow];
+    
+    [tableView deleteRowsAtIndexPaths:@[indexpat] withRowAnimation:UITableViewRowAnimationMiddle];
+    [tableView reloadData];
+    
+}
+
 
 - (IBAction)dayButton:(UIButton *)sender {
     [self defaultSound];
@@ -250,15 +297,19 @@
     switch (result)
     {
         case MFMailComposeResultCancelled:
+            [self failSound];
             NSLog(@"Mail cancelled");
             break;
         case MFMailComposeResultSaved:
+            [self defaultSound];
             NSLog(@"Mail saved");
             break;
         case MFMailComposeResultSent:
+            
             NSLog(@"Mail sent");
             break;
         case MFMailComposeResultFailed:
+            [self failSound];
             NSLog(@"Mail sent failure: %@", [error localizedDescription]);UIAlertView *a = [[UIAlertView alloc] initWithTitle:@"Error" message:[error localizedDescription] delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
             [a show];
             break;
@@ -565,6 +616,15 @@
     audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"click1"] ofType:@"wav"]] error:nil];
     [audioPlayer setDelegate:self];
     //[audioPlayer setVolume:0.9];
+    
+    [audioPlayer prepareToPlay];
+    [audioPlayer play];
+}
+-(void)failSound{
+    AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:[NSURL fileURLWithPath:[[NSBundle mainBundle]pathForResource:[NSString stringWithFormat:@"error"] ofType:@"wav"]] error:nil];
+    [audioPlayer setDelegate:self];
+    [audioPlayer setVolume:0.09];
     
     [audioPlayer prepareToPlay];
     [audioPlayer play];
