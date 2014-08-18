@@ -7,7 +7,7 @@
 //
 
 #import "MainMenuViewController.h"
-
+#import "DatabaseManager.h"
 @interface MainMenuViewController ()
 
 @end
@@ -40,21 +40,24 @@
     }
     
     praise = [[NSArray alloc] initWithObjects:@"Awesome",@"Fantastic",@"Great",@"Ok",@"Sweet",@"Have A Great Day!", nil];
-    welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",employee.name];
+    welcomeLabel.text = [NSString stringWithFormat:@"Welcome %@",[employee getName]];
     lastLoginLabel.text = [NSString stringWithFormat:@"Last %@",[self getSatus]];
     
-    if ([self clockedIn]){
+    if ([[DatabaseManager sharedManager] isCheckedIn:employee]){
         [clockInOutButton setTitle:@"Clock Out" forState:UIControlStateNormal];
     }
     else {
         [clockInOutButton setTitle:@"Clock In" forState:UIControlStateNormal];
 
     }
-    if([employee admin]!=NULL && [[employee admin] boolValue]==TRUE){
+    if([employee isAdmin]==TRUE){
         manageEmployees.hidden=false;
         addEmployeeButton.hidden=false;
         emailTimeSheetButton.hidden=false;
     }
+    NSLog(@"Start");
+    //[[DatabaseManager sharedManager] insertPayPeriodWithStartDate:[[NSDate date] dateByAddingTimeInterval:-((30*24)*60*60)]  endDate:[NSDate date]];
+    NSLog(@"End");
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -65,18 +68,18 @@
     // Dispose of any resources that can be recreated.
 }
 -(NSString *)getSatus{
-    if([self getLastIn]==NULL){
+    NSMutableDictionary *data=[[DatabaseManager sharedManager] getLastKnownActionForEmployee:employee];
+    if(data==NULL){
         return @"No Actions";
     }
-    if([self clockedIn]){
-        return [NSString stringWithFormat:@"Clocked in @ %@ " , [self getLastAction]];
+    if([[data objectForKey:@"LastAction"] isEqualToString:@"ClockedIn"]){
+        return [NSString stringWithFormat:@"Clocked in @ %@ ",[self getFormattedDateForLong:[[data objectForKey:@"LastTime"] longLongValue]]];
     }else{
-        return [NSString stringWithFormat:@"Clocked out @ %@", [self getLastAction]];
-
+        return [NSString stringWithFormat:@"Clocked out @ %@ " , [self getFormattedDateForLong:[[data objectForKey:@"LastTime"] longLongValue]]];
     }
 }
 -(EmployeeAction *)getLastIn{
-    if([employee.employeesToAction count]==0){
+   /* if([employee.employeesToAction count]==0){
         return NULL;
     }
     EmployeeAction *currentAction;
@@ -94,41 +97,23 @@
         }
     }
    // NSLog(@"Found this %@ found time out %@", currentAction.timeInitiated, currentAction.employeeOut.timeInitiated);
-    
-    return currentAction;
+    */
+    return NULL;
 }
--(NSString *)getLastAction{
-    EmployeeAction *lastIn=[self getLastIn];
-    if (lastIn==NULL) {
-        return @"Never";
-    }
-    if (lastIn.employeeOut!=NULL) {
-        
-        NSDate *theDate = [NSDate dateWithTimeIntervalSince1970:[lastIn.employeeOut.timeInitiated doubleValue]];
-        
-        return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle];
-    }else{
-        NSDate *theDate = [NSDate dateWithTimeIntervalSince1970:[lastIn.timeInitiated doubleValue]];
 
+-(NSString *)getFormattedDateForLong:(long long)time{
+    NSDate *theDate = [NSDate dateWithTimeIntervalSince1970:time];
+    
     return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterLongStyle];
-    }
+
 }
 -(BOOL)clockedIn{
-    EmployeeAction *lastIn=[self getLastIn];
-    if(lastIn==NULL){
-        return false;
-    }
- 
-    if(lastIn.employeeOut==NULL){
-        return true;
-    }else{
-        return false;
-    }
+    return [[DatabaseManager sharedManager] isCheckedIn:employee];
 }
 - (IBAction)addEmployeeButton:(UIButton *)sender {
     //Admin Only
     [self defaultSound];
-    [self performSegueWithIdentifier:@"addEmployee" sender:sender];
+    [self performSegueWithIdentifier:@"ViewPayPeriods" sender:sender];
     
 }
 - (IBAction)cancelButton:(UIButton *)sender {
@@ -151,11 +136,16 @@
    
     [self clockSound];
     
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-
+    BOOL error=false;
 
     if([self clockedIn]){
-        NSLog(@"Clocked out");
+      
+        if([[DatabaseManager sharedManager]clockOut:employee]){
+            
+        }else{
+            error=true;
+        }
+        /*NSLog(@"Clocked out");
         if([[self getLastIn].timeInitiated intValue]>[[NSDate date] timeIntervalSince1970]){
             [context deleteObject:[self getLastIn]];
         }else{
@@ -167,13 +157,19 @@
         [action setValue:[self getCurrentYear] forKey:@"year"];
         [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
         [[self getLastIn] setEmployeeOut:action];
-        }
+        }*/
   
     
     }
     else{
         NSLog(@"Clocked in");
-        EmployeeAction *action = [NSEntityDescription
+        if([[DatabaseManager sharedManager]clockIn:employee]){
+            
+        }else{
+            error=true;
+        }
+
+       /* EmployeeAction *action = [NSEntityDescription
                                   insertNewObjectForEntityForName:@"EmployeeAction"
                                   inManagedObjectContext:context];
         [action setValue:@"in" forKey:@"type"];
@@ -186,23 +182,22 @@
         }else{
             [action setValue:[NSNumber numberWithDouble:[[NSDate date] timeIntervalSince1970]] forKey:@"timeInitiated"];
             
-        }
-        [employee addEmployeesToActionObject:action];
+        }*/
+        //doclock in stuff here
     }
-    NSError *error;
-    if (![context save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-    }
-    [(AppDelegate *)[[UIApplication sharedApplication] delegate] saveContext];
+   
     lastLoginLabel.text = [self getSatus];
     
-
-    NSString *clocked = [[clockInOutButton titleLabel]text];
+    if(error){
+        
+    }else{
+        NSString *clocked = [[clockInOutButton titleLabel]text];
     
-    UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",employee.name,[self getSatus]] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
-    [alert show];
-
-    [self performSegueWithIdentifier:@"backToLogin" sender:nil];
+        UIAlertView *alert =[[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"Successfully %@",clocked] message:[NSString stringWithFormat:@"%@ was successfully %@",[employee getName],[self getSatus]] delegate:self cancelButtonTitle:[self getRandomPraise] otherButtonTitles:nil, nil];
+        [alert show];
+    
+        [self performSegueWithIdentifier:@"backToLogin" sender:nil];
+    }
 }
 
 
@@ -257,6 +252,13 @@
     mViewController.mailComposeDelegate = self;
     [mViewController setSubject:@"TIME_CARD"];
     [mViewController setMessageBody:[NSString stringWithFormat:@"%@",[em getMessage]] isHTML:NO];
+    
+    NSFileManager *manager=[NSFileManager defaultManager];
+    NSArray *pathsArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *doumentDirectoryPath=[pathsArray objectAtIndex:0];
+    NSString *dbDestination= [doumentDirectoryPath stringByAppendingPathComponent:@"timecardsv1.0.01.sqlite3"];
+    [mViewController addAttachmentData:[NSData dataWithContentsOfFile:dbDestination] mimeType:@"file/sql" fileName:@"Backup.sql"];
+
     
     
     [self presentViewController:mViewController animated:YES completion:^{

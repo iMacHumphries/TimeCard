@@ -13,20 +13,24 @@
 #import <MessageUI/MessageUI.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-
+#import "Employee.h"
 
 @class RemoveEmployeeViewController;
 @interface DetailViewController : UIViewController<UITableViewDataSource, UITableViewDelegate,MFMailComposeViewControllerDelegate,AVAudioPlayerDelegate>{
-       NSString *pin;
+    /*   NSString *pin;
     NSString *name;
     NSInteger detailIndex;
    IBOutlet UITableView *tableView;
     NSMutableArray *clockedInDate;
     int selectedButtonIndex;
     AVAudioPlayer* audioPlayer;
-    NSMutableArray* employActionArray;
+    NSMutableArray* employActionArray;*/
+    NSMutableArray *employeeLog;
 }
+@property (nonatomic,retain) Employee *currentEmployee;
+
 -(void)setDetailIndex:(NSInteger)ndex;
+- (IBAction)addButtonPressed:(id)sender;
 
 @property (retain,nonatomic) NSMutableArray *employActionArray;
 @property (retain,nonatomic) IBOutlet UITableView *tableView;
@@ -35,7 +39,6 @@
 @property (weak, nonatomic) IBOutlet UINavigationItem *navBar;
 @property (nonatomic,retain)  NSString *name;
 @property (nonatomic,retain)  NSString *pin;
-@property (nonatomic,retain) Employees *currentEmployee;
 @property (nonatomic) NSInteger detailIndex;
 @property (weak, nonatomic) IBOutlet UILabel *hoursWorkedLabel;
 @property (nonatomic, retain) NSMutableArray *clockedInDate;

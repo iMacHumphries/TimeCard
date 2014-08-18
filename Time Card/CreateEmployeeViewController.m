@@ -8,13 +8,14 @@
 
 #import "CreateEmployeeViewController.h"
 #import "MainMenuViewController.h"
-
+#import "DatabaseManager.h"
 @interface CreateEmployeeViewController ()
 
 @end
 
 @implementation CreateEmployeeViewController
 @synthesize nameTextField;
+@synthesize wageTextField;
 @synthesize audioPlayer;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -29,6 +30,7 @@
 - (void)viewDidLoad
 {
     nameTextField.delegate = self;
+    wageTextField.delegate=self;
     [self generateUniquePinNumber];
     [nameTextField becomeFirstResponder];
     [super viewDidLoad];
@@ -43,7 +45,7 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
-    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Adding Employee" message:[NSString stringWithFormat:@"Adding employee with the name %@. Pin Number %@",textField.text,[self generateUniquePinNumber] ] delegate:self cancelButtonTitle:@"No wait!" otherButtonTitles:@"Add Employee", nil];
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Adding Employee" message:[NSString stringWithFormat:@"Adding employee with the name %@. And wage %@",nameTextField.text,wageTextField.text] delegate:self cancelButtonTitle:@"No wait!" otherButtonTitles:@"Add Employee", nil];
     alert.delegate = self;
     [alert show];
     
@@ -53,17 +55,13 @@
     
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     if ([title isEqualToString:@"Add Employee"]){
-        NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-        
-         NSManagedObject *failedBankInfo = [NSEntityDescription
-         insertNewObjectForEntityForName:@"Employees"
-         inManagedObjectContext:context];
-         [failedBankInfo setValue:nameTextField.text forKey:@"name"];
-         [failedBankInfo setValue:pin forKey:@"pin"];
-        NSError *error;
-        if (![context save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        }
+        /*
+         
+         
+         */
+        Employee *added=[[DatabaseManager sharedManager] insertEmployee:nameTextField.text hourlyWageInCents:(int)([wageTextField.text floatValue]*100) admin:0];
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Succes" message:[NSString stringWithFormat:@"Employee Successfully added with pin %@. They will get paid %d cents an hour", [added getPin], [added getCentEarned]] delegate:NULL cancelButtonTitle:@"OK!" otherButtonTitles:nil];
+        [alert show];
         [self dismissViewControllerAnimated:YES completion:nil];
         
             }

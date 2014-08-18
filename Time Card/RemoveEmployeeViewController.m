@@ -9,7 +9,8 @@
 #import "RemoveEmployeeViewController.h"
 #import "AppDelegate.h"
 #import "DetailViewController.h"
-
+#import "DatabaseManager.h"
+#import "Employee.h"
 @interface RemoveEmployeeViewController ()
 
 @end
@@ -30,24 +31,11 @@
 
 - (void)viewDidLoad
 {
+    employees=[[DatabaseManager sharedManager] getAllEmployees];
      employeeNames = [[NSMutableArray alloc]init];
      employeePins = [[NSMutableArray alloc]init];
-     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Employees" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (NSManagedObject *info in fetchedObjects) {
-        [employeeNames addObject:[info valueForKey:@"name"]];
-        
-    }
-    for (NSManagedObject *info in fetchedObjects) {
-        [employeePins addObject:[info valueForKey:@"pin"]];
-        
-    }
 
+    NSLog(@"Employee count=%d", [employees count]);
     UIImageView *tempImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg2"]];
     [tempImageView setFrame:self.tableView.frame];
     
@@ -76,7 +64,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [employeeNames count];
+    return [employees count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableview cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -88,19 +76,19 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
    
-     cell.textLabel.text=[employeeNames objectAtIndex:indexPath.row];
+     cell.textLabel.text=[[employees objectAtIndex:indexPath.row] getName];
     
     
     return cell;
 }
 - (IBAction)editButtonPressed:(id)sender {
     [self defaultSound];
-    if(tableView.editing){
+   /* if(tableView.editing){
         [tableView setEditing:NO];
     }
     else {
         [tableView setEditing:YES];
-    }
+    }*/
 }
 
 - (IBAction)doneButtonPressed:(id)sender {
@@ -115,7 +103,7 @@
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return YES;
+    return NO;
 }
 - (void)tableView:(UITableView *)tableview commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -133,22 +121,11 @@
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Employees" inManagedObjectContext:context];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
-    for (Employees *info in fetchedObjects) {
-        
-        if ([info.pin isEqualToString:[employeePins objectAtIndex:indexPath.row]] ){
-            NSLog(@"found employee touched %@", info.name);
-            [self defaultSound];
-            [self performSegueWithIdentifier:@"detail" sender:info];
 
-        }
-    }
+            [self defaultSound];
+            [self performSegueWithIdentifier:@"detail" sender:[employees objectAtIndex:indexPath.row]];
+
+      
 }
 
 #pragma mark - Navigation
@@ -157,7 +134,7 @@
 {
     if ([[segue identifier] isEqualToString:@"detail"]){
         DetailViewController *detail = [segue destinationViewController];
-        detail.currentEmployee=(Employees *)sender;
+        detail.currentEmployee=(Employee *)sender;
     }
 }
  

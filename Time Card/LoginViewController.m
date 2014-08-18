@@ -10,7 +10,8 @@
 #import "AppDelegate.h"
 #import "MainMenuViewController.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "DatabaseManager.h"
+#import "Employee.h"
 @interface LoginViewController ()
 
 @end
@@ -29,6 +30,7 @@
 
 - (void)viewDidLoad
 {
+    DatabaseManager *databaseMan=[DatabaseManager sharedManager];
     textFieldAlert = false;
     pinArray = [[NSMutableArray alloc]init];
     
@@ -116,7 +118,7 @@
        [indicator2 setImage:fill];
        [indicator3 setImage:fill];
        [indicator4 setImage:fill];
-       Employees *rightPin=[self checkPin];
+       Employee *rightPin=[self checkPin];
        if(rightPin!=NULL){
            [self successSound];
            [self performSegueWithIdentifier:@"mainMenu" sender:rightPin];
@@ -132,11 +134,11 @@
          }
 
 }
--(Employees *)checkPin{
+-(Employee *)checkPin{
     NSString *pinNumber=[pinArray componentsJoinedByString:@""];
     NSLog(@"String %@", pinNumber);
     
-    NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
+   /* NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSError *error;
 
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -150,8 +152,8 @@
         return info;
            }
     
-    return NULL;
-    
+    return NULL;*/
+    return [[DatabaseManager sharedManager] getEmployeeForPin:pinNumber];
 }
 
 -(void)allIndicatorsBlank{
@@ -168,7 +170,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     MainMenuViewController *controller=segue.destinationViewController;
-    controller.employee=(Employees *)sender;
+    controller.employee=(Employee *)sender;
 }
 
 -(void)shakeView:(UIImageView *)view {

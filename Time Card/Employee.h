@@ -11,7 +11,14 @@
 @interface Employee : NSObject {
         NSString *name;
         NSString *pin;
+        int centsEarnedAnHour;
+        BOOL isAdmin;
 }
 
+-(NSString *)getName;
+-(int)getCentEarned;
+-(BOOL)isAdmin;
+-(NSString *)getPin;
+-(id)initWithName:(NSString *)_name withPin:(NSString *)_pin withHourlyCentsEarned:(int)_centsEarnedAnHour isAdmin:(bool)_isAdmin;
 
 @end

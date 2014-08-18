@@ -16,6 +16,8 @@
 
 #import "DetailViewController.h"
 #import "AppDelegate.h"
+#import "DatabaseManager.h"
+#import "AddEmployeeHoursViewController.h"
 #define daySelect 0
 #define monthSelect 1
 #define yearSelect 2
@@ -46,17 +48,20 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        employActionArray = [[NSMutableArray alloc]init];
-        NSSet *hours=currentEmployee.employeesToAction;
-        for(EmployeeAction *a in hours){
-            
-            [employActionArray addObject:a];
-            }
         
     }
     return self;
 }
--(int)getTotalHoursWorkedForThisMonth{
+-(void)viewWillAppear:(BOOL)animated{
+    pinLabel.text=[currentEmployee getPin];
+    nameLabel.text=[currentEmployee getName];
+    [[NSDate date] dateByAddingTimeInterval:-((30*24)*60*60)];
+    employeeLog=[[DatabaseManager sharedManager] getClockinsForEmployee:currentEmployee inBetweeenDate:[[NSDate date] dateByAddingTimeInterval:-((30*24)*60*60)]  andDate:[NSDate date]];
+    [tableView reloadData];
+    NSLog(@"employee log count %d", [employeeLog count]);
+    
+}
+/*-(int)getTotalHoursWorkedForThisMonth{
     double totalSecondsWorked = 0.0;
     NSSet *hours=currentEmployee.employeesToAction;
     for(EmployeeAction *a in hours){
@@ -142,7 +147,7 @@
 }
 
 //TableVIEW
-
+*/
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -151,7 +156,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // I Need an array with clocked ins and an array with clocked outs for the employees
-    return [clockedInDate count];
+    return [employeeLog count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableview cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -162,11 +167,50 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-
-    cell.textLabel.text = [clockedInDate objectAtIndex:indexPath.row];
+    if([[[employeeLog objectAtIndex:indexPath.row] objectForKey:@"InProgress"] intValue]==0){
+        cell.textLabel.text = [NSString stringWithFormat:@"%@-%@",[self getFormattedDateForLong:[[[employeeLog objectAtIndex:indexPath.row] objectForKey:@"StartTime"] longLongValue]],[self getFormattedDateForLong:[[[employeeLog objectAtIndex:indexPath.row] objectForKey:@"EndTime"] longLongValue]]];
+    }else{
+        cell.textLabel.text = [NSString stringWithFormat:@"%@-In Progress",[self getFormattedDateForLong:[[[employeeLog objectAtIndex:indexPath.row] objectForKey:@"StartTime"] longLongValue]]];
+    }
 
     return cell;
 }
+-(NSString *)getFormattedDateForLong:(long long)time{
+    NSDate *theDate = [NSDate dateWithTimeIntervalSince1970:time];
+    
+    return [NSDateFormatter localizedStringFromDate:theDate dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterMediumStyle];
+    
+}
+
+
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+- (void)tableView:(UITableView *)tableview commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        // Delete the row from the data source
+        NSLog(@"commit");
+        NSLog(@"selected");
+        [[DatabaseManager sharedManager] removePayTimeForEmployee:currentEmployee withStartTime:[[[employeeLog objectAtIndex:indexPath.row] objectForKey:@"StartTime"] longLongValue]];
+        employeeLog=[[DatabaseManager sharedManager] getClockinsForEmployee:currentEmployee inBetweeenDate:[[NSDate date] dateByAddingTimeInterval:-((30*24)*60*60)]  andDate:[NSDate date]];
+
+        [tableview reloadData];
+        
+    }
+    
+    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+    }
+}
+
+
+
+/*
 - (void)tableView:(UITableView *)tableview commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
@@ -628,5 +672,18 @@
     
     [audioPlayer prepareToPlay];
     [audioPlayer play];
+}*/
+
+//AddEmployeeTimeSegue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"AddEmployeeTimeSegue"]){
+        AddEmployeeHoursViewController *detail = [segue destinationViewController];
+        detail.currentEmployee=(Employee *)sender;
+    }
+}
+
+- (IBAction)addButtonPressed:(id)sender {
+    [self performSegueWithIdentifier:@"AddEmployeeTimeSegue" sender:currentEmployee];
 }
 @end

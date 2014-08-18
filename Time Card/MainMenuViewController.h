@@ -16,14 +16,14 @@
 #import "EmailMessage.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
-
+#import "Employee.h"
 @interface MainMenuViewController : UIViewController<MFMailComposeViewControllerDelegate,AVAudioPlayerDelegate>{
     NSArray *praise;
     AVAudioPlayer* audioPlayer;
     
 }
 
-@property (nonatomic, retain) Employees *employee;
+@property (nonatomic, retain) Employee *employee;
 @property (weak, nonatomic) IBOutlet UILabel *welcomeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastLoginLabel;
 @property (weak, nonatomic) IBOutlet UIButton *clockInOutButton;

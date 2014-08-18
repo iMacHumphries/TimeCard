@@ -16,6 +16,7 @@
     int editingIndex;
     NSIndexPath *editingIndexPath;
     AVAudioPlayer* audioPlayer;
+    NSMutableArray *employees;
     
 }
 - (IBAction)editButtonPressed:(id)sender;

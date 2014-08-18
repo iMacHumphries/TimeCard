@@ -7,9 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831DEB101992ACC60078C683 /* DatabaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 831DEB0F1992ACC60078C683 /* DatabaseManager.m */; };
+		831DEB121992AD2C0078C683 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 831DEB111992AD2C0078C683 /* libsqlite3.0.dylib */; };
+		831DEB151992BB5F0078C683 /* timecards.db in Sources */ = {isa = PBXBuildFile; fileRef = 831DEB131992B3940078C683 /* timecards.db */; };
+		831DEB161992BBE10078C683 /* timecards.db in Resources */ = {isa = PBXBuildFile; fileRef = 831DEB131992B3940078C683 /* timecards.db */; };
 		832B8EA718D6AB61003CE38C /* Employees.m in Sources */ = {isa = PBXBuildFile; fileRef = 832B8EA618D6AB61003CE38C /* Employees.m */; };
 		832B8EAA18D6AB62003CE38C /* EmployeeActionOut.m in Sources */ = {isa = PBXBuildFile; fileRef = 832B8EA918D6AB62003CE38C /* EmployeeActionOut.m */; };
 		832B8EAD18D6AB62003CE38C /* EmployeeAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 832B8EAC18D6AB62003CE38C /* EmployeeAction.m */; };
+		8333390D1999FB8A00826E87 /* ViewPayPeriodsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8333390C1999FB8A00826E87 /* ViewPayPeriodsViewController.m */; };
+		83333910199A63A300826E87 /* DetailPayPeriodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8333390F199A63A300826E87 /* DetailPayPeriodViewController.m */; };
 		8339147518D23D3D0043FD66 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8339147418D23D3D0043FD66 /* Foundation.framework */; };
 		8339147718D23D3D0043FD66 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8339147618D23D3D0043FD66 /* CoreGraphics.framework */; };
 		8339147918D23D3D0043FD66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8339147818D23D3D0043FD66 /* UIKit.framework */; };
@@ -23,6 +29,8 @@
 		8339149618D23D3D0043FD66 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8339147818D23D3D0043FD66 /* UIKit.framework */; };
 		8339149E18D23D3D0043FD66 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8339149C18D23D3D0043FD66 /* InfoPlist.strings */; };
 		833914A018D23D3D0043FD66 /* Time_CardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8339149F18D23D3D0043FD66 /* Time_CardTests.m */; };
+		83665BA8199AAFAE004BFB59 /* AddPayPeriodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83665BA7199AAFAE004BFB59 /* AddPayPeriodViewController.m */; };
+		83665BAB199ABD04004BFB59 /* AddEmployeeHoursViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83665BAA199ABD04004BFB59 /* AddEmployeeHoursViewController.m */; };
 		83B489B318D243A700C39FB4 /* Employee.m in Sources */ = {isa = PBXBuildFile; fileRef = 83B489B218D243A700C39FB4 /* Employee.m */; };
 		83B489F618D3A9E400C39FB4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B489F518D3A9E400C39FB4 /* CoreData.framework */; };
 		83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */; };
@@ -72,12 +80,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		831DEB0E1992ACC60078C683 /* DatabaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseManager.h; sourceTree = "<group>"; };
+		831DEB0F1992ACC60078C683 /* DatabaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseManager.m; sourceTree = "<group>"; };
+		831DEB111992AD2C0078C683 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		831DEB131992B3940078C683 /* timecards.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = timecards.db; sourceTree = "<group>"; };
+		831DEB141992B80F0078C683 /* timecards.sqlite3 */ = {isa = PBXFileReference; lastKnownFileType = file; path = timecards.sqlite3; sourceTree = "<group>"; };
 		832B8EA518D6AB61003CE38C /* Employees.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employees.h; sourceTree = "<group>"; };
 		832B8EA618D6AB61003CE38C /* Employees.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employees.m; sourceTree = "<group>"; };
 		832B8EA818D6AB62003CE38C /* EmployeeActionOut.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeActionOut.h; sourceTree = "<group>"; };
 		832B8EA918D6AB62003CE38C /* EmployeeActionOut.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeActionOut.m; sourceTree = "<group>"; };
 		832B8EAB18D6AB62003CE38C /* EmployeeAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeAction.h; sourceTree = "<group>"; };
 		832B8EAC18D6AB62003CE38C /* EmployeeAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeAction.m; sourceTree = "<group>"; };
+		8333390B1999FB8A00826E87 /* ViewPayPeriodsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewPayPeriodsViewController.h; sourceTree = "<group>"; };
+		8333390C1999FB8A00826E87 /* ViewPayPeriodsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewPayPeriodsViewController.m; sourceTree = "<group>"; };
+		8333390E199A63A300826E87 /* DetailPayPeriodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPayPeriodViewController.h; sourceTree = "<group>"; };
+		8333390F199A63A300826E87 /* DetailPayPeriodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPayPeriodViewController.m; sourceTree = "<group>"; };
 		8339147118D23D3D0043FD66 /* Time Card.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Time Card.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8339147418D23D3D0043FD66 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8339147618D23D3D0043FD66 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -95,6 +112,10 @@
 		8339149B18D23D3D0043FD66 /* Time CardTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Time CardTests-Info.plist"; sourceTree = "<group>"; };
 		8339149D18D23D3D0043FD66 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8339149F18D23D3D0043FD66 /* Time_CardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Time_CardTests.m; sourceTree = "<group>"; };
+		83665BA6199AAFAE004BFB59 /* AddPayPeriodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddPayPeriodViewController.h; sourceTree = "<group>"; };
+		83665BA7199AAFAE004BFB59 /* AddPayPeriodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddPayPeriodViewController.m; sourceTree = "<group>"; };
+		83665BA9199ABD04004BFB59 /* AddEmployeeHoursViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddEmployeeHoursViewController.h; sourceTree = "<group>"; };
+		83665BAA199ABD04004BFB59 /* AddEmployeeHoursViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddEmployeeHoursViewController.m; sourceTree = "<group>"; };
 		83B489B118D243A700C39FB4 /* Employee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee.h; sourceTree = "<group>"; };
 		83B489B218D243A700C39FB4 /* Employee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee.m; sourceTree = "<group>"; };
 		83B489F518D3A9E400C39FB4 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -146,6 +167,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831DEB121992AD2C0078C683 /* libsqlite3.0.dylib in Frameworks */,
 				B5F9B27318E5BDCA0068C86E /* AVFoundation.framework in Frameworks */,
 				B5F9B27118E5BACC0068C86E /* AudioToolbox.framework in Frameworks */,
 				B5E0E48118D66EA4005497DC /* MessageUI.framework in Frameworks */,
@@ -192,6 +214,7 @@
 		8339147318D23D3D0043FD66 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				831DEB111992AD2C0078C683 /* libsqlite3.0.dylib */,
 				B5F9B27218E5BDCA0068C86E /* AVFoundation.framework */,
 				B5F9B27018E5BACC0068C86E /* AudioToolbox.framework */,
 				B5E0E48018D66EA4005497DC /* MessageUI.framework */,
@@ -213,6 +236,8 @@
 				8339148618D23D3D0043FD66 /* Main.storyboard */,
 				B5E0E42E18D2424E005497DC /* LoginViewController.h */,
 				B5E0E42F18D2424E005497DC /* LoginViewController.m */,
+				831DEB131992B3940078C683 /* timecards.db */,
+				831DEB141992B80F0078C683 /* timecards.sqlite3 */,
 				B5E0E46818D3AFFF005497DC /* CreateEmployeeViewController.h */,
 				B5E0E46918D3AFFF005497DC /* CreateEmployeeViewController.m */,
 				B5E0E46E18D3B445005497DC /* MainMenuViewController.h */,
@@ -221,6 +246,14 @@
 				B5E0E47518D4B358005497DC /* RemoveEmployeeViewController.m */,
 				B5E0E47C18D62300005497DC /* DetailViewController.h */,
 				B5E0E47D18D62300005497DC /* DetailViewController.m */,
+				8333390B1999FB8A00826E87 /* ViewPayPeriodsViewController.h */,
+				8333390C1999FB8A00826E87 /* ViewPayPeriodsViewController.m */,
+				8333390E199A63A300826E87 /* DetailPayPeriodViewController.h */,
+				8333390F199A63A300826E87 /* DetailPayPeriodViewController.m */,
+				83665BA9199ABD04004BFB59 /* AddEmployeeHoursViewController.h */,
+				83665BAA199ABD04004BFB59 /* AddEmployeeHoursViewController.m */,
+				83665BA6199AAFAE004BFB59 /* AddPayPeriodViewController.h */,
+				83665BA7199AAFAE004BFB59 /* AddPayPeriodViewController.m */,
 				83B489B118D243A700C39FB4 /* Employee.h */,
 				83B489B218D243A700C39FB4 /* Employee.m */,
 				83B489F918D3AE6900C39FB4 /* EmployeeModel.xcdatamodeld */,
@@ -233,6 +266,8 @@
 				B5161109195A38F3003099EA /* EmailMessage.h */,
 				B516110A195A38F3003099EA /* EmailMessage.m */,
 				B5E0E47F18D66C09005497DC /* TODO.h */,
+				831DEB0E1992ACC60078C683 /* DatabaseManager.h */,
+				831DEB0F1992ACC60078C683 /* DatabaseManager.m */,
 				83B489F718D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel */,
 				8339148C18D23D3D0043FD66 /* Images.xcassets */,
 				8339147B18D23D3D0043FD66 /* Supporting Files */,
@@ -383,6 +418,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831DEB161992BBE10078C683 /* timecards.db in Resources */,
 				B5E0E46018D38BBF005497DC /* b9.png in Resources */,
 				B5E0E45818D38BBF005497DC /* b1.png in Resources */,
 				B5E0E45918D38BBF005497DC /* b2.png in Resources */,
@@ -426,11 +462,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				831DEB151992BB5F0078C683 /* timecards.db in Sources */,
+				8333390D1999FB8A00826E87 /* ViewPayPeriodsViewController.m in Sources */,
 				B5E0E47118D3B672005497DC /* EmployeeModel.xcdatamodeld in Sources */,
 				B5E0E46A18D3AFFF005497DC /* CreateEmployeeViewController.m in Sources */,
 				832B8EAD18D6AB62003CE38C /* EmployeeAction.m in Sources */,
 				83B489B318D243A700C39FB4 /* Employee.m in Sources */,
 				B5E0E43018D2424E005497DC /* LoginViewController.m in Sources */,
+				83333910199A63A300826E87 /* DetailPayPeriodViewController.m in Sources */,
 				8339148518D23D3D0043FD66 /* AppDelegate.m in Sources */,
 				B516110B195A38F3003099EA /* EmailMessage.m in Sources */,
 				8339148118D23D3D0043FD66 /* main.m in Sources */,
@@ -438,7 +477,10 @@
 				83B489F818D3AA6E00C39FB4 /* CoreDataTest.xcdatamodel in Sources */,
 				B5E0E47E18D62300005497DC /* DetailViewController.m in Sources */,
 				B5E0E47018D3B445005497DC /* MainMenuViewController.m in Sources */,
+				83665BA8199AAFAE004BFB59 /* AddPayPeriodViewController.m in Sources */,
+				83665BAB199ABD04004BFB59 /* AddEmployeeHoursViewController.m in Sources */,
 				832B8EAA18D6AB62003CE38C /* EmployeeActionOut.m in Sources */,
+				831DEB101992ACC60078C683 /* DatabaseManager.m in Sources */,
 				B5E0E47618D4B358005497DC /* RemoveEmployeeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,5 +19,6 @@
 - (IBAction)cancelButton:(UIButton *)sender;
 @property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 @property (retain,nonatomic) AVAudioPlayer* audioPlayer;
+@property (weak, nonatomic) IBOutlet UITextField *wageTextField;
 
 @end
