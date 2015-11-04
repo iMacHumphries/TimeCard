@@ -16,6 +16,7 @@
 
 #import "DetailViewController.h"
 #import "AppDelegate.h"
+
 #define daySelect 0
 #define monthSelect 1
 #define yearSelect 2
@@ -46,14 +47,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        employActionArray = [[NSMutableArray alloc]init];
-        NSSet *hours=currentEmployee.employeesToAction;
-        for(EmployeeAction *a in hours){
-            
-            [employActionArray addObject:a];
-            }
-        
-    }
+           }
     return self;
 }
 -(int)getTotalHoursWorkedForThisMonth{
@@ -94,6 +88,13 @@
 }
 - (void)viewDidLoad
 {
+    employActionArray = [[NSMutableArray alloc]init];
+    NSSet *hours=currentEmployee.employeesToAction;
+    for(EmployeeActionOut *a in hours){
+        
+        [employActionArray addObject:a];
+    }
+  
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -179,6 +180,25 @@
     }
 }
 -(void)removeEmployeeDataAtRow:(int)theRow :(NSIndexPath *)indexpat{
+    NSLog(@"trying to remove employee");
+    
+    //1. Get the in and out date + time of the current row....
+    
+    UITableViewCell *currentCell = [tableView cellForRowAtIndexPath:indexpat];
+    NSString *inAndOutString = currentCell.textLabel.text;
+    inAndOutString = [inAndOutString stringByReplacingOccurrencesOfString:@"  " withString:@""];
+    inAndOutString = [inAndOutString stringByReplacingOccurrencesOfString:@"IN:" withString:@""];
+    inAndOutString = [inAndOutString stringByReplacingOccurrencesOfString:@"OUT:" withString:@""];
+    NSArray *savedInOutArray = [inAndOutString componentsSeparatedByString:@" "];
+     NSLog(@"here: %@",savedInOutArray);
+   
+    NSString *savedInString = [NSString stringWithFormat:@"%@",[savedInOutArray objectAtIndex:1]];
+     NSString *savedOutString = [NSString stringWithFormat:@"%@",[savedInOutArray objectAtIndex:3]];
+       // NSLog(@"checking: %@ and : %@ ",savedInString,savedOutString);
+       
+    
+
+    //2. compare that in and out date + time to every employee action (converted to string format)
     NSManagedObjectContext *context = [(AppDelegate *)[[UIApplication sharedApplication] delegate] managedObjectContext];
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription
@@ -187,21 +207,40 @@
     NSError *error;
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     
-   
-    for (NSManagedObject *info in fetchedObjects) {
-          NSLog(@"%@",info);
-        for (int x = 0; x < [employActionArray count]; x ++){
-          
-        if ([[info valueForKey:@"emplyeeIn"] isEqual:[employActionArray objectAtIndex:x]]){
-            NSLog(@"Equal");
-        [context deleteObject:info];
-        
-            [context save:&error];
-            
-        }
-        }
-    }
-        [clockedInDate removeObjectAtIndex:theRow];
+     for (EmployeeAction *info in fetchedObjects) {
+         
+         double d = [info.timeInitiated doubleValue];
+         NSTimeInterval *day = &d;
+         NSString *theDay = [self getDay:day];
+         NSString *theYear = [info.year stringValue];
+         NSString *theMonth = [self getMonthForSeconds:day];
+          NSString *timeIn =[self getHours:day];
+         NSString *compareInString = [NSString stringWithFormat:@"%@/%@/%@%@",theMonth,theDay,theYear,timeIn];
+         compareInString = [compareInString stringByReplacingOccurrencesOfString:@" AM" withString:@""];
+         compareInString = [compareInString stringByReplacingOccurrencesOfString:@" PM" withString:@""];
+       
+         d = [info.employeeOut.timeInitiated doubleValue];
+         day = &d;
+         theDay = [self getDay:day];
+         theYear = [info.employeeOut.year stringValue];
+         theMonth = [self getMonthForSeconds:day];
+         NSString *timeOut =[self getHours:&d];
+         
+         NSString *compareOutString = [NSString stringWithFormat:@"%@/%@/%@%@",theMonth,theDay,theYear,timeOut];
+         compareOutString = [compareOutString stringByReplacingOccurrencesOfString:@" AM" withString:@""];
+         compareOutString = [compareOutString stringByReplacingOccurrencesOfString:@" PM" withString:@""];
+         
+         
+
+         if ([compareInString isEqualToString:savedInString] && [compareOutString isEqualToString:savedOutString]){
+             NSLog(@"%@",info);
+             [context deleteObject:[info valueForKey:@"employeeOut"]];
+              [context deleteObject:info];
+             [context save:&error];
+         }
+     }
+
+    [clockedInDate removeObjectAtIndex:theRow];
     
     [tableView deleteRowsAtIndexPaths:@[indexpat] withRowAnimation:UITableViewRowAnimationMiddle];
     [tableView reloadData];
@@ -253,7 +292,8 @@
     UIAlertView *al = [[UIAlertView alloc]initWithTitle:@"Problems?" message:[NSString stringWithFormat:@"If the hours are large negative numbers or the word ('null') is present, please ensure that the employee, %@, has been properly clocked out.",currentEmployee.name] delegate:self cancelButtonTitle:@"Thanks!" otherButtonTitles:nil, nil];
     [al show];
 }
--(void)email{
+
+- (void)email{
     
     // save all table
     CGRect frame = self.tableView.frame;
@@ -292,8 +332,7 @@
     
     
 }
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     switch (result)
     {
         case MFMailComposeResultCancelled:
@@ -319,7 +358,6 @@
     // Close the Mail Interface
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
 -(void)configureSelectedButtonWithTheTag:(int)tag{
     UIImage *filled = [UIImage imageNamed:@"filledIndicator"];
     [self setAllButtonsToNotSelected];
@@ -350,7 +388,6 @@
     [allButton setBackgroundImage:blank forState:UIControlStateNormal];
     [payPeriodButton setBackgroundImage:blank forState:UIControlStateNormal];
 }
-
 -(void)setSelectedIndex:(int)tag{
     selectedButtonIndex =tag;
 }
@@ -452,7 +489,6 @@
                    }
     
 }
-
 -(void)changeTableToDay{
      NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay = 0;
@@ -481,13 +517,14 @@
         }
         NSString *dayHours = [NSString stringWithFormat:@"%f hours",totalSecondsWorkedThatDay/(60*60)];
         theDate = [theDate stringByAppendingString:dayHours];
+    
+       
         [clockedInDate addObject:theDate];
         [self sortArrayNumerically:clockedInDate];
        
         }
     
     }
-
 -(void)changeTableToMonth{
  NSSet *hours=currentEmployee.employeesToAction;
     double totalSecondsWorkedThatDay;
